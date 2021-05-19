@@ -2,31 +2,25 @@ import { Context } from 'konva/types/Context';
 import { Shape as IShape } from 'konva/types/Shape';
 
 import React, { FC, useCallback } from 'react';
-import { Circle, Group, Shape, Text } from 'react-konva';
+import { Circle, Group, Shape } from 'react-konva';
 import UseMoon from '../../uses/useMoon';
 
 import { IMoonPhase } from './interfaces';
 
 // moon phase
 const MoonPhase: FC<IMoonPhase> = ({
-  day,
   angle,
+  day,
   month,
-  phase: {
-    phaseName,
-    lighting
-  },
   size,
   x,
+  y,
   year,
-  y
 }) => {
   const { getMoonFraction } = UseMoon();
 
   // phase
   const phase: number = getMoonFraction(year, month, day);
-  const posX = (x + size / 2);
-  const posY = (y + size / 2);
 
   // draw path
   const drawPath = useCallback((ctx: Context, posX: number, posY: number, size: number) => {
@@ -37,42 +31,40 @@ const MoonPhase: FC<IMoonPhase> = ({
 
   // draw phase
   const drawPhase = useCallback((ctx: Context, phase: number, shape: IShape) => {
-    drawPath(ctx, posX, posY, size);
+    drawPath(ctx, x, y, size);
 		shape.setAttr('fill', '#222');
     ctx.fillShape(shape);
 
-		ctx.translate(posX, posY);
+		ctx.translate(x, y);
 		ctx.scale(phase, 1);
-		ctx.translate( -posX, -posY );
+		ctx.translate( -x, -y );
 
-    drawPath(ctx, posX, posY, size);
+    drawPath(ctx, x, y, size);
     shape.setAttr('fill', phase > 0 ? '#fff' : '#222');
 		ctx.fillShape(shape);
-  }, [ drawPath, size, posX, posY ]);
+  }, [ drawPath, size, x, y ]);
 
   // shadow moon
   const shadowMoon = useCallback((ctx: Context, shape: IShape) => {
     if (phase <= 0.5) {
       drawPhase(ctx, 4 * phase - 1, shape);
     } else {
-      ctx.translate(posX, posY);
+      ctx.translate(x, y);
 			ctx.rotate(Math.PI);
-			ctx.translate(-posX, -posY);
+			ctx.translate(-x, -y);
 
       drawPhase(ctx, 4 * (1 - phase) - 1, shape);
     }
-  }, [ posX, posY, drawPhase, phase ]);
-
-
+  }, [ x, y, drawPhase, phase ]);
 
   // render
   return (
-    <Group rotation={angle ? angle * day : 0}>
-      <Text text={day.toString()} fontSize={12} y={y - 30} x={x - 5} fill="white" />
+    <Group
+      rotation={angle}>
       <Group>
         <Circle
-          x={posX}
-          y={posY}
+          x={x}
+          y={y}
           fill="white"
           stroke="white"
           radius={size} />

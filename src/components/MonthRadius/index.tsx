@@ -13,8 +13,11 @@ const fetcher = (url: string) => axios.get(url).then(res => res.data);
 const MonthRadius: FC<IMonthRadius> = ({
   month,
   params,
+  radius,
   year
 }) => {
+  const angle = (2 * Math.PI)/(32);
+
   // data
   const { data }: any = 
     useSWR(`https://www.icalendar37.net/lunar/api/?${params}`, fetcher);
@@ -28,28 +31,33 @@ const MonthRadius: FC<IMonthRadius> = ({
 
   // month
   return (
-    <Group x={window.innerHeight / 2} y={window.innerWidth / 2}>
-      <Text text={data?.monthName} fontSize={15} y={50 * month} />
+    <Group
+      x={(window.innerWidth / 2)}
+      y={(window.innerHeight / 2)}
+      height={radius}
+      width={radius}>
+      <Text text={data?.monthName} fontSize={15} y={50 * month} fill="white" />
 
       <Circle
-        radius={300 * month}
+        radius={radius}
         fill="transparent"
-        stroke="#222"
-        strokeWidth={2}
+        stroke="rgba(255, 255, 255, 0.1)"
+        strokeWidth={1}
+        dash={[2, 4]}
         x={0}
         y={0} />
 
       {data?.phase && <Group>
         {factoryPhases(data?.phase).map((item: any, index: number) =>
           <MoonPhase
-            angle={360 / Object.keys(data.phase).length}
+            angle={angle * index}
             day={index + 1}
-            phase={item}
-            x={index * 25}
-            y={70 * month}
-            year={year}
             month={month}
-            size={7}
+            phase={item}
+            size={5}
+            x={Math.cos(angle * index) * radius}
+            y={Math.sin(angle * index) * radius}
+            year={year}
             key={index} />)}
       </Group>}
     </Group>
