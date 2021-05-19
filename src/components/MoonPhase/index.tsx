@@ -59,9 +59,8 @@ const MoonPhase: FC<IMoonPhase> = ({
 
   // render
   return (
-    <Group
-      rotation={angle}>
-      <Group>
+    <Group>
+      <Group rotation={angle}>
         <Circle
           x={x}
           y={y}

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { FC, useCallback } from 'react';
 import { Circle, Group, Text } from 'react-konva';
 import useSWR from 'swr';
+
 import MoonPhase from '../MoonPhase';
 
 import { IMonthRadius } from './interfaces';
@@ -36,7 +37,10 @@ const MonthRadius: FC<IMonthRadius> = ({
       y={(window.innerHeight / 2)}
       height={radius}
       width={radius}>
-      <Text text={data?.monthName} fontSize={15} y={50 * month} fill="white" />
+      <Text
+        text={data?.monthName}
+        fontSize={15} y={50 * month}
+        fill="white" />
 
       <Circle
         radius={radius}
