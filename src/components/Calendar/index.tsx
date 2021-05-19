@@ -33,12 +33,13 @@ const Calendar: FC<ICalendar> = ({
   // create months
   const createMonths = useCallback(() => {
     const months = [];
+    const total: number = 12;
 
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 1; i <= total; i++) {
       months.push(<MonthRadius
-        radius={110 + (i * 25)}
+        radius={360 - (i * 20)}
         params={getOptions(i, year)}
-        month={i}
+        month={total - i}
         year={year}
         key={i} />);
     }

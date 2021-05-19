@@ -4,6 +4,7 @@ import { Circle, Group, Text } from 'react-konva';
 import useSWR from 'swr';
 
 import MoonPhase from '../MoonPhase';
+import MonthRadiusPercent from './MonthRadiusPercent';
 
 import { IMonthRadius } from './interfaces';
 
@@ -17,7 +18,7 @@ const MonthRadius: FC<IMonthRadius> = ({
   radius,
   year
 }) => {
-  const angle = (2 * Math.PI)/(32);
+  const angle = (2 * Math.PI)/(33);
 
   // data
   const { data }: any = 
@@ -37,10 +38,19 @@ const MonthRadius: FC<IMonthRadius> = ({
       y={(window.innerHeight / 2)}
       height={radius}
       width={radius}>
-      <Text
-        text={data?.monthName}
-        fontSize={15} y={50 * month}
+      <Text 
+        text={data?.monthName.substring(0, 3).toUpperCase()}
+        fontFamily="Roboto Condensed"
+        align="center"
+        fontSize={10}
+        x={radius + 4}
+        y={-30}
+        rotation={-270}
         fill="white" />
+
+      <MonthRadiusPercent
+        radius={radius}
+        percent={2} />
 
       <Circle
         radius={radius}
@@ -58,7 +68,7 @@ const MonthRadius: FC<IMonthRadius> = ({
             day={index + 1}
             month={month}
             phase={item}
-            size={5}
+            size={4}
             x={Math.cos(angle * index) * radius}
             y={Math.sin(angle * index) * radius}
             year={year}
