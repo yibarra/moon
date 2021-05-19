@@ -7,8 +7,10 @@ import UseMoon from '../../uses/useMoon';
 
 import { IMoonPhase } from './interfaces';
 
+// moon phase
 const MoonPhase: FC<IMoonPhase> = ({
   day,
+  angle,
   month,
   phase: {
     phaseName,
@@ -26,26 +28,27 @@ const MoonPhase: FC<IMoonPhase> = ({
   const posX = (x + size / 2);
   const posY = (y + size / 2);
 
+  // draw path
+  const drawPath = useCallback((ctx: Context, posX: number, posY: number, size: number) => {
+    ctx.beginPath();
+		ctx.arc(posX, posY, size, -Math.PI/2, Math.PI/2, true);
+		ctx.closePath();
+  }, []);
+
   // draw phase
   const drawPhase = useCallback((ctx: Context, phase: number, shape: IShape) => {
-    ctx.beginPath();
-		ctx.arc(posX, posY, size, -Math.PI/2, Math.PI/2, true );
-		ctx.closePath();
-    
-		shape.setAttr('fill', '#000');
+    drawPath(ctx, posX, posY, size);
+		shape.setAttr('fill', '#222');
     ctx.fillShape(shape);
 
 		ctx.translate(posX, posY);
 		ctx.scale(phase, 1);
 		ctx.translate( -posX, -posY );
 
-		ctx.beginPath();
-		ctx.arc(posX, posY, size, -Math.PI/2, Math.PI/2, true );
-		ctx.closePath();
-
-    shape.setAttr('fill', phase > 0 ? '#fff' : '#000');
+    drawPath(ctx, posX, posY, size);
+    shape.setAttr('fill', phase > 0 ? '#fff' : '#222');
 		ctx.fillShape(shape);
-  }, [ size, posX, posY ]);
+  }, [ drawPath, size, posX, posY ]);
 
   // shadow moon
   const shadowMoon = useCallback((ctx: Context, shape: IShape) => {
@@ -60,32 +63,26 @@ const MoonPhase: FC<IMoonPhase> = ({
     }
   }, [ posX, posY, drawPhase, phase ]);
 
+
+
   // render
   return (
-    <>
-    <Text text={day.toString()} fontSize={12} y={y - 30} x={x - 5} fill="white" />
-    <Group>
-      <Circle
-        x={posX}
-        y={posY}
-        fill="white"
-        stroke="white"
-        radius={size} />
+    <Group rotation={angle ? angle * day : 0}>
+      <Text text={day.toString()} fontSize={12} y={y - 30} x={x - 5} fill="white" />
+      <Group>
+        <Circle
+          x={posX}
+          y={posY}
+          fill="white"
+          stroke="white"
+          radius={size} />
 
-      <Shape
-        sceneFunc={shadowMoon}
-        fill={phase > 0 ? 'white' : '#222'} />
+        <Shape
+          sceneFunc={shadowMoon}
+          fill={phase > 0 ? 'white' : '#222'} />
+      </Group>
     </Group>
-    </>
   );
 };
 
 export default MoonPhase;
-
-/*
-<Circle
-        x={x}
-        y={y}
-        fill="white"
-        stroke="white"
-        radius={size} />*/

@@ -34,7 +34,7 @@ const Calendar: FC<ICalendar> = ({
   const createMonths = useCallback(() => {
     const months = [];
 
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 1; i <= 1; i++) {
       months.push(<MonthRadius
         params={getOptions(i, year)}
         month={i}

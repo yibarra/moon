@@ -28,7 +28,7 @@ const MonthRadius: FC<IMonthRadius> = ({
 
   // month
   return (
-    <Group x={20}>
+    <Group x={window.innerHeight / 2} y={window.innerWidth / 2}>
       <Text text={data?.monthName} fontSize={15} y={50 * month} />
 
       <Circle
@@ -42,6 +42,7 @@ const MonthRadius: FC<IMonthRadius> = ({
       {data?.phase && <Group>
         {factoryPhases(data?.phase).map((item: any, index: number) =>
           <MoonPhase
+            angle={360 / Object.keys(data.phase).length}
             day={index + 1}
             phase={item}
             x={index * 25}
