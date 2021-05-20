@@ -5,6 +5,7 @@ import { IMonthRadiusPercent } from './interfaces';
 
 // month radius percent
 const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
+  active,
   radius,
   percent
 }) => {
@@ -14,10 +15,19 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
   return (
     <Group>
       <Circle
+        radius={radius}
+        fill="transparent"
+        stroke="rgba(255, 255, 255, 0.1)"
+        strokeWidth={1}
+        dash={[2, 4]}
+        x={0}
+        y={0} />
+        
+      <Circle
         dash={[ percent/100 * circumference, circumference ]}
         radius={radius}
         fill="transparent"
-        stroke="blue"
+        stroke={active === true ? 'white' : 'transparent'}
         strokeWidth={2} />
     </Group>
   );

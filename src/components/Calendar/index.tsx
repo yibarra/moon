@@ -39,7 +39,7 @@ const Calendar: FC<ICalendar> = ({
       months.push(<MonthRadius
         radius={360 - (i * 20)}
         params={getOptions(i, year)}
-        month={total - i}
+        month={i}
         year={year}
         key={i} />);
     }
