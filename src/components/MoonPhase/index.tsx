@@ -13,6 +13,7 @@ const MoonPhase: FC<IMoonPhase> = ({
   day,
   month,
   size,
+  strokeWidth,
   x,
   y,
   year,
@@ -60,12 +61,13 @@ const MoonPhase: FC<IMoonPhase> = ({
   // render
   return (
     <Group>
-      <Group rotation={angle}>
+      <Group>
         <Circle
           x={x}
           y={y}
           fill="white"
           stroke="white"
+          strokeWidth={strokeWidth}
           radius={size} />
 
         <Shape

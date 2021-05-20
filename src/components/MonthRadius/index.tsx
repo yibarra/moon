@@ -19,25 +19,48 @@ const MonthRadius: FC<IMonthRadius> = ({
   radius,
   year
 }) => {
-  const date = parse(format(new Date(), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date());
-  const current = parse(`${year}-${month}`, 'yyyy-MM', new Date());
-  const active: boolean = date.getMonth() >= current.getMonth();
-
-  const day = getDaysInMonth(current);
-  const dayCurrent = date.getDate();
-  const angle = (2 * Math.PI) / 33; // angle
-
-  console.log((dayCurrent / 33) * 100);
-
   // data
   const { data }: any = 
     useSWR(`https://www.icalendar37.net/lunar/api/?${params}`, fetcher);
+    
+  const date = parse(format(new Date(), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date());
+  const current = parse(`${year}-${month}-${date.getDate()}`, 'yyyy-MM-dd', new Date());
+
+  const active: boolean = date.getMonth() >= current.getMonth(); // active month
+  const currentMonth: boolean = date.getMonth() === current.getMonth(); // current month
+
+  const day = getDaysInMonth(current); // day
+  const angle = (2 * Math.PI) / 33; // angle
 
   // factory phases
   const factoryPhases = useCallback((data: any) => {
     if (!Object.keys(data).length) return [];
     return Object.entries(data).map(([key, value]) => value);
   }, []);
+
+  // percent
+  const percent = useCallback(() => {
+    if (active === true) {
+      if (currentMonth === true) {
+        return Math.ceil((date.getDate() / 33) * 100) - (Math.PI);
+      }
+
+      return Math.ceil((day / 33) * 100) - (Math.PI);
+    }
+
+    return 0;
+  }, [ active, currentMonth, date, day ]);
+
+  // select day
+  const selectDay = useCallback((day: number) => {
+    if (currentMonth === true) {
+      if (day === date.getDate()) {
+        return 4;
+      }
+    }
+
+    return 1;
+  }, [ currentMonth, date ]);
 
   // month
   return (
@@ -59,12 +82,13 @@ const MonthRadius: FC<IMonthRadius> = ({
       <MonthRadiusPercent
         active={active}
         radius={radius}
-        percent={active === true ? ((day / 33) * 100) - (Math.PI / 2) : 2} />
+        percent={percent()} />
 
       {data?.phase && <Group>
         {factoryPhases(data?.phase).map((item: any, index: number) =>
           <MoonPhase
             angle={angle * index}
+            strokeWidth={selectDay(index + 1)}
             day={index + 1}
             month={month}
             phase={item}

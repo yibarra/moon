@@ -28,7 +28,7 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
         radius={radius}
         fill="transparent"
         stroke={active === true ? 'white' : 'transparent'}
-        strokeWidth={2} />
+        strokeWidth={1} />
     </Group>
   );
 };
