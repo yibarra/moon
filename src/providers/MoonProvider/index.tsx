@@ -16,4 +16,5 @@ const MoonProvider: FC<any> = ({ children }) => {
   );
 };
 
+export { MoonContext, MoonProvider };
 export default MoonProvider;

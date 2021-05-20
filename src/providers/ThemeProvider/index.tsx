@@ -16,4 +16,5 @@ const ThemeProvider: FC<any> = ({ children }) => {
   );
 };
 
+export { ThemeContext, ThemeProvider };
 export default ThemeProvider;

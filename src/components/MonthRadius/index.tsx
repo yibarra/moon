@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { parse, format, getDaysInMonth } from 'date-fns';
 import React, { FC, useCallback } from 'react';
-import { Group, Text } from 'react-konva';
+import { Group } from 'react-konva';
 import useSWR from 'swr';
 
 import MoonPhase from '../MoonPhase';
+import MonthRadiusName from './MonthRadiusName';
 import MonthRadiusPercent from './MonthRadiusPercent';
 
 import { IMonthRadius } from './interfaces';
@@ -22,7 +23,7 @@ const MonthRadius: FC<IMonthRadius> = ({
   // data
   const { data }: any = 
     useSWR(`https://www.icalendar37.net/lunar/api/?${params}`, fetcher);
-    
+
   const date = parse(format(new Date(), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date());
   const current = parse(`${year}-${month}-${date.getDate()}`, 'yyyy-MM-dd', new Date());
 
@@ -69,22 +70,19 @@ const MonthRadius: FC<IMonthRadius> = ({
       y={(window.innerHeight / 2)}
       height={radius}
       width={radius}>
-      <Text 
-        text={data?.monthName.substring(0, 3).toUpperCase()}
-        fontFamily="Roboto Condensed"
-        align="center"
-        fontSize={10}
-        x={radius + 4}
-        y={-30}
-        rotation={-270}
-        fill="white" />
-
-      <MonthRadiusPercent
-        active={active}
-        radius={radius}
-        percent={percent()} />
-
+      
       {data?.phase && <Group>
+        <MonthRadiusName 
+          angle={angle * month}
+          month={month}
+          radius={radius}
+          text={data?.monthName} />
+
+        <MonthRadiusPercent
+          active={active}
+          radius={radius}
+          percent={percent()} />
+
         {factoryPhases(data?.phase).map((item: any, index: number) =>
           <MoonPhase
             angle={angle * index}
