@@ -9,7 +9,7 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
   radius,
   percent
 }) => {
-  const circumference = 2 * Math.PI * radius;
+  const circumference = 2 * Math.PI * radius; // circumference
 
   // render
   return (
@@ -22,7 +22,7 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
         dash={[2, 4]}
         x={0}
         y={0} />
-        
+
       <Circle
         dash={[ percent/100 * circumference, circumference ]}
         radius={radius}

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { parse, format } from 'date-fns';
+import { parse, format, getDaysInMonth } from 'date-fns';
 import React, { FC, useCallback } from 'react';
 import { Group, Text } from 'react-konva';
 import useSWR from 'swr';
@@ -20,10 +20,14 @@ const MonthRadius: FC<IMonthRadius> = ({
   year
 }) => {
   const date = parse(format(new Date(), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date());
-  const current = parse(`${year}-${month}-1`, 'yyyy-MM-dd', new Date());
+  const current = parse(`${year}-${month}`, 'yyyy-MM', new Date());
   const active: boolean = date.getMonth() >= current.getMonth();
 
-  const angle = (2 * Math.PI)/(33); // angle
+  const day = getDaysInMonth(current);
+  const dayCurrent = date.getDate();
+  const angle = (2 * Math.PI) / 33; // angle
+
+  console.log((dayCurrent / 33) * 100);
 
   // data
   const { data }: any = 
@@ -55,7 +59,7 @@ const MonthRadius: FC<IMonthRadius> = ({
       <MonthRadiusPercent
         active={active}
         radius={radius}
-        percent={2} />
+        percent={active === true ? ((day / 33) * 100) - (Math.PI / 2) : 2} />
 
       {data?.phase && <Group>
         {factoryPhases(data?.phase).map((item: any, index: number) =>
