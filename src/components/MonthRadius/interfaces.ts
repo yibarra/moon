@@ -39,5 +39,4 @@ export interface IMonthRadius {
   month: number;
   radius: number;
   year: number;
-  params?: any;
 };

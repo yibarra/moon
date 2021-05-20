@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Stage } from 'react-konva';
 import WebFontLoader from "webfontloader";
 
 import Calendar from '../../components/Calendar';
-
 import MainProvider from '../../providers/MainProvider';
-import MoonProvider from '../../providers/MoonProvider';
 
 // main
-const Main = () => {
+const Main: FC<any> = () => {
+  const [ loaded, setLoaded ] = useState<boolean>(false); // loaded
+  const [ year, setYear ] = useState<number>(2021);
+
   // Handle loading effects.
   useEffect(() => {
     // Fetch necessary fonts.
@@ -18,22 +19,24 @@ const Main = () => {
           "Roboto Condensed:300,400,700",
           "Roboto Slab:200,300,400,500,600"
         ]
-      },
-      fontactive: () => {}
+      }, fontactive: () => {
+        setTimeout(() => {
+          setLoaded(true);
+        }, 1000);
+      }
     });
   }, []);
 
   // render
   return (
     <MainProvider>
-      <MoonProvider>
-        <Stage
+      {loaded && <Stage
           height={window.innerHeight}
           width={window.innerWidth}>
-            <Calendar
-              year={2021} />
-        </Stage>
-      </MoonProvider>
+        <Calendar
+          setYear={setYear}
+          year={year} />
+      </Stage>}
     </MainProvider>
   );
 };

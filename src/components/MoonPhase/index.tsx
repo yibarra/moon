@@ -1,8 +1,9 @@
+import React, { FC, useCallback } from 'react';
+import { Circle, Shape } from 'react-konva';
+
 import { Context } from 'konva/types/Context';
 import { Shape as IShape } from 'konva/types/Shape';
 
-import React, { FC, useCallback } from 'react';
-import { Circle, Group, Shape } from 'react-konva';
 import UseMoon from '../../uses/useMoon';
 
 import { IMoonPhase } from './interfaces';
@@ -18,7 +19,7 @@ const MoonPhase: FC<IMoonPhase> = ({
   y,
   year,
 }) => {
-  const { getMoonFraction } = UseMoon();
+  const { getMoonFraction } = UseMoon(); // get moon fraction
 
   // phase
   const phase: number = getMoonFraction(year, month, day);
@@ -60,21 +61,19 @@ const MoonPhase: FC<IMoonPhase> = ({
 
   // render
   return (
-    <Group>
-      <Group>
-        <Circle
-          x={x}
-          y={y}
-          fill="white"
-          stroke="white"
-          strokeWidth={strokeWidth}
-          radius={size} />
+    <>
+      <Circle
+        x={x}
+        y={y}
+        fill="white"
+        stroke="white"
+        strokeWidth={strokeWidth}
+        radius={size} />
 
-        <Shape
-          sceneFunc={shadowMoon}
-          fill={phase > 0 ? 'white' : '#222'} />
-      </Group>
-    </Group>
+      <Shape
+        sceneFunc={shadowMoon}
+        fill={phase > 0 ? 'white' : '#222'} />
+    </>
   );
 };
 

@@ -2,34 +2,16 @@ import React, { FC, useCallback } from 'react';
 import { Layer } from 'react-konva';
 
 import MonthRadius from '../MonthRadius';
+import MoonToday from '../MoonToday';
+import YearControls from '../YearControls';
 
 import { ICalendar } from './interfaces';
 
-// options
-const options: any = {
-  lang: 'en',
-  size: 100,
-  lightColor: "#FFFF88",
-  shadeColor: "black",
-  texturize: false
-};
-
 // calendar
 const Calendar: FC<ICalendar> = ({ 
-  year
+  setYear,
+  year,
 }) => {
-  // get options
-  const getOptions = useCallback((month: number, year: number) => {
-    const obj = { month, year, ...options };
-    const gets = [];
-
-    for (var i in obj) {
-      gets.push(`${i}=${encodeURIComponent(obj[i])}`)
-    }
-
-    return gets.join('&');
-  }, []);
-
   // create months
   const createMonths = useCallback(() => {
     const months = [];
@@ -38,14 +20,13 @@ const Calendar: FC<ICalendar> = ({
     for (let i = 1; i <= total; i++) {
       months.push(<MonthRadius
         radius={360 - (i * 20)}
-        params={getOptions(i, year)}
         month={i}
         year={year}
         key={i} />);
     }
 
     return months;
-  }, [ year, getOptions ]);
+  }, [ year ]);
 
   // render
   return (
@@ -53,6 +34,11 @@ const Calendar: FC<ICalendar> = ({
       height={window.innerHeight}
       width={window.innerWidth}>
       {createMonths()}
+
+      <MoonToday />
+      <YearControls
+        setYear={setYear}
+        year={year} />
     </Layer>
   );
 };

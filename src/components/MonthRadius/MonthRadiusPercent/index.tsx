@@ -23,7 +23,7 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
 
   // render
   return (
-    <Group>
+    <>
       <Group clipFunc={maskLines}>
         <Circle
           radius={radius}
@@ -39,7 +39,7 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
         fill="transparent"
         stroke={active === true ? 'white' : 'transparent'}
         strokeWidth={1} />
-    </Group>
+    </>
   );
 };
 
