@@ -31,7 +31,7 @@ const MonthRadius: FC<IMonthRadius> = ({
   const currentMonth: boolean = date.getMonth() === current.getMonth(); // current month
 
   const day = getDaysInMonth(current); // day
-  const angle = (2 * Math.PI) / 33; // angle
+  const angle = (2 * Math.PI) / 32; // angle
 
   // factory phases
   const factoryPhases = useCallback((data: any) => {
@@ -43,10 +43,10 @@ const MonthRadius: FC<IMonthRadius> = ({
   const percent = useCallback(() => {
     if (active === true) {
       if (currentMonth === true) {
-        return Math.ceil((date.getDate() / 33) * 100) - (Math.PI);
+        return Math.floor((date.getDate() / 32) * 100) - ((Math.PI / 2) + 1.1);
       }
 
-      return Math.ceil((day / 33) * 100) - (Math.PI);
+      return Math.ceil((day / 32) * 100) - ((Math.PI + 0.4));
     }
 
     return 0;
@@ -70,16 +70,17 @@ const MonthRadius: FC<IMonthRadius> = ({
       y={(window.innerHeight / 2)}
       height={radius}
       width={radius}>
-      
       {data?.phase && <Group>
-        <MonthRadiusName 
+        <MonthRadiusName
           angle={angle * month}
           month={month}
           radius={radius}
           text={data?.monthName} />
 
         <MonthRadiusPercent
+          angle={angle}
           active={active}
+          day={day}
           radius={radius}
           percent={percent()} />
 

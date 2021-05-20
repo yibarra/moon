@@ -5,23 +5,22 @@ import { IMonthRadiusName } from './interfaces';
 
 // month radius name
 const MonthRadiusName: FC<IMonthRadiusName> = ({
-  angle,
   radius,
-  month,
   text,
 }) => {
   // render
   return (
-    <Group rotation={-18}>
+    <Group rotation={-2}>
       <Text 
-        text={text?.substring(0, 3)}
-        fontFamily="Roboto Condensed"
         align="center"
+        fill="white"
+        fontFamily="Roboto Condensed"
         fontSize={10}
-        x={radius+5}
-        y={-5}
         rotation={-270}
-        fill="white" />
+        text={text?.substring(0, 3)}
+        x={radius + 5}
+        y={-30}
+        width={20} />
     </Group>
   );
 };
