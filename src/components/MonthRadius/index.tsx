@@ -20,10 +20,16 @@ const MonthRadius: FC<IMonthRadius> = ({
 }) => {
   const current = parse(`${year}-${month}-${today.getDate()}`, 'yyyy-MM-dd', new Date());
 
+  const todayMonth: number = today.getMonth();
+  const todayYear: number = today.getFullYear();
+
+  const monthMonth: number = current.getMonth();
+  const monthYear: number = current.getFullYear();
+
   const active: boolean = 
-    (today.getMonth() >= current.getMonth() && today.getFullYear() === current.getFullYear()) || today.getFullYear() > current.getFullYear(); // active month
+    (todayMonth >= monthMonth && todayYear === monthYear) || todayYear > monthYear; // active month
   const currentMonth: boolean = 
-    today.getMonth() === current.getMonth() && today.getFullYear() === current.getFullYear(); // current month
+    todayMonth === monthMonth && todayYear === monthYear; // current month
 
   const day = getDaysInMonth(current); // day
   const angle = (2 * Math.PI) / totalItems; // angle
