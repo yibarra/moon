@@ -14,6 +14,7 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
   angle,
   currentMonth,
   day,
+  month,
   radius,
   today
 }) => {
@@ -60,7 +61,7 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
       </Group>
 
       <Spring
-        delay={300}
+        delay={30 * month}
         from={{ dash: [ 0, 0] }}
         to={{ dash: [ percent, circumference ] }}>
         {props => (

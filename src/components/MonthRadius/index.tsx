@@ -68,6 +68,7 @@ const MonthRadius: FC<IMonthRadius> = ({
         angle={angle}
         currentMonth={currentMonth}
         day={day}
+        month={month}
         today={today.getDate()}
         radius={radius} />
 

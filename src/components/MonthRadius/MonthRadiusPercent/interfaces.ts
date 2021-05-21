@@ -3,6 +3,7 @@ export interface IMonthRadiusPercent {
   active: boolean;
   currentMonth: boolean;
   day: any;
+  month: number;
   radius: number;
   today: any;
 }
