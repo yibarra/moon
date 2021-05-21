@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { Group } from 'react-konva';
 
 import ButtonArrow from '../../ButtonArrow';
 
@@ -10,8 +9,9 @@ const MoonTodayControls: FC<IMoonTodayControls> = ({
   setYear,
   year,
 }) => {
+  // render
   return (
-    <Group zIndex={100}>
+    <>
       <ButtonArrow
         onClick={() => setYear(year-1)}
         type="left"
@@ -23,7 +23,7 @@ const MoonTodayControls: FC<IMoonTodayControls> = ({
         type="right"
         x={(window.innerWidth / 2) + 95}
         y={(window.innerHeight / 2) - 5} />
-    </Group>
+    </>
   );
 };
 

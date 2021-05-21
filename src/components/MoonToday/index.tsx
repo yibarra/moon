@@ -18,10 +18,6 @@ const MoonToday: FC<any> = ({
       <MoonTodayInfo
         today={today} />
 
-      <MoonTodayControls
-        setYear={setYear}
-        year={year} />
-
       <Circle
         x={window.innerWidth / 2}
         y={window.innerHeight / 2}
@@ -49,6 +45,10 @@ const MoonToday: FC<any> = ({
         year={2021}
         strokeWidth={1}
         angle={0} />
+
+      <MoonTodayControls
+        setYear={setYear}
+        year={year} />
     </Group>
   );
 };
