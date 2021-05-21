@@ -4,6 +4,8 @@ import { Stage } from 'react-konva';
 import WebFontLoader from "webfontloader";
 
 import Calendar from '../../components/Calendar';
+import Footer from '../Footer';
+import UseWindowSize from '../../uses/useWindowSize';
 
 import { IMain } from './interfaces';
 
@@ -12,6 +14,8 @@ const date: any = parse(format(new Date(), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date
 
 // main
 const Main: FC<IMain> = () => {
+  const size = UseWindowSize();
+
   const [ loaded, setLoaded ] = useState<boolean>(false); // loaded
   const [ year, setYear ] = useState<number>(2021);
 
@@ -22,7 +26,8 @@ const Main: FC<IMain> = () => {
       google: {
         families: [
           "Roboto Condensed:300,400,700",
-          "Roboto Slab:200,300,400,500,600"
+          "Roboto Slab:200,300,400,500,600",
+          "Roboto:200,300,400"
         ]
       }, fontactive: () => {
         setTimeout(() => setLoaded(true), 1000);
@@ -34,12 +39,14 @@ const Main: FC<IMain> = () => {
   return (
     <>
       {loaded && <Stage
-          height={window.innerHeight}
-          width={window.innerWidth}>
+          height={size.height}
+          width={size.width}>
         <Calendar
           today={date}
           setYear={setYear}
           year={year} />
+
+        <Footer />
       </Stage>}
     </>
   );

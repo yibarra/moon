@@ -17,14 +17,14 @@ const YearControls: FC<IYearControls> = ({
         text={(year - 1).toString()}
         type="left"
         x={90}
-        y={window.innerHeight / 2} />
+        y={(window.innerHeight / 2) - 5} />
 
       <ButtonArrow
         onClick={() => setYear(year+1)}
         text={(year + 1).toString()}
         type="right"
         x={window.innerWidth - 90}
-        y={window.innerHeight / 2} />
+        y={(window.innerHeight / 2) - 5} />
     </>
   );
 };

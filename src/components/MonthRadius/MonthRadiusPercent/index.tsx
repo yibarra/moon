@@ -36,14 +36,14 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
 
       <Spring
         delay={300}
-        from={{ dash: [0, 0] }}
+        from={{ dash: [0, circumference] }}
         to={{ dash: [ percent / 100 * circumference, circumference ] }}>
         {props => (
           <animated.Circle
             {...props}
             radius={radius}
             fill="transparent"
-            stroke={active === true ? 'white' : 'transparent'}
+            stroke={active === true ? 'rgba(255, 255, 255, 0.7)' : 'transparent'}
             strokeWidth={1} />
         )}
       </Spring>
