@@ -45,24 +45,11 @@ const MonthRadius: FC<IMonthRadius> = ({
     return items;
   }, []);
 
-  // percent
-  const percent = useCallback(() => {
-    if (active === true) {
-      if (currentMonth === true) {
-        return Math.floor((today.getDate() / totalItems) * 100) - ((Math.PI / 2) + 1.1);
-      }
-
-      return Math.ceil((day / totalItems) * 100) - ((Math.PI + 0.4));
-    }
-
-    return 0;
-  }, [ active, currentMonth, today, day ]);
-
   // select day
   const selectDay = useCallback((day: number) => {
     if (!currentMonth) return 1;
 
-    return day === today.getDate() ? 4 : 1;
+    return day === today.getDate() ? 3 : 1;
   }, [ currentMonth, today ]);
 
   // month
@@ -77,11 +64,12 @@ const MonthRadius: FC<IMonthRadius> = ({
         text={format(current, 'MMM')} />
 
       <MonthRadiusPercent
-        angle={angle}
         active={active}
+        angle={angle}
+        currentMonth={currentMonth}
         day={day}
-        radius={radius}
-        percent={percent()} />
+        today={today.getDate()}
+        radius={radius} />
 
       {factoryPhases(day).map(({ day }, index: number) =>
         <MoonPhase
