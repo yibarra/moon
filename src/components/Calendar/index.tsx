@@ -8,8 +8,9 @@ import YearControls from '../YearControls';
 import { ICalendar } from './interfaces';
 
 // calendar
-const Calendar: FC<ICalendar> = ({ 
+const Calendar: FC<ICalendar> = ({
   setYear,
+  today,
   year,
 }) => {
   // create months
@@ -19,7 +20,7 @@ const Calendar: FC<ICalendar> = ({
 
     for (let i = 1; i <= total; i++) {
       months.push(<MonthRadius
-        radius={370 - (i * 20)}
+        radius={380 - (i * 20)}
         month={i}
         year={year}
         key={i} />);
@@ -36,6 +37,7 @@ const Calendar: FC<ICalendar> = ({
       {createMonths()}
 
       <MoonToday
+        today={today}
         year={year}
         setYear={setYear} />
       

@@ -7,6 +7,7 @@ import MoonTodayInfo from './MoonTodayInfo';
 
 // moon today
 const MoonToday: FC<any> = ({
+  today,
   setYear,
   year,
 }) => {
@@ -14,7 +15,8 @@ const MoonToday: FC<any> = ({
   // render
   return (
     <Group zIndex={99}>
-      <MoonTodayInfo />
+      <MoonTodayInfo
+        today={today} />
 
       <MoonTodayControls
         setYear={setYear}
@@ -32,7 +34,7 @@ const MoonToday: FC<any> = ({
       <Circle
         x={window.innerWidth / 2}
         y={window.innerHeight / 2}
-        radius={115}
+        radius={120}
         fill="transparent"
         stroke="rgba(255, 255, 255, 0.2)"
         dash={[ 2, 4]}

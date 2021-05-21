@@ -1,13 +1,14 @@
+import { format } from 'date-fns';
 import React, { FC, useEffect, useState } from 'react';
 import { Stage } from 'react-konva';
 import WebFontLoader from "webfontloader";
 
 import Calendar from '../../components/Calendar';
-import MainProvider from '../../providers/MainProvider';
 
 // main
 const Main: FC<any> = () => {
   const [ loaded, setLoaded ] = useState<boolean>(false); // loaded
+  const [ date ] = useState<any>(format(new Date(), 'yyyy-MM-dd'));
   const [ year, setYear ] = useState<number>(2021);
 
   // Handle loading effects.
@@ -29,15 +30,16 @@ const Main: FC<any> = () => {
 
   // render
   return (
-    <MainProvider>
+    <>
       {loaded && <Stage
           height={window.innerHeight}
           width={window.innerWidth}>
         <Calendar
+          today={date}
           setYear={setYear}
           year={year} />
       </Stage>}
-    </MainProvider>
+    </>
   );
 };
 
