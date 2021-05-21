@@ -1,3 +1,4 @@
+import { Spring, animated } from '@react-spring/konva';
 import { Context } from 'konva/types/Context';
 import React, { FC, useCallback } from 'react';
 import { Circle, Group } from 'react-konva';
@@ -33,12 +34,21 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
           dash={[2, 4]} />
       </Group>
 
-      <Circle
-        dash={[ percent / 100 * circumference, circumference ]}
-        radius={radius}
-        fill="transparent"
-        stroke={active === true ? 'white' : 'transparent'}
-        strokeWidth={1} />
+      <Spring
+        delay={300}
+        from={{ dash: [0, 0] }}
+        to={{ dash: [ percent / 100 * circumference, circumference ] }}>
+        {props => (
+          <animated.Circle
+            {...props}
+            radius={radius}
+            fill="transparent"
+            stroke={active === true ? 'white' : 'transparent'}
+            strokeWidth={1} />
+        )}
+      </Spring>
+
+      
     </>
   );
 };
