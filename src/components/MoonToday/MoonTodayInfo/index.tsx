@@ -1,4 +1,4 @@
-import { parse, format } from 'date-fns';
+import { format } from 'date-fns';
 import React, { FC } from 'react';
 import { Text } from 'react-konva';
 import UseMoon from '../../../uses/useMoon';
@@ -11,7 +11,6 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
   today
 }) => {
   const { moonPhaseName } = UseMoon();
-  const date = parse(today, 'yyyy-MM-dd', new Date());
 
   const x: number = (window.innerWidth / 2);
   const y: number = (window.innerHeight / 2);
@@ -20,7 +19,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
   return (
     <>
       <MoonTodayInfoTop
-        date={date}
+        date={today}
         x={x}
         y={y} />
 
@@ -32,7 +31,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         width={140}
         x={(window.innerWidth / 2) - (140 / 2)}
         y={(window.innerHeight / 2) + 70}
-        text={moonPhaseName(date.getFullYear(), date.getMonth(), date.getDate())} />
+        text={moonPhaseName(today.getFullYear(), today.getMonth(), today.getDate())} />
 
       <Text
         align="center"
@@ -40,7 +39,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         fontSize={16}
         fill="white"
         fontStyle="bold"
-        text={format(date, 'yyyy')}
+        text={format(today, 'yyyy')}
         width={80}
         x={(window.innerWidth / 2) - 40}
         y={(window.innerHeight / 2) + 90} />

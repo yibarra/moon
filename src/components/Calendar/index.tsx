@@ -20,6 +20,7 @@ const Calendar: FC<ICalendar> = ({
 
     for (let i = 1; i <= total; i++) {
       months.push(<MonthRadius
+        today={today}
         radius={380 - (i * 20)}
         month={i}
         year={year}
@@ -27,7 +28,7 @@ const Calendar: FC<ICalendar> = ({
     }
 
     return months;
-  }, [ year ]);
+  }, [ today, year ]);
 
   // render
   return (

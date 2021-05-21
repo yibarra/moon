@@ -15,13 +15,15 @@ const totalItems: number = 32;
 const MonthRadius: FC<IMonthRadius> = ({
   month,
   radius,
+  today,
   year
 }) => {
-  const date = parse(format(new Date(), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date());
-  const current = parse(`${year}-${month}-${date.getDate()}`, 'yyyy-MM-dd', new Date());
+  const current = parse(`${year}-${month}-${today.getDate()}`, 'yyyy-MM-dd', new Date());
 
-  const active: boolean = date.getMonth() >= current.getMonth(); // active month
-  const currentMonth: boolean = date.getMonth() === current.getMonth(); // current month
+  const active: boolean = 
+    (today.getMonth() >= current.getMonth() && today.getFullYear() === current.getFullYear()) || today.getFullYear() > current.getFullYear(); // active month
+  const currentMonth: boolean = 
+    today.getMonth() === current.getMonth() && today.getFullYear() === current.getFullYear(); // current month
 
   const day = getDaysInMonth(current); // day
   const angle = (2 * Math.PI) / totalItems; // angle
@@ -41,21 +43,21 @@ const MonthRadius: FC<IMonthRadius> = ({
   const percent = useCallback(() => {
     if (active === true) {
       if (currentMonth === true) {
-        return Math.floor((date.getDate() / totalItems) * 100) - ((Math.PI / 2) + 1.1);
+        return Math.floor((today.getDate() / totalItems) * 100) - ((Math.PI / 2) + 1.1);
       }
 
       return Math.ceil((day / totalItems) * 100) - ((Math.PI + 0.4));
     }
 
     return 0;
-  }, [ active, currentMonth, date, day ]);
+  }, [ active, currentMonth, today, day ]);
 
   // select day
   const selectDay = useCallback((day: number) => {
     if (!currentMonth) return 1;
 
-    return day === date.getDate() ? 4 : 1;
-  }, [ currentMonth, date ]);
+    return day === today.getDate() ? 4 : 1;
+  }, [ currentMonth, today ]);
 
   // month
   return (

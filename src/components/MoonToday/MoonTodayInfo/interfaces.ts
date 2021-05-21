@@ -1,3 +1,3 @@
 export interface IMoonTodayInfo {
-  today: string;
+  today: any;
 }

@@ -36,6 +36,7 @@ export interface IMonthData {
 };
 
 export interface IMonthRadius {
+  today: any;
   month: number;
   radius: number;
   year: number;

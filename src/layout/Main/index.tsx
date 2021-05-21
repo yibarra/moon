@@ -1,14 +1,18 @@
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import React, { FC, useEffect, useState } from 'react';
 import { Stage } from 'react-konva';
 import WebFontLoader from "webfontloader";
 
 import Calendar from '../../components/Calendar';
 
+import { IMain } from './interfaces';
+
+// date
+const date: any = parse(format(new Date(), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date());
+
 // main
-const Main: FC<any> = () => {
+const Main: FC<IMain> = () => {
   const [ loaded, setLoaded ] = useState<boolean>(false); // loaded
-  const [ date ] = useState<any>(format(new Date(), 'yyyy-MM-dd'));
   const [ year, setYear ] = useState<number>(2021);
 
   // Handle loading effects.
@@ -21,9 +25,7 @@ const Main: FC<any> = () => {
           "Roboto Slab:200,300,400,500,600"
         ]
       }, fontactive: () => {
-        setTimeout(() => {
-          setLoaded(true);
-        }, 1000);
+        setTimeout(() => setLoaded(true), 1000);
       }
     });
   }, []);
