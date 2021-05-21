@@ -19,7 +19,7 @@ const Calendar: FC<ICalendar> = ({
 
     for (let i = 1; i <= total; i++) {
       months.push(<MonthRadius
-        radius={360 - (i * 20)}
+        radius={370 - (i * 20)}
         month={i}
         year={year}
         key={i} />);
@@ -35,7 +35,10 @@ const Calendar: FC<ICalendar> = ({
       width={window.innerWidth}>
       {createMonths()}
 
-      <MoonToday />
+      <MoonToday
+        year={year}
+        setYear={setYear} />
+      
       <YearControls
         setYear={setYear}
         year={year} />

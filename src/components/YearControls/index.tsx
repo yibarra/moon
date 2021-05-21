@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { Text } from 'react-konva';
+
+import ButtonArrow from '../ButtonArrow';
 
 import { IYearControls } from './interfaces';
 
@@ -11,17 +12,17 @@ const YearControls: FC<IYearControls> = ({
   // render
   return (
     <>
-      <Text
-        fill="white"
+      <ButtonArrow
         onClick={() => setYear(year-1)}
         text={(year - 1).toString()}
+        type="left"
         x={90}
         y={window.innerHeight / 2} />
 
-      <Text
-        fill="white"
+      <ButtonArrow
         onClick={() => setYear(year+1)}
         text={(year + 1).toString()}
+        type="right"
         x={window.innerWidth - 90}
         y={window.innerHeight / 2} />
     </>
