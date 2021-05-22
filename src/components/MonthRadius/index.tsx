@@ -18,10 +18,7 @@ const MonthRadius: FC<IMonthRadius> = ({
   today,
   year
 }) => {
-  const fix = parse(`${year}-${month}`, 'yyyy-MM', new Date());
-  const current = parse(format(new Date(`${year}-${month}-${getDaysInMonth(fix)}`), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date());
-
-  console.log(getDaysInMonth(fix));
+  const current = parse(format(new Date(`${year}-${month}`), 'yyyy-MM'), 'yyyy-MM', new Date());
   
   const todayMonth: number = today.getMonth();
   const todayYear: number = today.getFullYear();
@@ -78,7 +75,7 @@ const MonthRadius: FC<IMonthRadius> = ({
 
       {factoryPhases(day).map(({ day }, index: number) =>
         <MoonPhase
-          angle={angle * index}
+          angle={angle}
           day={day}
           month={month}
           size={4}

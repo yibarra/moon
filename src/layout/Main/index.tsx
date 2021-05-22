@@ -10,7 +10,7 @@ import UseWindowSize from '../../uses/useWindowSize';
 import { IMain } from './interfaces';
 
 // date
-const date: any = parse(format(new Date(), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date());
+const date: any = parse(format(new Date(2021, 4, 2), 'yyyy/MM/dd'), 'yyyy/MM/dd', new Date());
 
 // main
 const Main: FC<IMain> = () => {

@@ -13,6 +13,7 @@ const Calendar: FC<ICalendar> = ({
   today,
   year,
 }) => {
+  const increment = 20;
   const size = 120;
 
   // create months
@@ -23,7 +24,7 @@ const Calendar: FC<ICalendar> = ({
     for (let i = 1; i <= total; i++) {
       months.push(<MonthRadius
         month={i}
-        radius={size + (i * 20)}
+        radius={size + (i * increment)}
         today={today}
         year={year}
         key={i} />);
@@ -45,6 +46,7 @@ const Calendar: FC<ICalendar> = ({
         setYear={setYear} />
       
       <YearControls
+        radius={size + (12 * increment)}
         setYear={setYear}
         year={year} />
     </Layer>
