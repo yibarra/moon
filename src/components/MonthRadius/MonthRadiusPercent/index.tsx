@@ -69,12 +69,10 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
             {...props}
             radius={radius}
             fill="transparent"
-            stroke="rgba(255, 255, 255, 0.7)"
+            stroke="rgba(255, 255, 255, 0.8)"
             strokeWidth={1} />
         )}
       </Spring>
-
-      
     </>
   );
 };

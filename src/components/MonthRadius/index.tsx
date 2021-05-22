@@ -8,8 +8,8 @@ import MonthRadiusPercent from './MonthRadiusPercent';
 
 import { IMonthRadius } from './interfaces';
 
-// total
-const totalItems: number = 32;
+// env
+const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
 // month radius
 const MonthRadius: FC<IMonthRadius> = ({
@@ -18,21 +18,24 @@ const MonthRadius: FC<IMonthRadius> = ({
   today,
   year
 }) => {
-  const current = parse(`${year}-${month}-${today.getDate()}`, 'yyyy-MM-dd', new Date());
+  const fix = parse(`${year}-${month}`, 'yyyy-MM', new Date());
+  const current = parse(format(new Date(`${year}-${month}-${getDaysInMonth(fix)}`), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date());
 
+  console.log(getDaysInMonth(fix));
+  
   const todayMonth: number = today.getMonth();
   const todayYear: number = today.getFullYear();
 
   const monthMonth: number = current.getMonth();
   const monthYear: number = current.getFullYear();
 
-  const active: boolean = 
-    (todayMonth >= monthMonth && todayYear === monthYear) || todayYear > monthYear; // active month
-  const currentMonth: boolean = 
-    todayMonth === monthMonth && todayYear === monthYear; // current month
+  const active: boolean = ((monthMonth <= todayMonth && todayYear === monthYear) ) || monthYear < todayYear; // active month
+  const currentMonth: boolean = todayMonth === monthMonth && todayYear === monthYear; // current month
 
   const day = getDaysInMonth(current); // day
-  const angle = (2 * Math.PI) / totalItems; // angle
+  const angle = (2 * Math.PI) / REACT_APP_TOTAL_ITEMS_DEGREE; // angle
+
+  const rotate = -(((today.getDate() - 1) / REACT_APP_TOTAL_ITEMS_DEGREE) * 360) - 90;
 
   // factory phases
   const factoryPhases = useCallback((day: number) => {
@@ -56,7 +59,8 @@ const MonthRadius: FC<IMonthRadius> = ({
   return (
     <Group
       x={(window.innerWidth / 2)}
-      y={(window.innerHeight / 2)}>
+      y={(window.innerHeight / 2)}
+      rotation={rotate}>
       <MonthRadiusName
         angle={angle * month}
         month={month}

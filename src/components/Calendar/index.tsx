@@ -13,6 +13,8 @@ const Calendar: FC<ICalendar> = ({
   today,
   year,
 }) => {
+  const size = 120;
+
   // create months
   const createMonths = useCallback(() => {
     const months = [];
@@ -20,15 +22,15 @@ const Calendar: FC<ICalendar> = ({
 
     for (let i = 1; i <= total; i++) {
       months.push(<MonthRadius
-        today={today}
-        radius={380 - (i * 20)}
         month={i}
+        radius={size + (i * 20)}
+        today={today}
         year={year}
         key={i} />);
     }
 
     return months;
-  }, [ today, year ]);
+  }, [ size, today, year ]);
 
   // render
   return (
