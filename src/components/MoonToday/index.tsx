@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { Circle } from 'react-konva';
 
 import MoonPhase from '../MoonPhase';
+import MoonTodayBackground from './MoonTodayBackground';
 import MoonTodayControls from './MoonTodayControls';
 import MoonTodayInfo from './MoonTodayInfo';
 
@@ -11,30 +11,13 @@ const MoonToday: FC<any> = ({
   setYear,
   year,
 }) => {
-
   // render
   return (
     <>
+      <MoonTodayBackground />
+
       <MoonTodayInfo
         today={today} />
-
-      <Circle
-        x={window.innerWidth / 2}
-        y={window.innerHeight / 2}
-        radius={60}
-        fill="transparent"
-        stroke="rgba(255, 255, 255, 0.2)"
-        dash={[ 2, 4]}
-        strokeWidth={1} />
-
-      <Circle
-        x={window.innerWidth / 2}
-        y={window.innerHeight / 2}
-        radius={120}
-        fill="transparent"
-        stroke="rgba(255, 255, 255, 0.2)"
-        dash={[ 2, 4]}
-        strokeWidth={1} />
 
       <MoonPhase
         x={window.innerWidth / 2}

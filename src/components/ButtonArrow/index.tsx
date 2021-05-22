@@ -15,10 +15,11 @@ const ButtonArrow: FC<IButtonArrow> = ({
 }) => {
   // return
   return (
-    <Group>
+    <Group
+      onTap={onClick}
+      onClick={onClick}>
       <IconArrow
         type={type}
-        onClick={onClick}
         x={x}
         y={y} />
 

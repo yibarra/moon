@@ -5,7 +5,6 @@ import { IIconArrow } from './interfaces';
 
 // icon arrow
 const IconArrow: FC<IIconArrow> = ({
-  onClick,
   type,
   x,
   y
@@ -16,7 +15,6 @@ const IconArrow: FC<IIconArrow> = ({
       <Rect
         fill="transparent"
         height={30}
-        onClick={onClick}
         scaleX={type === "right" ? -1 : 1}
         x={x + (type === "right" ? 3 : -3)}
         y={y - (15/2)}
