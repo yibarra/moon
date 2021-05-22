@@ -50,8 +50,10 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
 
   // render
   return (
-    <>
-      <Group clipFunc={maskLines}>
+    <Group
+      listening={false}>
+      <Group
+        clipFunc={maskLines}>
         <Circle
           radius={radius}
           fill="transparent"
@@ -62,9 +64,11 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
 
       <Spring
         config={{
-          duration: 1000
+          duration: 700,
+          friction: 20,
+          mass: 1
         }}
-        delay={120 * month}
+        delay={100 * month}
         from={{ dash: [ 0, 0] }}
         to={{ dash: [ percent, circumference ] }}>
         {props => (
@@ -73,10 +77,10 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
             radius={radius}
             fill="transparent"
             stroke="rgba(255, 255, 255, 0.8)"
-            strokeWidth={1} />
-        )}
+            strokeWidth={1}
+            listen={false} />)}
       </Spring>
-    </>
+    </Group>
   );
 };
 

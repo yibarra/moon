@@ -10,11 +10,13 @@ import UseWindowSize from '../../uses/useWindowSize';
 import { IMain } from './interfaces';
 
 // date
-const date: any = parse(format(new Date(2021, 4, 2), 'yyyy/MM/dd'), 'yyyy/MM/dd', new Date());
 
 // main
 const Main: FC<IMain> = () => {
   const size = UseWindowSize();
+
+  const date = format(new Date(), 'yyyy/M/dd'); // current
+  const [ today, setToday ]: any = useState<any>(parse(date, 'yyyy/M/dd', new Date()));
 
   const [ loaded, setLoaded ] = useState<boolean>(false); // loaded
   const [ year, setYear ] = useState<number>(2021);
@@ -42,7 +44,8 @@ const Main: FC<IMain> = () => {
           height={size.height}
           width={size.width}>
         <Calendar
-          today={date}
+          today={today}
+          setToday={setToday}
           setYear={setYear}
           year={year} />
 

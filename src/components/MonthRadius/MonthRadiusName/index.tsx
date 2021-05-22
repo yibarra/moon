@@ -10,7 +10,8 @@ const MonthRadiusName: FC<IMonthRadiusName> = ({
 }) => {
   // render
   return (
-    <Group rotation={-2}>
+    <Group
+      rotation={-2}>
       <Text 
         align="center"
         fill="white"

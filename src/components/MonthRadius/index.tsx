@@ -7,6 +7,8 @@ import MonthRadiusName from './MonthRadiusName';
 import MonthRadiusPercent from './MonthRadiusPercent';
 
 import { IMonthRadius } from './interfaces';
+import { Spring } from '@react-spring/core';
+import { animated } from '@react-spring/konva';
 
 // env
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
@@ -15,11 +17,13 @@ const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 const MonthRadius: FC<IMonthRadius> = ({
   month,
   radius,
+  setToday,
   today,
   year
 }) => {
-  const current = parse(format(new Date(`${year}-${month}`), 'yyyy-MM'), 'yyyy-MM', new Date());
-  
+  const fix: any = parse(format(new Date(`${year}-${month}-01`), 'yyyy-M-dd'), 'yyyy-M-dd', new Date());
+  const current = parse(format(new Date(`${year}-${month}-${getDaysInMonth(fix)}`), 'yyyy-M-dd'), 'yyyy-M-dd', new Date());
+
   const todayMonth: number = today.getMonth();
   const todayYear: number = today.getFullYear();
 
@@ -54,37 +58,50 @@ const MonthRadius: FC<IMonthRadius> = ({
 
   // month
   return (
-    <Group
-      x={(window.innerWidth / 2)}
-      y={(window.innerHeight / 2)}
-      rotation={rotate}>
-      <MonthRadiusName
-        angle={angle * month}
-        month={month}
-        radius={radius}
-        text={format(current, 'MMM')} />
+    <Spring
+      config={{
+        duration: 150 * month,
+      }}
+      delay={50 * month}
+      from={{ rotation: rotate }}
+      to={{ rotation: rotate }}>
+      {props => (<animated.Group
+        {...props}
+        x={(window.innerWidth / 2)}
+        y={(window.innerHeight / 2)}
+        listen={false}>
+          <MonthRadiusName
+            angle={angle * month}
+            month={month}
+            radius={radius}
+            text={format(current, 'MMM')} />
 
-      <MonthRadiusPercent
-        active={active}
-        angle={angle}
-        currentMonth={currentMonth}
-        day={day}
-        month={month}
-        today={today.getDate()}
-        radius={radius} />
+          <MonthRadiusPercent
+            active={active}
+            angle={angle}
+            currentMonth={currentMonth}
+            day={day}
+            month={month}
+            today={today.getDate()}
+            radius={radius} />
 
-      {factoryPhases(day).map(({ day }, index: number) =>
-        <MoonPhase
-          angle={angle}
-          day={day}
-          month={month}
-          size={4}
-          strokeWidth={selectDay(day)}
-          x={Math.cos(angle * index) * radius}
-          y={Math.sin(angle * index) * radius}
-          year={year}
-          key={index} />)}
-    </Group>
+          {factoryPhases(day).map(({ day }, index: number) =>
+            <Group
+              listening={true}
+              key={index}
+              onClick={() => setToday(parse(format(new Date(`${year}-${month}-${day}`), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date()))}>
+                <MoonPhase
+                  angle={angle * index}
+                  day={day}
+                  month={month}
+                  size={4}
+                  strokeWidth={selectDay(day)}
+                  x={Math.cos(angle * index) * radius}
+                  y={Math.sin(angle * index) * radius}
+                  year={year} />
+              </Group>)}
+        </animated.Group>)}
+    </Spring>
   );
 };
 

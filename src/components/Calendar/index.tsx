@@ -9,8 +9,9 @@ import { ICalendar } from './interfaces';
 
 // calendar
 const Calendar: FC<ICalendar> = ({
-  setYear,
   today,
+  setYear,
+  setToday,
   year,
 }) => {
   const increment = 20;
@@ -27,11 +28,12 @@ const Calendar: FC<ICalendar> = ({
         radius={size + (i * increment)}
         today={today}
         year={year}
+        setToday={setToday}
         key={i} />);
     }
 
     return months;
-  }, [ size, today, year ]);
+  }, [ size, today, year, setToday ]);
 
   // render
   return (
