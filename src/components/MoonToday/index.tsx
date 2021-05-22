@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Circle, Group } from 'react-konva';
+import { Circle } from 'react-konva';
 
 import MoonPhase from '../MoonPhase';
 import MoonTodayControls from './MoonTodayControls';
@@ -14,7 +14,7 @@ const MoonToday: FC<any> = ({
 
   // render
   return (
-    <Group zIndex={99}>
+    <>
       <MoonTodayInfo
         today={today} />
 
@@ -49,7 +49,7 @@ const MoonToday: FC<any> = ({
       <MoonTodayControls
         setYear={setYear}
         year={year} />
-    </Group>
+    </>
   );
 };
 

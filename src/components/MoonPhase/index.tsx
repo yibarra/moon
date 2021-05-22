@@ -72,7 +72,7 @@ const MoonPhase: FC<IMoonPhase> = ({
 
       <Shape
         sceneFunc={shadowMoon}
-        fill={phase > 0 ? 'white' : '#222'} />
+        fill={phase > 0 ? 'white' : '#222'} />   
     </>
   );
 };
