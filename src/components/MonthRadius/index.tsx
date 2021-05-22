@@ -56,6 +56,11 @@ const MonthRadius: FC<IMonthRadius> = ({
     return day === today.getDate() ? 3 : 1;
   }, [ currentMonth, today ]);
 
+  // select
+  const selectDate = useCallback(() =>
+    setToday(parse(format(new Date(`${year}-${month}-${day}`), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date())),
+    [ year, month, day, setToday ]);
+
   // month
   return (
     <Spring
@@ -89,7 +94,8 @@ const MonthRadius: FC<IMonthRadius> = ({
             <Group
               listening={true}
               key={index}
-              onClick={() => setToday(parse(format(new Date(`${year}-${month}-${day}`), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date()))}>
+              onClick={selectDate}
+              onTap={selectDate}>
                 <MoonPhase
                   angle={angle * index}
                   day={day}
