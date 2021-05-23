@@ -38,6 +38,7 @@ const Calendar: FC<ICalendar> = ({
   // render
   return (
     <Layer
+      id="calendar"
       height={window.innerHeight}
       width={window.innerWidth}>
       {createMonths()}

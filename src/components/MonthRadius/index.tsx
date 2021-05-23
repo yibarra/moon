@@ -57,9 +57,10 @@ const MonthRadius: FC<IMonthRadius> = ({
   }, [ currentMonth, today ]);
 
   // select
-  const selectDate = useCallback(() =>
-    setToday(parse(format(new Date(`${year}-${month}-${day}`), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date())),
-    [ year, month, day, setToday ]);
+  const selectDate = useCallback((day: number) =>
+    setToday(parse(
+      format(new Date(`${year}-${month}-${day}`), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date())
+    ), [ year, month, setToday ]);
 
   // month
   return (
@@ -68,7 +69,7 @@ const MonthRadius: FC<IMonthRadius> = ({
         duration: 150 * month,
       }}
       delay={50 * month}
-      from={{ rotation: rotate }}
+      from={{ rotation: 0 }}
       to={{ rotation: rotate }}>
       {props => (<animated.Group
         {...props}
@@ -94,8 +95,8 @@ const MonthRadius: FC<IMonthRadius> = ({
             <Group
               listening={true}
               key={index}
-              onClick={selectDate}
-              onTap={selectDate}>
+              onClick={() => selectDate(day)}
+              onTap={() => selectDate(day)}>
                 <MoonPhase
                   angle={angle * index}
                   day={day}
