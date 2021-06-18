@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 
 import Main from './layout/Main';
+import MainProvider from './providers/MainProvider';
+import MoonProvider from './providers/MoonProvider';
+import ThemeProvider from './providers/ThemeProvider';
 
 import reportWebVitals from './reportWebVitals';
 
+import './index.css';
+
 ReactDOM.render(
   <React.StrictMode>
-    <Main />
+    <MainProvider>
+      <ThemeProvider>
+        <MoonProvider>
+          <Main />
+        </MoonProvider>
+      </ThemeProvider>
+    </MainProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

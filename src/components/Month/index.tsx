@@ -2,25 +2,28 @@ import { parse, format, getDaysInMonth } from 'date-fns';
 import React, { FC, useCallback } from 'react';
 import { Group } from 'react-konva';
 
-import MoonPhase from '../MoonPhase';
+import MoonPhase from '../Moon/MoonPhase';
 import MonthRadiusName from './MonthRadiusName';
 import MonthRadiusPercent from './MonthRadiusPercent';
 
-import { IMonthRadius } from './interfaces';
+import { IMonth } from './interfaces';
 import { Spring } from '@react-spring/core';
 import { animated } from '@react-spring/konva';
+import { group } from 'console';
 
 // env
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
 // month radius
-const MonthRadius: FC<IMonthRadius> = ({
+const Month: FC<IMonth> = ({
   month,
   radius,
   setToday,
   today,
-  year
+  theme
 }) => {
+  console.log(today, '--------------');
+  /*
   const fix: any = parse(format(new Date(`${year}-${month}-01`), 'yyyy-M-dd'), 'yyyy-M-dd', new Date());
   const current = parse(format(new Date(`${year}-${month}-${getDaysInMonth(fix)}`), 'yyyy-M-dd'), 'yyyy-M-dd', new Date());
 
@@ -59,12 +62,21 @@ const MonthRadius: FC<IMonthRadius> = ({
   // select
   const selectDate = useCallback((day: number) =>
     setToday(parse(
-      format(new Date(`${year}-${month}-${day}`), 'yyyy-MM-dd'), 'yyyy-MM-dd', new Date())
+      format(new Date(`${year}-${month}-${day}`), 'yyyy-M-dd'), 'yyyy-M-dd', new Date())
     ), [ year, month, setToday ]);
+
+    */
 
   // month
   return (
-    <Spring
+    <></>
+  );
+};
+
+export default Month;
+
+/*
+<Spring
       config={{
         duration: 150 * month,
       }}
@@ -109,7 +121,4 @@ const MonthRadius: FC<IMonthRadius> = ({
               </Group>)}
         </animated.Group>)}
     </Spring>
-  );
-};
-
-export default MonthRadius;
+    */

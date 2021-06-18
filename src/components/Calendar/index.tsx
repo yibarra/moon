@@ -1,39 +1,39 @@
 import React, { FC, useCallback } from 'react';
 import { Layer } from 'react-konva';
 
-import MonthRadius from '../MonthRadius';
+import Month from '../Month';
 import MoonToday from '../MoonToday';
 import YearControls from '../YearControls';
 
 import { ICalendar } from './interfaces';
 
+const increment = 20;
+const radius = 120;
+
 // calendar
 const Calendar: FC<ICalendar> = ({
-  today,
-  setYear,
   setToday,
-  year,
+  size,
+  theme,
+  today,
 }) => {
-  const increment = 20;
-  const size = 120;
-
   // create months
   const createMonths = useCallback(() => {
     const months = [];
     const total: number = 12;
 
     for (let i = 1; i <= total; i++) {
-      months.push(<MonthRadius
+      months.push(<Month
         month={i}
-        radius={size + (i * increment)}
+        radius={radius + (i * increment)}
         today={today}
-        year={year}
+        theme={theme}
         setToday={setToday}
         key={i} />);
     }
 
     return months;
-  }, [ size, today, year, setToday ]);
+  }, [ size, setToday, theme, today ]);
 
   // render
   return (
@@ -44,14 +44,16 @@ const Calendar: FC<ICalendar> = ({
       {createMonths()}
 
       <MoonToday
-        today={today}
-        year={year}
-        setYear={setYear} />
-      
+        setToday={setToday}
+        size={size}
+        theme={theme}
+        today={today} />
+
       <YearControls
-        radius={size + (12 * increment)}
-        setYear={setYear}
-        year={year} />
+        theme={theme}
+        radius={radius + (12 * increment)}
+        setYear={setToday}
+        year={today.getFullYear()} />
     </Layer>
   );
 };

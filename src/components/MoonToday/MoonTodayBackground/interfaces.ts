@@ -1,3 +1,8 @@
+import { IColors } from "../../../providers/ThemeProvider/interfaces";
+import { ISize } from "../../../providers/MainProvider/interfaces";
+
 export interface IMoonTodayBackground {
-  any?: any;
+  radius: number;
+  theme: IColors;
+  size: ISize;
 }

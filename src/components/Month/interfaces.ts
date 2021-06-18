@@ -1,3 +1,5 @@
+import { IColors } from "../../providers/ThemeProvider/interfaces";
+
 export interface IMonthPhase {
   dayWeek: number;
   dis: any;
@@ -35,10 +37,10 @@ export interface IMonthData {
   year: number;
 };
 
-export interface IMonthRadius {
-  today: any;
+export interface IMonth {
   month: number;
   radius: number;
-  year: number;
   setToday(value: any): void;
+  today: Date;
+  theme: IColors;
 };

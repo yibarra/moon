@@ -3,14 +3,15 @@ import React, { FC } from 'react';
 import { Text } from 'react-konva';
 import UseMoon from '../../../uses/useMoon';
 
-import { IMoonTodayInfo } from './interfaces';
 import MoonTodayInfoTop from './MoonTodayInfoTop';
+
+import { IMoonTodayInfo } from './interfaces';
 
 // moon today info
 const MoonTodayInfo: FC<IMoonTodayInfo> = ({
   today
 }) => {
-  const { moonPhaseName } = UseMoon();
+  const { getMoonPhaseName } = UseMoon();
 
   const x: number = (window.innerWidth / 2);
   const y: number = (window.innerHeight / 2);
@@ -31,7 +32,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         width={140}
         x={(window.innerWidth / 2) - (140 / 2)}
         y={(window.innerHeight / 2) + 70}
-        text={moonPhaseName(today.getFullYear(), today.getMonth(), today.getDate())} />
+        text={getMoonPhaseName(today.getFullYear(), today.getMonth(), today.getDate())} />
 
       <Text
         align="center"

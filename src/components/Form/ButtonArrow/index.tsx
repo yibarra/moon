@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import { Group, Text } from 'react-konva';
 
-import IconArrow from '../Icons/IconArrow';
+import IconArrow from '../../Icons/IconArrow';
 
 import { IButtonArrow } from './interfaces';
 
 // button arrow
 const ButtonArrow: FC<IButtonArrow> = ({
+  color,
   onClick,
   text,
   type,
@@ -19,12 +20,13 @@ const ButtonArrow: FC<IButtonArrow> = ({
       onTap={onClick}
       onClick={onClick}>
       <IconArrow
+        color={color}
         type={type}
         x={x}
         y={y} />
 
       {text && <Text
-        fill="white"
+        fill={color}
         fontFamily="Roboto Slab"
         fontSize={12}
         fontStyle="bold"

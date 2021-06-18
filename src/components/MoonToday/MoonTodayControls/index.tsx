@@ -1,28 +1,36 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 
-import ButtonArrow from '../../ButtonArrow';
+import ButtonArrow from '../../Form/ButtonArrow';
 
 import { IMoonTodayControls } from './interfaces';
 
 // moon today controls
 const MoonTodayControls: FC<IMoonTodayControls> = ({
   setYear,
+  size,
+  theme,
   year,
 }) => {
+  // on change
+  const onChange = useCallback((year: number) =>
+    setYear(new Date(`${year}/1/1`)), [ setYear ]);
+
   // render
   return (
     <>
       <ButtonArrow
-        onClick={() => setYear(year-1)}
+        color={theme.main}
+        onClick={() => onChange(year-1)}
         type="left"
-        x={(window.innerWidth / 2) - 95}
-        y={(window.innerHeight / 2) - 5} />
+        x={(size.width / 2) - 95}
+        y={(size.height / 2) - 5} />
 
       <ButtonArrow
-        onClick={() => setYear(year+1)}
+        color={theme.main}
+        onClick={() => onChange(year+1)}
         type="right"
-        x={(window.innerWidth / 2) + 95}
-        y={(window.innerHeight / 2) - 5} />
+        x={(size.width / 2) + 95}
+        y={(size.height / 2) - 5} />
     </>
   );
 };

@@ -1,9 +1,9 @@
 import { ISize } from "../../providers/MainProvider/interfaces";
 import { IColors } from "../../providers/ThemeProvider/interfaces";
 
-export interface ICalendar {
-  setToday(value: Date): void;
-  theme: IColors;
-  today: Date;
+export interface IMoonToday {
   size: ISize;
+  theme: IColors;
+  setToday(value: Date): void;
+  today: Date;
 }

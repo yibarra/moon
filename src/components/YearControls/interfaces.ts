@@ -1,5 +1,8 @@
+import { IColors } from "../../providers/ThemeProvider/interfaces";
+
 export interface IYearControls {
   radius: number;
+  theme: IColors;
   year: number;
-  setYear(year: number): void;
+  setYear(value: Date): void;
 }

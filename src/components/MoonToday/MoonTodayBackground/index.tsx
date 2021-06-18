@@ -1,29 +1,25 @@
 import React, { FC } from 'react';
 import { Circle } from 'react-konva';
+import hexRgb from 'hex-rgb';
 
 import { IMoonTodayBackground } from './interfaces';
 
 // moon today background
-const MoonTodayBackground: FC<IMoonTodayBackground> = () => {
+const MoonTodayBackground: FC<IMoonTodayBackground> = ({
+  radius,
+  theme,
+  size
+}) => {
   // render
   return (
     <>
       <Circle
-        x={window.innerWidth / 2}
-        y={window.innerHeight / 2}
-        radius={60}
-        fill="transparent"
-        stroke="rgba(255, 255, 255, 0.2)"
-        dash={[ 2, 4]}
-        strokeWidth={1} />
-
-      <Circle
-        x={window.innerWidth / 2}
-        y={window.innerHeight / 2}
-        radius={120}
-        fill="transparent"
-        stroke="rgba(255, 255, 255, 0.2)"
-        dash={[ 2, 4]}
+        x={size.width / 2}
+        y={size.height / 2}
+        radius={radius}
+        fill={theme.second}
+        stroke={hexRgb(theme.main, { alpha: 0.6, format: 'css' })}
+        dash={[ 2, 2 ]}
         strokeWidth={1} /> 
     </>
   );
