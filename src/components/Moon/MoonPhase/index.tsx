@@ -12,8 +12,9 @@ import { IMoonPhase } from './interfaces';
 
 // moon phase
 const MoonPhase: FC<IMoonPhase> = ({
+  bg = false,
   day,
-  dashed = [ 2, 2],
+  dashed = [ 0, 0 ],
   month,
   size,
   strokeWidth,
@@ -71,7 +72,7 @@ const MoonPhase: FC<IMoonPhase> = ({
         y={y}
         radius={size + 5}
         fill="transparent"
-        stroke={hexRgb(theme.main, { alpha: 0.6, format: 'css' })}
+        stroke={bg ? hexRgb(theme.main, { alpha: 0.6, format: 'css' }) : 'transparent'}
         dash={dashed}
         strokeWidth={1} />
 

@@ -14,9 +14,6 @@ const MoonToday: FC<IMoonToday> = ({
   theme,
   today,
 }) => {
-  console.log(theme);
-
-
   // render
   return (
     <>
@@ -25,7 +22,12 @@ const MoonToday: FC<IMoonToday> = ({
         size={size} 
         theme={theme} />
 
+      <MoonTodayInfo
+        today={today}
+        theme={theme} />
+
       <MoonPhase
+        bg={true}
         day={today.getDate()}
         dashed={[2, 2]}
         month={today.getMonth()}

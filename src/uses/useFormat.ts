@@ -1,3 +1,4 @@
+import { getDaysInMonth, format, parse } from "date-fns";
 import { useCallback } from "react";
 
 // Hook
@@ -18,8 +19,34 @@ function UseFormat() {
     return result;
   }, []);
 
+  // get current active month
+  const getActiveMonth = useCallback((today: Date, current: Date): Object => {
+    const todayMonth: number = today.getMonth();
+    const todayYear: number = today.getFullYear();
+
+    const monthMonth: number = current.getMonth();
+    const monthYear: number = current.getFullYear();
+
+    return {
+      active: ((monthMonth <= todayMonth && todayYear === monthYear) ) || monthYear < todayYear,
+      day: getDaysInMonth(current),
+      currentMonth: todayMonth === monthMonth && todayYear === monthYear
+    };
+  }, []);
+
+  // fix date
+  const fixDate = useCallback((year: number, month: number) => {
+    const form: string = 'yyyy-M-dd';
+    const fix: any = parse(format(new Date(`${year}-${month}-01`), form), form, new Date());
+    const current = parse(format(new Date(`${year}-${month}-${getDaysInMonth(fix)}`), form), form, new Date());
+
+    return current;
+  }, []);
+
   return {
-    convertToRoman
+    convertToRoman,
+    fixDate,
+    getActiveMonth,
   }
 }
 

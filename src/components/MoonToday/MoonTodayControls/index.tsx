@@ -22,14 +22,14 @@ const MoonTodayControls: FC<IMoonTodayControls> = ({
         color={theme.main}
         onClick={() => onChange(year-1)}
         type="left"
-        x={(size.width / 2) - 95}
+        x={(size.width / 2) - 80}
         y={(size.height / 2) - 5} />
 
       <ButtonArrow
         color={theme.main}
         onClick={() => onChange(year+1)}
         type="right"
-        x={(size.width / 2) + 95}
+        x={(size.width / 2) + 80}
         y={(size.height / 2) - 5} />
     </>
   );

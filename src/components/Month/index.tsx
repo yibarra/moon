@@ -1,4 +1,4 @@
-import { parse, format, getDaysInMonth } from 'date-fns';
+import { getDaysInMonth } from 'date-fns';
 import React, { FC, useCallback } from 'react';
 import { Group } from 'react-konva';
 
@@ -6,10 +6,10 @@ import MoonPhase from '../Moon/MoonPhase';
 import MonthRadiusName from './MonthRadiusName';
 import MonthRadiusPercent from './MonthRadiusPercent';
 
+import MonthDays from './MonthDays';
+import UseFormat from '../../uses/useFormat';
+
 import { IMonth } from './interfaces';
-import { Spring } from '@react-spring/core';
-import { animated } from '@react-spring/konva';
-import { group } from 'console';
 
 // env
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
@@ -22,24 +22,13 @@ const Month: FC<IMonth> = ({
   today,
   theme
 }) => {
-  console.log(today, '--------------');
-  /*
-  const fix: any = parse(format(new Date(`${year}-${month}-01`), 'yyyy-M-dd'), 'yyyy-M-dd', new Date());
-  const current = parse(format(new Date(`${year}-${month}-${getDaysInMonth(fix)}`), 'yyyy-M-dd'), 'yyyy-M-dd', new Date());
-
-  const todayMonth: number = today.getMonth();
-  const todayYear: number = today.getFullYear();
-
-  const monthMonth: number = current.getMonth();
-  const monthYear: number = current.getFullYear();
-
-  const active: boolean = ((monthMonth <= todayMonth && todayYear === monthYear) ) || monthYear < todayYear; // active month
-  const currentMonth: boolean = todayMonth === monthMonth && todayYear === monthYear; // current month
-
-  const day = getDaysInMonth(current); // day
+  const { fixDate, getActiveMonth } = UseFormat();
   const angle = (2 * Math.PI) / REACT_APP_TOTAL_ITEMS_DEGREE; // angle
 
   const rotate = -(((today.getDate() - 1) / REACT_APP_TOTAL_ITEMS_DEGREE) * 360) - 90;
+  
+  const current = fixDate(today.getFullYear(), month);
+  const { active, currentMonth, day }: any = getActiveMonth(today, current);
 
   // factory phases
   const factoryPhases = useCallback((day: number) => {
@@ -52,30 +41,37 @@ const Month: FC<IMonth> = ({
     return items;
   }, []);
 
-  // select day
-  const selectDay = useCallback((day: number) => {
-    if (!currentMonth) return 1;
-
-    return day === today.getDate() ? 3 : 1;
-  }, [ currentMonth, today ]);
-
-  // select
-  const selectDate = useCallback((day: number) =>
-    setToday(parse(
-      format(new Date(`${year}-${month}-${day}`), 'yyyy-M-dd'), 'yyyy-M-dd', new Date())
-    ), [ year, month, setToday ]);
-
-    */
-
   // month
   return (
-    <></>
+    <Group 
+      x={(window.innerWidth / 2)}
+      y={(window.innerHeight / 2)}>
+      {factoryPhases(day).map(({ day }, index: number) =>
+        <MonthDays
+          key={index}
+          angle={angle}
+          currentMonth={currentMonth}
+          day={day}
+          index={index}
+          month={month}
+          radius={radius}
+          setToday={setToday}
+          theme={theme}
+          today={today} />)}
+    </Group>
   );
 };
 
 export default Month;
 
 /*
+
+const dayPos = this.updatePos(day, current, percent);
+      
+const xPos: number = (Math.cos(dayPos * this.angle) * this.radius) + x;
+const yPos: number = (Math.sin(dayPos * this.angle) * this.radius) + y;
+
+
 <Spring
       config={{
         duration: 150 * month,

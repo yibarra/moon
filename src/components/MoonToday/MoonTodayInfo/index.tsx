@@ -9,7 +9,8 @@ import { IMoonTodayInfo } from './interfaces';
 
 // moon today info
 const MoonTodayInfo: FC<IMoonTodayInfo> = ({
-  today
+  theme,
+  today,
 }) => {
   const { getMoonPhaseName } = UseMoon();
 
@@ -26,7 +27,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
 
       <Text
         align="center"
-        fill="white"
+        fill={theme.main}
         fontSize={10}
         fontFamily="Roboto Condensed"
         width={140}
@@ -37,8 +38,8 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
       <Text
         align="center"
         fontFamily="Roboto Slab"
-        fontSize={16}
-        fill="white"
+        fontSize={12}
+        fill={theme.main}
         fontStyle="bold"
         text={format(today, 'yyyy')}
         width={80}

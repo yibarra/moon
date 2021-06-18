@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { Group, Text } from 'react-konva';
+import { Group } from 'react-konva';
 
 import IconArrow from '../../Icons/IconArrow';
+import Paragraph from '../../Typography/Paragraph';
 
 import { IButtonArrow } from './interfaces';
 
@@ -14,6 +15,9 @@ const ButtonArrow: FC<IButtonArrow> = ({
   x,
   y
 }) => {
+  const offSet: number = 30;
+  const width: number = 40;
+
   // return
   return (
     <Group
@@ -25,17 +29,14 @@ const ButtonArrow: FC<IButtonArrow> = ({
         x={x}
         y={y} />
 
-      {text && <Text
-        fill={color}
-        fontFamily="Roboto Slab"
-        fontSize={12}
-        fontStyle="bold"
+      {text && <Paragraph
         align="center"
-        x={x + (type === 'right' ? -40 : 40)}
-        y={y + 2}
-        offsetX={type === "right" ? 40 : 0}
+        fill={color}
+        offsetX={type === "right" ? width : 0 }
         text={text}
-        width={40} />}
+        x={x + (type === 'right' ? -offSet : offSet)}
+        y={y + 2}
+        width={width} />}
     </Group>
   );
 };

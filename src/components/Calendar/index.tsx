@@ -26,6 +26,7 @@ const Calendar: FC<ICalendar> = ({
       months.push(<Month
         month={i}
         radius={radius + (i * increment)}
+        size={size}
         today={today}
         theme={theme}
         setToday={setToday}

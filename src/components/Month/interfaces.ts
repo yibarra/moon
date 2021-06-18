@@ -1,3 +1,4 @@
+import { ISize } from "../../providers/MainProvider/interfaces";
 import { IColors } from "../../providers/ThemeProvider/interfaces";
 
 export interface IMonthPhase {
@@ -39,6 +40,7 @@ export interface IMonthData {
 
 export interface IMonth {
   month: number;
+  size: ISize;
   radius: number;
   setToday(value: any): void;
   today: Date;

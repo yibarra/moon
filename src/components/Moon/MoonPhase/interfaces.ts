@@ -1,6 +1,7 @@
 import { IColors } from "../../../providers/ThemeProvider/interfaces";
 
 export interface IMoonPhase {
+  bg?: boolean;
   day: number;
   dashed: number[];
   month: number;

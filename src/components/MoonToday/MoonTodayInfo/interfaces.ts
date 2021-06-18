@@ -1,3 +1,6 @@
+import { IColors } from "../../../providers/ThemeProvider/interfaces";
+
 export interface IMoonTodayInfo {
-  today: any;
+  today: Date;
+  theme: IColors;
 }
