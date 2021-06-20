@@ -1,4 +1,4 @@
-export interface IMonthRadiusName {
+export interface IMonthName {
   angle: number;
   month: number;
   radius: number;

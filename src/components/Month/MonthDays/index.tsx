@@ -1,6 +1,6 @@
+import { Spring, animated } from '@react-spring/konva';
 import { format, parse } from 'date-fns';
 import React, { FC, useCallback } from 'react';
-import { Group } from 'react-konva';
 
 import MoonPhase from '../../Moon/MoonPhase';
 
@@ -9,7 +9,6 @@ const MonthDays: FC<any> = ({
   angle,
   currentMonth,
   day,
-  index,
   month,
   radius,
   setToday,
@@ -20,34 +19,46 @@ const MonthDays: FC<any> = ({
 
   // select day
   const selectDay = useCallback((day: number) => {
-    if (!currentMonth) return 1;
+    if (currentMonth === false) return 1;
 
     return day === today.getDate() ? 3 : 1;
   }, [ currentMonth, today ]);
 
   // select
-  const selectDate = useCallback((day: number) =>
+  const selectDate = useCallback((day: number) => 
     setToday(parse(
       format(new Date(`${today.getFullYear()}-${month}-${day}`), form), form, new Date())
-  ), [ month, setToday, today ]);
+    ), [ month, setToday, today ]);
 
   // render
   return (
-    <Group
-      listening={true}
-      onClick={() => selectDate(day)}
-      onTap={() => selectDate(day)}>
-      <MoonPhase
-        day={day}
-        dashed={[0, 0]}
-        month={month}
-        size={4}
-        theme={theme}
-        strokeWidth={selectDay(day)}
-        x={Math.cos(angle * index) * radius}
-        y={Math.sin(angle * index) * radius}
-        year={today.getFullYear()} />
-    </Group>
+    <Spring
+      from={{
+        x: 0,
+        y: 0
+      }}
+      to={{
+        x: Math.cos(angle * (day - 1)) * radius || 0,
+        y: Math.sin(angle * (day - 1)) * radius || 0
+      }}>
+      {(props: any) => (
+        <animated.Group
+          listening={true}
+          onClick={() => selectDate(day)}
+          onTap={() => selectDate(day)}
+          {...props}>
+          <MoonPhase
+            day={day}
+            dashed={[0, 0]}
+            month={month}
+            size={4}
+            theme={theme}
+            strokeWidth={selectDay(day)}
+            x={0}
+            y={0}
+            year={today.getFullYear()} />
+        </animated.Group>)}
+    </Spring>
   );
 };
 

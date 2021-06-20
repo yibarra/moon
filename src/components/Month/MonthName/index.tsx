@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Group, Text } from 'react-konva';
 
-import { IMonthRadiusName } from './interfaces';
+import { IMonthName } from './interfaces';
 
 // month radius name
-const MonthRadiusName: FC<IMonthRadiusName> = ({
+const MonthName: FC<IMonthName> = ({
   radius,
   text,
 }) => {
@@ -26,4 +26,4 @@ const MonthRadiusName: FC<IMonthRadiusName> = ({
   );
 };
 
-export default MonthRadiusName;
+export default MonthName;

@@ -43,10 +43,17 @@ function UseFormat() {
     return current;
   }, []);
 
+  // radians
+  const toRadians = useCallback((degrees: number) => {
+    return degrees * (Math.PI / 180);
+  }, []);
+
+  // render
   return {
     convertToRoman,
     fixDate,
     getActiveMonth,
+    toRadians
   }
 }
 

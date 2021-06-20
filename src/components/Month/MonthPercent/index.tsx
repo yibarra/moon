@@ -1,21 +1,23 @@
 import { Spring, animated } from '@react-spring/konva';
+import hexRgb from 'hex-rgb';
 import { Context } from 'konva/types/Context';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Circle, Group } from 'react-konva';
 
-import { IMonthRadiusPercent } from './interfaces';
+import { IMonthPercent } from './interfaces';
 
 // env
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
 // month radius percent
-const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
+const MonthPercent: FC<IMonthPercent> = ({
   active,
   angle,
   currentMonth,
   day,
   month,
   radius,
+  theme,
   today
 }) => {
   const [ percent, setPercent ] = useState<number>(0);
@@ -23,9 +25,9 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
 
   // create mask
   const maskLines = useCallback((ctx: Context) => {
-    const value = Math.abs(angle * (day - 1));
+    const value = Math.abs(angle * day);
 
-    ctx.arc(0, 0, radius, value || 0, Math.PI * 2, true);
+    ctx.arc(0, 0, radius, value || 0, (-(Math.PI / 2) + angle), true);
   }, [ radius, day, angle ]);
 
   // percent
@@ -34,13 +36,13 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
     
     if (active === true) {
       if (currentMonth === true) {
-        total = Math.floor((today / REACT_APP_TOTAL_ITEMS_DEGREE) * 100) - ((Math.PI / 2) + 1.1);
+        total = Math.floor(((today - 1) / (day + 1)) * 100);
       } else {
-        total = Math.ceil((day / REACT_APP_TOTAL_ITEMS_DEGREE) * 100) - ((Math.PI + 0.4));
+        total = Math.floor(((day - 1) / REACT_APP_TOTAL_ITEMS_DEGREE) * 100);
       }
     }
 
-    setPercent((total / 100) * circumference);
+    setPercent(total < 0 ? 0 : ((total / 100) * circumference));
   }, [ currentMonth, circumference, day, today ]);
 
   // use effect
@@ -57,15 +59,15 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
         <Circle
           radius={radius}
           fill="transparent"
-          stroke="rgba(255, 255, 255, 0.5)"
+          stroke={hexRgb(theme.main, { alpha: 0.5, format: 'css' })}
           strokeWidth={1}
-          dash={[2, 4]} />
+          dash={[1, 4]} />
       </Group>
 
       <Spring
         config={{
           duration: 700,
-          friction: 20,
+          friction: 10,
           mass: 1
         }}
         delay={100 * month}
@@ -76,7 +78,7 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
             {...props}
             radius={radius}
             fill="transparent"
-            stroke="rgba(255, 255, 255, 0.8)"
+            stroke={hexRgb(theme.main, { alpha: 0.6, format: 'css' })}
             strokeWidth={1}
             listen={false} />)}
       </Spring>
@@ -84,4 +86,4 @@ const MonthRadiusPercent: FC<IMonthRadiusPercent> = ({
   );
 };
 
-export default MonthRadiusPercent;
+export default MonthPercent;

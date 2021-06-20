@@ -3,8 +3,8 @@ import React, { FC, useCallback } from 'react';
 import { Group } from 'react-konva';
 
 import MoonPhase from '../Moon/MoonPhase';
-import MonthRadiusName from './MonthRadiusName';
-import MonthRadiusPercent from './MonthRadiusPercent';
+import MonthRadiusName from './MonthName';
+import MonthPercent from './MonthPercent';
 
 import MonthDays from './MonthDays';
 import UseFormat from '../../uses/useFormat';
@@ -46,18 +46,28 @@ const Month: FC<IMonth> = ({
     <Group 
       x={(window.innerWidth / 2)}
       y={(window.innerHeight / 2)}>
-      {factoryPhases(day).map(({ day }, index: number) =>
-        <MonthDays
-          key={index}
+        <MonthPercent
+          active={active}
           angle={angle}
           currentMonth={currentMonth}
           day={day}
-          index={index}
           month={month}
-          radius={radius}
-          setToday={setToday}
           theme={theme}
-          today={today} />)}
+          today={today.getDate()}
+          radius={radius} />
+
+        {factoryPhases(day).map(({ day }, index: number) =>
+          <MonthDays
+            key={index}
+            angle={angle}
+            currentMonth={currentMonth}
+            day={day}
+            index={index}
+            month={month}
+            radius={radius}
+            setToday={setToday}
+            theme={theme}
+            today={today} />)}
     </Group>
   );
 };
