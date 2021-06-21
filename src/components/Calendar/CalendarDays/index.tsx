@@ -1,9 +1,13 @@
 import React, { FC, useCallback } from 'react';
 import { Spring, animated } from '@react-spring/konva';
-import { Shape } from 'react-konva';
+import { Shape, Circle } from 'react-konva';
+import hexRgb from 'hex-rgb';
+
+import TextCircle from '../../Typography/TextCircle';
 
 import UseFormat from '../../../uses/useFormat';
-import TextCircle from '../../Typography/TextCircle';
+
+const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
 // calendar days
 const CalendarDays: FC<any> = ({
@@ -19,30 +23,33 @@ const CalendarDays: FC<any> = ({
 
   // border line
   const borderLine = useCallback((ctx: CanvasRenderingContext2D) => {
-    const arcRadians = (Math.PI * 2) / 32;
-    const spacingRadians = (Math.PI * 2) / radius;
+    const circumference = (Math.PI * 2);
+
+    const arcRadians = circumference / REACT_APP_TOTAL_ITEMS_DEGREE;
+    const spacingRadians = circumference / radius;
+    const spacing = 0.007;
 
     let currentAngle = 0;
 
-    for (let i = 0; i < 31; i++) {
+    for (let i = 0; i < 32; i++) {
       const active: boolean = day === (i + 1);
 
-      const startingAngle = currentAngle - (Math.PI / 34);
-      const endingAngle = startingAngle + arcRadians - spacingRadians;
+      const startingAngle = currentAngle - (Math.PI / 33);
+      const endingAngle = (startingAngle + arcRadians) - spacingRadians;
 
       ctx.save();
       ctx.beginPath();
       ctx.fillStyle = 'transparent';
       ctx.strokeStyle = active ? theme.main : theme.second;
-      ctx.lineWidth = 20;
-      ctx.arc(x, y, radius, startingAngle, endingAngle, false);
+      ctx.lineWidth = i === 31 ? 22 : 20;
+      ctx.arc(x, y, radius, (startingAngle - spacing), (endingAngle + spacing), false);
       ctx.stroke();
       ctx.closePath();
       ctx.restore();
-      // this.circleLine(ctx, x, y, radius, [0, 0], color, startingAngle, endingAngle, false, 40);
 
       currentAngle += arcRadians;
     }
+
   }, [ day, radius, theme, x, y ]);
 
   // create days
@@ -75,6 +82,15 @@ const CalendarDays: FC<any> = ({
         x={(window.innerWidth / 2)}
         y={(window.innerHeight / 2)}
         {...props}>
+        <Circle
+          fill="transparent"
+          strokeWidth={21}
+          listening={false}
+          stroke={hexRgb(theme.main, { alpha: 0.1, format: 'css' })}
+          radius={radius}
+          x={x}
+          y={y} />
+
         <Shape
           sceneFunc={(ctx: any) => borderLine(ctx)} />
 

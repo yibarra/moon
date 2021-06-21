@@ -59,9 +59,9 @@ const MonthPercent: FC<IMonthPercent> = ({
         <Circle
           radius={radius}
           fill="transparent"
-          stroke={hexRgb(theme.main, { alpha: 0.5, format: 'css' })}
+          stroke={hexRgb(theme.main, { alpha: 0.2, format: 'css' })}
           strokeWidth={1}
-          dash={[1, 4]} />
+          dash={[1, 2]} />
       </Group>
 
       <Spring
@@ -78,7 +78,7 @@ const MonthPercent: FC<IMonthPercent> = ({
             {...props}
             radius={radius}
             fill="transparent"
-            stroke={hexRgb(theme.main, { alpha: 0.6, format: 'css' })}
+            stroke={hexRgb(theme.main, { alpha: 0.5, format: 'css' })}
             strokeWidth={1}
             listen={false} />)}
       </Spring>
