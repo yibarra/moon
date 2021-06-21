@@ -78,13 +78,13 @@ const MoonPhase: FC<IMoonPhase> = ({
         strokeWidth={1} />
 
       <Circle
-        listening={false}
-        x={x}
-        y={y}
         fill={theme.main}
+        listening={false}
+        radius={size} 
         stroke={theme.main}
         strokeWidth={strokeWidth}
-        radius={size} />
+        x={x}
+        y={y} />
 
       <Spring
         from={{ phase: 0 }}

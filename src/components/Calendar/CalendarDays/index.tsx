@@ -96,6 +96,7 @@ const CalendarDays: FC<any> = ({
           sceneFunc={(ctx: any) => borderLine(ctx)} />
 
         <Shape
+          listening={false}
           sceneFunc={(ctx: any) => createDays(ctx)} />
       </animated.Group>)}
     </Spring>

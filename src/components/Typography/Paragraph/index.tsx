@@ -11,7 +11,8 @@ const Paragraph: FC<IParagraph> = (props) => {
       {...props}
       fontFamily="Roboto Slab"
       fontSize={10}
-      fontStyle="bold" />
+      fontStyle="bold"
+      listening={false} />
   );
 };
 
