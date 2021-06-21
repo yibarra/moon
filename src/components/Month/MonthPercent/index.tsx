@@ -57,6 +57,7 @@ const MonthPercent: FC<IMonthPercent> = ({
       <Group
         clipFunc={maskLines}>
         <Circle
+          listening={false}
           radius={radius}
           fill="transparent"
           stroke={hexRgb(theme.main, { alpha: 0.2, format: 'css' })}
@@ -76,8 +77,9 @@ const MonthPercent: FC<IMonthPercent> = ({
         {props => (
           <animated.Circle
             {...props}
-            radius={radius}
             fill="transparent"
+            listening={false}
+            radius={radius}
             stroke={hexRgb(theme.main, { alpha: 0.5, format: 'css' })}
             strokeWidth={1}
             listen={false} />)}

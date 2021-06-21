@@ -50,11 +50,14 @@ const MonthName: FC<IMonthName> = ({
   // render
   return (
     <Group
+      listening={false}
       rotation={toDegrees(-(Math.PI * 2) / 31)}>
       <Shape
+        listening={false}
         sceneFunc={(ctx: any) => createCircle(ctx)} />
 
       <Shape
+        listening={false}
         sceneFunc={(ctx: any) => createName(ctx)}
         scaleX={-1} />
     </Group>

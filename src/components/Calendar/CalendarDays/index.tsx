@@ -92,6 +92,7 @@ const CalendarDays: FC<any> = ({
           y={y} />
 
         <Shape
+          listening={false}
           sceneFunc={(ctx: any) => borderLine(ctx)} />
 
         <Shape
