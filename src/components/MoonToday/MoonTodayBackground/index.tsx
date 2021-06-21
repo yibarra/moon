@@ -14,12 +14,13 @@ const MoonTodayBackground: FC<IMoonTodayBackground> = ({
   return (
     <>
       <Circle
+        dash={[ 2, 2 ]}
+        fill={theme.second}
+        listening={false}
+        radius={radius}
+        stroke={hexRgb(theme.main, { alpha: 0.6, format: 'css' })}
         x={size.width / 2}
         y={size.height / 2}
-        radius={radius}
-        fill={theme.second}
-        stroke={hexRgb(theme.main, { alpha: 0.6, format: 'css' })}
-        dash={[ 2, 2 ]}
         strokeWidth={1} /> 
     </>
   );

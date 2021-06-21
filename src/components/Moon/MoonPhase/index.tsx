@@ -68,15 +68,17 @@ const MoonPhase: FC<IMoonPhase> = ({
   return (
     <>
       <Circle
+        dash={dashed}
+        fill="transparent"
+        listening={false}
+        radius={size + 5}
+        stroke={bg ? hexRgb(theme.main, { alpha: 0.6, format: 'css' }) : 'transparent'}
         x={x}
         y={y}
-        radius={size + 5}
-        fill="transparent"
-        stroke={bg ? hexRgb(theme.main, { alpha: 0.6, format: 'css' }) : 'transparent'}
-        dash={dashed}
         strokeWidth={1} />
 
       <Circle
+        listening={false}
         x={x}
         y={y}
         fill={theme.main}
@@ -92,6 +94,7 @@ const MoonPhase: FC<IMoonPhase> = ({
         {(props: any) => (
           <animated.Shape
             {...props}
+            listening={false}
             sceneFunc={(ctx: Context, shape: any) => shadowMoon(ctx, shape, props.phase.to((n: any) => n))}
             fill={props.phase > 0 ? theme.main : theme.second }>
           </animated.Shape>)}

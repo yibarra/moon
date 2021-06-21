@@ -26,6 +26,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         y={y} />
 
       <Text
+        listening={false}
         align="center"
         fill={theme.main}
         fontSize={10}
@@ -36,6 +37,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         text={getMoonPhaseName(today.getFullYear(), today.getMonth(), today.getDate())} />
 
       <Text
+        listening={false}
         align="center"
         fontFamily="Roboto Slab"
         fontSize={12}

@@ -12,6 +12,7 @@ const MoonTodayInfoTop: FC<any> = ({
   return (
     <>
       <Text
+        listening={false}
         align="center"
         fill="white"
         fontFamily="Roboto Condensed"
@@ -22,6 +23,7 @@ const MoonTodayInfoTop: FC<any> = ({
         y={y - 100} />
 
       <Text
+        listening={false}
         align="center"
         fill="white"
         fontFamily="Roboto Condensed"
