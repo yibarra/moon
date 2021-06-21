@@ -8,6 +8,4 @@ export interface IMonthName {
   radius: number;
   theme: IColors;
   text: string;
-  x: number;
-  y: number;
 }

@@ -35,7 +35,6 @@ const MonthName: FC<IMonthName> = ({
     ctx.stroke();
     ctx.closePath();
     ctx.restore();
-    //this.circleLine(ctx, x, y, this.radius, [0, 0], bgColor, initAngle, endAngle, true, 38);
   }, [ active, angle, day, radius, theme, updateName]);
 
   // create name

@@ -59,9 +59,7 @@ const Month: FC<IMonth> = ({
             month={month}
             radius={radius}
             theme={theme}
-            text={format(current, 'MMM')}
-            x={(window.innerWidth / 2)}
-            y={(window.innerHeight / 2)} />
+            text={format(current, 'MMM')} />
 
           <MonthContainer
             angle={angle}
