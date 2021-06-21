@@ -1,6 +1,6 @@
 {
   "name": "moon",
-  "homepage": "http://yibarra.github.io/moon",
+  "homepage": "https://yibarra.github.io/moon",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,7 +15,7 @@
     "@types/webfontloader": "^1.6.32",
     "axios": "^0.21.1",
     "date-fns": "^2.21.3",
-    "gh-pages": "^3.1.0",
+    "gh-pages": "^3.2.2",
     "konva": "^7.2.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
