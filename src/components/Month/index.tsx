@@ -1,15 +1,14 @@
-import { getDaysInMonth } from 'date-fns';
-import React, { FC, useCallback } from 'react';
+import React, { FC } from 'react';
 import { Group } from 'react-konva';
 
 import MoonPhase from '../Moon/MoonPhase';
 import MonthRadiusName from './MonthName';
 import MonthPercent from './MonthPercent';
 
-import MonthDays from './MonthDays';
 import UseFormat from '../../uses/useFormat';
 
 import { IMonth } from './interfaces';
+import MonthContainer from './MonthContainer';
 
 // env
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
@@ -23,29 +22,19 @@ const Month: FC<IMonth> = ({
   theme
 }) => {
   const { fixDate, getActiveMonth } = UseFormat();
-  const angle = (2 * Math.PI) / REACT_APP_TOTAL_ITEMS_DEGREE; // angle
+  const angle = (2 * Math.PI) / (REACT_APP_TOTAL_ITEMS_DEGREE); // angle
 
   const rotate = -(((today.getDate() - 1) / REACT_APP_TOTAL_ITEMS_DEGREE) * 360) - 90;
   
   const current = fixDate(today.getFullYear(), month);
   const { active, currentMonth, day }: any = getActiveMonth(today, current);
 
-  // factory phases
-  const factoryPhases = useCallback((day: number) => {
-    const items = [];
-
-    for (let i = 0; i < day; i++) {
-      items.push({ day: i + 1 });
-    }
-
-    return items;
-  }, []);
-
   // month
   return (
     <Group 
       x={(window.innerWidth / 2)}
-      y={(window.innerHeight / 2)}>
+      y={(window.innerHeight / 2)}
+      rotation={rotate}>
         <MonthPercent
           active={active}
           angle={angle}
@@ -56,18 +45,15 @@ const Month: FC<IMonth> = ({
           today={today.getDate()}
           radius={radius} />
 
-        {factoryPhases(day).map(({ day }, index: number) =>
-          <MonthDays
-            key={index}
-            angle={angle}
-            currentMonth={currentMonth}
-            day={day}
-            index={index}
-            month={month}
-            radius={radius}
-            setToday={setToday}
-            theme={theme}
-            today={today} />)}
+        <MonthContainer
+          angle={angle}
+          currentMonth={currentMonth}
+          day={day}
+          month={month}
+          radius={radius}
+          setToday={setToday}
+          theme={theme}
+          today={today} />
     </Group>
   );
 };
