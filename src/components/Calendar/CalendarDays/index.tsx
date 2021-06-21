@@ -1,5 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import { Group, Shape } from 'react-konva';
+import { Spring, animated } from '@react-spring/konva';
+import { Shape } from 'react-konva';
 
 import UseFormat from '../../../uses/useFormat';
 import TextCircle from '../../Typography/TextCircle';
@@ -9,6 +10,7 @@ const CalendarDays: FC<any> = ({
   angle,
   day,
   radius,
+  rotate,
   theme,
   x,
   y
@@ -24,6 +26,7 @@ const CalendarDays: FC<any> = ({
       ctx.save();
       ctx.font = "700 10px Roboto Slab";
       ctx.fillStyle = (day === (i + 1)) ? theme.second : theme.main;
+      ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       new TextCircle(ctx, dayRoman, x, y, radius, (angle * i), undefined, true); // text
       ctx.fill();
@@ -33,10 +36,18 @@ const CalendarDays: FC<any> = ({
 
   // render
   return (
-    <Group>
-      <Shape
-        sceneFunc={(ctx: any) => createDays(ctx)} />
-    </Group>
+    <Spring
+      delay={650}
+      from={{ rotation: 0 }}
+      to={{ rotation: rotate }}>
+      {props => (<animated.Group
+        x={(window.innerWidth / 2)}
+        y={(window.innerHeight / 2)}
+        {...props}>
+        <Shape
+          sceneFunc={(ctx: any) => createDays(ctx)} />
+      </animated.Group>)}
+    </Spring>
   );
 };
 

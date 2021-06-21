@@ -1,4 +1,5 @@
 import React, { FC, useCallback } from 'react';
+
 import { Layer } from 'react-konva';
 import UseFormat from '../../uses/useFormat';
 
@@ -10,7 +11,7 @@ import CalendarDays from './CalendarDays';
 import { ICalendar } from './interfaces';
 
 const increment = 20;
-const radius = 120;
+const radius = 110;
 
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
@@ -21,8 +22,10 @@ const Calendar: FC<ICalendar> = ({
   theme,
   today,
 }) => {
-  const { toRadians } = UseFormat();
+  const { toRadians } = UseFormat(); // format funcs
+
   const angle: number = toRadians(360 / REACT_APP_TOTAL_ITEMS_DEGREE);
+  const rotate: number = -(((today.getDate() - 1) / REACT_APP_TOTAL_ITEMS_DEGREE) * 360) - 90;
 
   // create months
   const createMonths = useCallback(() => {
@@ -33,6 +36,7 @@ const Calendar: FC<ICalendar> = ({
       months.push(<Month
         month={i}
         radius={radius + (i * increment)}
+        rotate={rotate}
         size={size}
         today={today}
         theme={theme}
@@ -41,7 +45,7 @@ const Calendar: FC<ICalendar> = ({
     }
 
     return months;
-  }, [ size, setToday, theme, today ]);
+  }, [ rotate, size, setToday, theme, today ]);
 
   // render
   return (
@@ -54,10 +58,11 @@ const Calendar: FC<ICalendar> = ({
       <CalendarDays
         angle={angle}
         day={today.getDate()}
-        radius={390}
+        radius={radius + (13.5 * increment)}
+        rotate={rotate}
         theme={theme}
-        x={size.width / 2}
-        y={size.height / 2} />
+        x={0}
+        y={0} />
 
       <MoonToday
         setToday={setToday}
@@ -67,7 +72,7 @@ const Calendar: FC<ICalendar> = ({
 
       <YearControls
         theme={theme}
-        radius={radius + (12 * increment)}
+        radius={radius + (13 * increment)}
         setYear={setToday}
         year={today.getFullYear()} />
     </Layer>
