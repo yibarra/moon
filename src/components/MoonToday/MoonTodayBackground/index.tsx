@@ -14,8 +14,8 @@ const MoonTodayBackground: FC<IMoonTodayBackground> = ({
   return (
     <>
       <Circle
-        dash={[ 2, 2 ]}
-        fill={theme.second}
+        dash={[ 1, 2 ]}
+        fill="transparent"
         listening={false}
         radius={radius}
         stroke={hexRgb(theme.main, { alpha: 0.1, format: 'css' })}

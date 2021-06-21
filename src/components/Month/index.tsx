@@ -33,7 +33,7 @@ const Month: FC<IMonth> = ({
   return (
     <Spring
       config={{
-        duration: 550 * (month / 2),
+        duration: 350,
       }}
       delay={50 * month}
       from={{ rotation: 0 }}

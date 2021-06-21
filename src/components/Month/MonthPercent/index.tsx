@@ -67,11 +67,11 @@ const MonthPercent: FC<IMonthPercent> = ({
 
       <Spring
         config={{
-          duration: 700,
-          friction: 10,
-          mass: 1
+          duration: 450,
+          friction: 170,
+          mass: 10
         }}
-        delay={100 * month}
+        delay={60 * day}
         from={{ dash: [ 0, 0] }}
         to={{ dash: [ percent, circumference ] }}>
         {props => (

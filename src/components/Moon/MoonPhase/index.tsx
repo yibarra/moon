@@ -5,9 +5,9 @@ import hexRgb from 'hex-rgb';
 
 import UseMoon from '../../../uses/useMoon';
 
-import { Context } from 'konva/types/Context';
 import { Shape as IShape } from 'konva/types/Shape';
 
+import { Context } from 'konva/types/Context';
 import { IMoonPhase } from './interfaces';
 
 // moon phase
@@ -15,6 +15,7 @@ const MoonPhase: FC<IMoonPhase> = ({
   bg = false,
   day,
   dashed = [ 0, 0 ],
+  delay = 200,
   month,
   size,
   strokeWidth,
@@ -72,7 +73,7 @@ const MoonPhase: FC<IMoonPhase> = ({
         fill="transparent"
         listening={false}
         radius={size + 5}
-        stroke={bg ? hexRgb(theme.main, { alpha: 0.6, format: 'css' }) : 'transparent'}
+        stroke={bg ? hexRgb(theme.main, { alpha: 0.1, format: 'css' }) : 'transparent'}
         x={x}
         y={y}
         strokeWidth={1} />
@@ -87,6 +88,7 @@ const MoonPhase: FC<IMoonPhase> = ({
         y={y} />
 
       <Spring
+        delay={delay}
         from={{ phase: 0 }}
         to={{
           phase: getMoonFraction(year, month, day)
@@ -104,16 +106,3 @@ const MoonPhase: FC<IMoonPhase> = ({
 };
 
 export default MoonPhase;
-
-/*
-<Spring
-      config={{
-        duration: 150 * month,
-      }}
-      delay={50 * month}
-      from={{ rotation: 0 }}
-      to={{ rotation: rotate }}>
-      {props => (<animated.Group
-        {...props}
-        
-*/

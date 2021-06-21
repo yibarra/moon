@@ -34,6 +34,9 @@ const MonthDays: FC<any> = ({
   // render
   return (
     <Spring
+      config={{
+        duration: day * month
+      }}
       from={{
         x: 0,
         y: 0
@@ -49,6 +52,7 @@ const MonthDays: FC<any> = ({
           onTap={() => selectDate(day)}
           {...props}>
           <Circle
+            listening={true}
             fill={theme.second}
             radius={10} 
             x={0}
