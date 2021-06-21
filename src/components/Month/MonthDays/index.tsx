@@ -1,6 +1,7 @@
 import { Spring, animated } from '@react-spring/konva';
 import { format, parse } from 'date-fns';
 import React, { FC, useCallback } from 'react';
+import { Circle } from 'react-konva';
 
 import MoonPhase from '../../Moon/MoonPhase';
 
@@ -47,6 +48,12 @@ const MonthDays: FC<any> = ({
           onClick={() => selectDate(day)}
           onTap={() => selectDate(day)}
           {...props}>
+          <Circle
+            fill={theme.second}
+            radius={10} 
+            x={0}
+            y={0} />
+
           <MoonPhase
             day={day}
             dashed={[0, 0]}

@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
+import { format } from 'date-fns';
 import { Spring, animated } from '@react-spring/konva';
 
 import MonthContainer from './MonthContainer';
-import MonthRadiusName from './MonthName';
+import MonthName from './MonthName';
 import MonthPercent from './MonthPercent';
 
 import UseFormat from '../../uses/useFormat';
@@ -33,9 +34,6 @@ const Month: FC<IMonth> = ({
     <Spring
       config={{
         duration: 550 * (month / 2),
-        friction: 150,
-        mass: 4,
-        tension: 140
       }}
       delay={50 * month}
       from={{ rotation: 0 }}
@@ -53,6 +51,17 @@ const Month: FC<IMonth> = ({
             theme={theme}
             today={today.getDate()}
             radius={radius} />
+
+          <MonthName
+            active={active}
+            angle={angle}
+            day={day}
+            month={month}
+            radius={radius}
+            theme={theme}
+            text={format(current, 'MMM')}
+            x={(window.innerWidth / 2)}
+            y={(window.innerHeight / 2)} />
 
           <MonthContainer
             angle={angle}
