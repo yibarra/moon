@@ -24,6 +24,18 @@ const IconArrow: FC<IIconArrow> = ({
     ctx.closePath();
   }, [ color ]);
 
+  // point
+  const point = useCallback((ctx: Context) => {
+    const offY = (offsetY + 5);
+    const PosX = (type === 'right') ? offY : -offY;
+
+    ctx.save();
+    ctx.arc(x - PosX, y + 3, 1, 0, Math.PI * 2, false);
+    ctx.setAttr('fillStyle', color);
+    ctx.fill();
+    ctx.restore();
+  }, [ color, offsetY, type, x, y ]);
+
   // icon
   const icon = useCallback((ctx: Context) => {
     ctx.save();
@@ -42,7 +54,9 @@ const IconArrow: FC<IIconArrow> = ({
     line(ctx, { x, y }, { x: x + offsetX, y: y + offsetX });
 
     ctx.restore();
-  }, [ line, offsetX, offsetY, type, x, y ]);
+
+    point(ctx);
+  }, [ line, offsetX, offsetY, point, type, x, y ]);
 
   // render
   return (
