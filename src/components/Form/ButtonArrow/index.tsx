@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Group } from 'react-konva';
 
 import IconArrow from '../../Icons/IconArrow';
-import Paragraph from '../../Typography/Paragraph';
+import Text from '../../Typography/Text';
 
 import { IButtonArrow } from './interfaces';
 
@@ -22,20 +22,24 @@ const ButtonArrow: FC<IButtonArrow> = ({
   return (
     <Group
       onTap={onClick}
-      onClick={onClick}>
+      onClick={onClick}
+      y={4}>
       <IconArrow
         color={color}
+        offsetX={6}
+        offsetY={20}
         type={type}
         x={x}
         y={y} />
 
-      {text && <Paragraph
+      {text && <Text
         align="center"
         fill={color}
+        fontSize={10}
         offsetX={type === "right" ? width : 0 }
         text={text}
         x={x + (type === 'right' ? -offSet : offSet)}
-        y={y + 2}
+        y={y - 1}
         width={width} />}
     </Group>
   );

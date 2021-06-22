@@ -1,37 +1,62 @@
-import React, { FC } from 'react';
-import { Line, Rect } from 'react-konva';
+import { Context } from 'konva/types/Context';
+import React, { FC, useCallback } from 'react';
+import { Shape, Rect } from 'react-konva';
 
 import { IIconArrow } from './interfaces';
 
 // icon arrow
 const IconArrow: FC<IIconArrow> = ({
   color,
+  offsetX = 10,
+  offsetY = 30,
   type,
   x,
   y
 }) => {
+  // line
+  const line = useCallback((ctx: Context, pos: any, line: any) => {
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+    ctx.lineTo(line.x, line.y);
+    ctx.setAttr('strokeStyle', color);
+    ctx.setAttr('lineWidth', 1);
+    ctx.stroke();
+    ctx.closePath();
+  }, [ color ]);
+
+  // icon
+  const icon = useCallback((ctx: Context) => {
+    ctx.save();
+
+    if (type === 'right') {
+      ctx.translate(0, 3);
+      ctx.translate(x, y);
+      ctx.rotate(Math.PI);
+      ctx.translate(-x, -y);
+    } else {
+      ctx.translate(0, 3);
+    }
+    
+    line(ctx, { x, y }, { x: x + offsetX, y: y - offsetX });
+    line(ctx, { x: x + offsetY, y }, { x, y });
+    line(ctx, { x, y }, { x: x + offsetX, y: y + offsetX });
+
+    ctx.restore();
+  }, [ line, offsetX, offsetY, type, x, y ]);
+
   // render
   return (
     <>
       <Rect
         fill="transparent"
-        height={30}
+        height={offsetY}
         scaleX={type === "right" ? -1 : 1}
-        x={x + (type === "right" ? 3 : -3)}
-        y={y - (15 / 2)}
-        width={30} />
-
-      <Line
-        closed={true}
-        lineCap="round"
-        lineJoin="round"
-        listening={false}
-        fill={color}
-        scaleX={type === "right" ? -1 : 1}
-        points={[21.3, 6.4, 2.4, 6.4, 7.5, 1.4, 6.8, 0.6, 1, 6.4, 1, 6.4, 1, 6.4, 0.5, 6.9, 1, 7.3, 1, 7.4, 1, 7.4, 6.8, 13.1, 7.5, 12.4, 2.4, 7.4, 21.3, 7.4]}
-        strokeWidth={1}
         x={x}
-        y={y} />
+        y={y - ((offsetY / 2) / 2)}
+        width={offsetY} />
+
+      <Shape
+        sceneFunc={(ctx: Context) => icon(ctx)} />
     </>
   );
 };
