@@ -3,8 +3,10 @@ import React, { FC } from 'react';
 
 import Text from '../../../../Typography/Text';
 
+import { IMoonTodayInfoTop } from './interfaces';
+
 // moon today info top
-const MoonTodayInfoTop: FC<any> = ({
+const MoonTodayInfoTop: FC<IMoonTodayInfoTop> = ({
   date,
   theme,
   x,
@@ -16,7 +18,7 @@ const MoonTodayInfoTop: FC<any> = ({
   return (
     <>
       <Text
-        fill={theme.main}
+        fill={theme.second}
         fontSize={8}
         text={compareAsc(date, parse(format(new Date(), 'yyyy/M/dd'), 'yyyy/M/dd', new Date())) === 0 ? 'TODAY' : 'Day of Week'}
         width={90} 
@@ -24,7 +26,7 @@ const MoonTodayInfoTop: FC<any> = ({
         y={y - offSetY} />
 
       <Text
-        fill={theme.main}
+        fill={theme.second}
         fontSize={11}
         fontStyle="bold"
         text={format(date, 'EEEE')}

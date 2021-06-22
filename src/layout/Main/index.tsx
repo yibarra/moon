@@ -11,6 +11,8 @@ import { ThemeContext } from '../../providers/ThemeProvider';
 
 import { IMain } from './interfaces';
 
+import './styles.scss';
+
 // main
 const Main: FC<IMain> = () => {
   const { loaded, date, setDate, size } = useContext(MainContext);
@@ -18,7 +20,9 @@ const Main: FC<IMain> = () => {
 
   // render
   return (
-    <>
+    <section
+      className="main"
+      style={{ backgroundColor: theme.main }}>
       <Header />
 
       {loaded &&
@@ -33,7 +37,7 @@ const Main: FC<IMain> = () => {
         </Stage>}
 
       <Footer />
-    </>
+    </section>
   );
 };
 

@@ -9,7 +9,6 @@ import { IMonthPercent } from './interfaces';
 const MonthPercent: FC<IMonthPercent> = ({
   active,
   angle,
-  currentMonth,
   day,
   month,
   radius,
@@ -43,7 +42,7 @@ const MonthPercent: FC<IMonthPercent> = ({
           fill="transparent"
           listening={false}
           radius={radius}
-          stroke={hexRgb(theme.main, { alpha: 0.8, format: 'css' })}
+          stroke={hexRgb(theme.second, { alpha: 0.8, format: 'css' })}
           strokeWidth={1}
           listen={false} />
     </Group>

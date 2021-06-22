@@ -36,7 +36,7 @@ const MoonPhase: FC<IMoonPhase> = ({
   const drawLine = useCallback((ctx: Context, color: string) => {
     ctx.save();
     ctx.beginPath();
-    ctx.moveTo(x, y - (size - 1));
+    ctx.moveTo(x, y -(size - 1));
     ctx.lineTo(x, y + (size));
     ctx.setAttr('strokeStyle', color);
     ctx.setAttr('lineWidth', 1);
@@ -100,7 +100,7 @@ const MoonPhase: FC<IMoonPhase> = ({
             {...props}
             listening={false}
             sceneFunc={(ctx: Context, shape: any) => shadowMoon(ctx, shape, props.phase.to((n: any) => n))}
-            fill={props.phase > 0 ? theme.main : theme.second }>
+            fill={props.phase > 0 ? theme.second : theme.main }>
           </animated.Shape>)}
       </Spring>
     </>

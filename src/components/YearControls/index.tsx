@@ -25,7 +25,7 @@ const YearControls: FC<IYearControls> = ({
   return (
     <>
       <ButtonArrow
-        color={theme.main}
+        color={theme.second}
         onClick={() => onChange(year-1)}
         text={convertToRoman(year - 1)}
         type="left"
@@ -33,7 +33,7 @@ const YearControls: FC<IYearControls> = ({
         y={y + 2} />
 
       <ButtonArrow
-        color={theme.main}
+        color={theme.second}
         onClick={() => onChange(year+1)}
         text={convertToRoman(year + 1)}
         type="right"

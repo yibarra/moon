@@ -6,8 +6,10 @@ import UseMoon from '../../../../../uses/useMoon';
 
 import Text from '../../../../Typography/Text';
 
+import { IMoonTodayInfoYear } from './interfaces';
+
 // moon today info year
-const MoonTodayInfoYear: FC<any> = ({
+const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
   theme,
   today
 }) => {
@@ -20,7 +22,7 @@ const MoonTodayInfoYear: FC<any> = ({
   return (
     <>
       <Text
-        fill={theme.main}
+        fill={theme.second}
         fontSize={8}
         width={140}
         x={(window.innerWidth / 2) - (140 / 2)}
@@ -29,7 +31,7 @@ const MoonTodayInfoYear: FC<any> = ({
 
       <Text
         fontSize={10}
-        fill={theme.main}
+        fill={theme.second}
         fontStyle="bold"
         text={convertToRoman(parseInt(format(today, 'yyyy')))}
         width={80}

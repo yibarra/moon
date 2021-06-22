@@ -11,6 +11,7 @@ import { IMoonToday } from './interfaces';
 const MoonToday: FC<IMoonToday> = ({
   setToday,
   size,
+  radius,
   theme,
   today,
 }) => {
@@ -18,7 +19,7 @@ const MoonToday: FC<IMoonToday> = ({
   return (
     <>
       <MoonTodayBackground
-        radius={32 * 2.9}
+        radius={radius}
         size={size} 
         theme={theme} />
 

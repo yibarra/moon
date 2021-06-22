@@ -31,7 +31,7 @@ const MonthName: FC<IMonthName> = ({
     ctx.save();
     ctx.beginPath();
     ctx.setAttr('fillStyle', 'transparent');
-    ctx.setAttr('strokeStyle', active ? theme.main : theme.second);
+    ctx.setAttr('strokeStyle', active ? theme.second : theme.main);
     ctx.setAttr('lineWidth', 17);
     ctx.arc(0, 0, radius, initAngle, endAngle, true);
     ctx.fill();
@@ -43,7 +43,7 @@ const MonthName: FC<IMonthName> = ({
   // create name
   const createName = useCallback((ctx: CanvasRenderingContext2D) => {
     ctx.font = "8px Roboto Condensed";
-    ctx.fillStyle = active ? theme.second : theme.main;
+    ctx.fillStyle = active ? theme.main : theme.second;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 

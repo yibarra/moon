@@ -25,7 +25,6 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         y={y} />
 
       <MoonTodayInfoLabel
-        today={today}
         theme={theme}
         offSetY={30}
         x={x - 55}
@@ -34,7 +33,6 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         y={y} />
       
       <MoonTodayInfoLabel
-        today={today}
         theme={theme}
         offSetY={30}
         x={x + 55}

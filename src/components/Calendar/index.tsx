@@ -11,7 +11,7 @@ import YearControls from '../YearControls';
 import { ICalendar } from './interfaces';
 
 const increment = 18;
-const radius = 90;
+const radius = 110;
 
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
@@ -67,6 +67,7 @@ const Calendar: FC<ICalendar> = ({
       <MoonToday
         setToday={setToday}
         size={size}
+        radius={radius}
         theme={theme}
         today={today} />
 

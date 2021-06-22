@@ -27,7 +27,7 @@ const CalendarDays: FC<any> = ({
 
     const arcRadians = circumference / REACT_APP_TOTAL_ITEMS_DEGREE;
     const spacingRadians = circumference / radius;
-    const spacing = 0.007;
+    const spacing = 0.008;
 
     let currentAngle = 0;
 
@@ -40,7 +40,7 @@ const CalendarDays: FC<any> = ({
       ctx.save();
       ctx.beginPath();
       ctx.fillStyle = 'transparent';
-      ctx.strokeStyle = active ? theme.main : theme.second;
+      ctx.strokeStyle = active ? theme.second : theme.main;
       ctx.lineWidth = i === 31 ? 22 : 20;
       ctx.arc(x, y, radius, (startingAngle - spacing), (endingAngle + spacing), false);
       ctx.stroke();
@@ -62,7 +62,7 @@ const CalendarDays: FC<any> = ({
       ctx.beginPath();
       ctx.font = "700 7px Roboto Slab";
       ctx.strokeStyle = 'transparent';
-      ctx.fillStyle = (day === (i + 1)) ? theme.second : theme.main;
+      ctx.fillStyle = (day === (i + 1)) ? theme.main : theme.second;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       new TextCircle(ctx, dayRoman, x, y, radius, (angle * i), undefined, true); // text
@@ -89,7 +89,7 @@ const CalendarDays: FC<any> = ({
           fill="transparent"
           strokeWidth={21}
           listening={false}
-          stroke={hexRgb(theme.main, { alpha: 0.1, format: 'css' })}
+          stroke={hexRgb(theme.second, { alpha: 0.1, format: 'css' })}
           radius={radius}
           x={x}
           y={y} />

@@ -19,7 +19,7 @@ const MoonTodayInfoLabel: FC<any> = ({
   return (
     <>
       <Text
-        fill={theme.main}
+        fill={theme.second}
         fontSize={8}
         width={140}
         x={x - (140 / 2)}
@@ -27,7 +27,7 @@ const MoonTodayInfoLabel: FC<any> = ({
         text={label} />
 
       <Text
-        fill={theme.main}
+        fill={theme.second}
         fontSize={10}
         fontStyle="bold"
         width={140}

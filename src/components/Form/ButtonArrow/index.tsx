@@ -26,8 +26,8 @@ const ButtonArrow: FC<IButtonArrow> = ({
       y={4}>
       <IconArrow
         color={color}
-        offsetX={6}
-        offsetY={20}
+        offsetX={5}
+        offsetY={15}
         type={type}
         x={x}
         y={y} />
