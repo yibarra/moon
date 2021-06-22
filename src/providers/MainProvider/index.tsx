@@ -16,6 +16,7 @@ const MainProvider: FC<IMainProvider> = ({ children }) => {
 
   const [ date, set ] = useState<any>(parse(format(new Date(), form), form, new Date()));
   const [ loaded, setLoaded ] = useState<boolean>(false);
+  const [ radius, setRadius ] = useState<number>(110);
 
   // set date
   const setDate = useCallback((value: Date) =>
@@ -43,6 +44,8 @@ const MainProvider: FC<IMainProvider> = ({ children }) => {
       value={{
         date,
         loaded,
+        radius,
+        setRadius,
         setDate,
         size
       }}>

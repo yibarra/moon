@@ -1,4 +1,4 @@
-header {
+.header {
   background-color: transparent;
   left: 0;
   padding: 10px;
@@ -6,4 +6,13 @@ header {
   top: 0;
   width: 100%;
   z-index: 22;
+
+  .filter {
+    float: left;
+    width: 50%;
+
+    .input-range {
+      float: right;
+    }
+  }
 }

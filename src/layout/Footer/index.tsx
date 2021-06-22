@@ -17,7 +17,8 @@ const Footer: FC<IFooter> = () => {
 
   // render
   return (
-    <footer>
+    <footer
+      className="footer">
       <button onClick={redirect}>
         <span style={{ color: theme.second }}>@Julian Ibarra</span>
       </button>

@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useContext, useState } from 'react';
+import InputRange from '../../components/Form/InputRange';
 
 import InputSwitch from '../../components/Form/InputSwitch';
 import { ThemeContext } from '../../providers/ThemeProvider';
@@ -6,7 +7,10 @@ import { ThemeContext } from '../../providers/ThemeProvider';
 import './styles.scss';
 
 // header
-const Header: FC<any> = () => {
+const Header: FC<any> = ({
+  radius,
+  setRadius,
+}) => {
   const { setColors } = useContext(ThemeContext);
 
   const [ color, setColor ] = useState<boolean>(false);
@@ -24,12 +28,21 @@ const Header: FC<any> = () => {
 
   // render
   return (
-    <header>
-      <div>
+    <header
+      className="header">
+      <div className="filter">
         <InputSwitch
           name="color"
           value={color}
           onChange={onThemeChange} />
+      </div>
+
+      <div className="filter">
+        <InputRange
+          min={110}
+          max={400}
+          setValue={setRadius}
+          value={radius} />
       </div>
     </header>
   );

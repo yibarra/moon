@@ -8,6 +8,8 @@ export interface ISize {
 export interface IMainContext {
   date: Date;
   loaded: boolean;
+  radius: number;
+  setRadius(value: number): void;
   size: ISize;
   setDate(value: Date): void;
 }

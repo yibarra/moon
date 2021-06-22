@@ -4,8 +4,10 @@ import UseFormat from '../../../../../uses/useFormat';
 
 import Text from '../../../../Typography/Text';
 
+import { IMoonTodayInfoLabel } from './interfaces';
+
 // moon today info year
-const MoonTodayInfoLabel: FC<any> = ({
+const MoonTodayInfoLabel: FC<IMoonTodayInfoLabel> = ({
   offSetY,
   label,
   theme,

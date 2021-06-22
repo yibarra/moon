@@ -15,7 +15,7 @@ import './styles.scss';
 
 // main
 const Main: FC<IMain> = () => {
-  const { loaded, date, setDate, size } = useContext(MainContext);
+  const { loaded, date, setDate, size, radius, setRadius } = useContext(MainContext);
   const { theme } = useContext(ThemeContext);
 
   // render
@@ -23,13 +23,16 @@ const Main: FC<IMain> = () => {
     <section
       className="main"
       style={{ backgroundColor: theme.main }}>
-      <Header />
+      <Header
+        radius={radius}
+        setRadius={setRadius} />
 
       {loaded &&
         <Stage
           height={size.height}
           width={size.width}>
             <Calendar
+              radius={radius}
               setToday={setDate}
               size={size}
               today={date}

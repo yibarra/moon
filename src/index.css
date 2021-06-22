@@ -1,9 +1,60 @@
+html,
+body,
+body * {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+}
+
+html,
 body {
+  float: left;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  vertical-align: top;
+}
+
+html {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+body {
   background-color: #262B2F;
+  height: auto;
+  font-family: 'Titillium Web', 'sans-serif';
+  min-height: 100vh;
+  overflow: hidden;
+  overflow-anchor: none;
+  width: 100vw;
+}
+
+script,
+style,
+link {
+  display: none;
+}
+
+#root {
+  min-height: 100vh;
+  float: left;
+  width: 100%;
+}
+
+canvas {
+  float: left;
+  height: 100%;
+  width: 100%;
+}
+
+#starmap {
+  height: 100%;
+  left: 0;
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }

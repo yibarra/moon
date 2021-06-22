@@ -11,12 +11,12 @@ import YearControls from '../YearControls';
 import { ICalendar } from './interfaces';
 
 const increment = 18;
-const radius = 110;
 
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
 // calendar
 const Calendar: FC<ICalendar> = ({
+  radius,
   setToday,
   size,
   theme,
@@ -45,7 +45,7 @@ const Calendar: FC<ICalendar> = ({
     }
 
     return months;
-  }, [ rotate, size, setToday, theme, today ]);
+  }, [ radius, rotate, size, setToday, theme, today ]);
 
   // render
   return (
