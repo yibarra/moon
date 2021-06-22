@@ -26,9 +26,12 @@ const MonthContainer: FC<IMonthContainer> = ({
     return items;
   }, []);
 
+  const items = factoryPhases(day);
+
+  // render
   return (
     <>
-      {factoryPhases(day).map(({ dayMonth }, index: number) =>
+      {items.map(({ dayMonth }, index: number) =>
         <MonthDays
           angle={angle}
           currentMonth={currentMonth}
@@ -36,6 +39,7 @@ const MonthContainer: FC<IMonthContainer> = ({
           index={index}
           key={index}
           month={month}
+          lastDay={items.length}
           radius={radius}
           setToday={setToday}
           theme={theme}

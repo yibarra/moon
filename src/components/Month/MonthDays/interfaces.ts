@@ -5,6 +5,7 @@ export interface IMonthDays {
   currentMonth: boolean;
   day: number;
   month: number;
+  lastDay: number;
   radius: number;
   setToday(value: Date): void;
   theme: IColors;

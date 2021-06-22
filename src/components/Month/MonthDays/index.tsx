@@ -1,6 +1,6 @@
 import { format, parse } from 'date-fns';
 import React, { FC, useCallback } from 'react';
-import { Group } from 'react-konva';
+import { Circle, Group } from 'react-konva';
 
 import MoonPhase from '../../Moon/MoonPhase';
 
@@ -10,6 +10,7 @@ const MonthDays: FC<any> = ({
   currentMonth,
   day,
   month,
+  lastDay,
   radius,
   setToday,
   theme,
@@ -36,6 +37,14 @@ const MonthDays: FC<any> = ({
       listening={true}
       onClick={() => selectDate(day)}
       onTap={() => selectDate(day)}>
+
+      {(day === 1 || day === lastDay) &&
+        <Circle
+          fill={theme.second}
+          radius={10}
+          x={Math.cos(angle * (day - 1)) * radius || 0}
+          y={Math.sin(angle * (day - 1)) * radius || 0} /> }
+
       <MoonPhase
         day={day}
         month={month}

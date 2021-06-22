@@ -1,5 +1,7 @@
+import { Context } from 'konva/types/Context';
 import React, { FC, useCallback } from 'react';
 import { Group, Shape } from 'react-konva';
+
 import UseFormat from '../../../uses/useFormat';
 
 import TextCircle from '../../Typography/TextCircle';
@@ -22,16 +24,17 @@ const MonthName: FC<IMonthName> = ({
     ((day) * angle), [ angle ]);
 
   // create circle
-  const createCircle = useCallback((ctx: CanvasRenderingContext2D) => {
+  const createCircle = useCallback((ctx: Context) => {
     const initAngle = angle;
     const endAngle = updateName(day);
 
     ctx.save();
     ctx.beginPath();
-    ctx.fillStyle = 'transparent';
-    ctx.strokeStyle = active ? theme.main : theme.second;
-    ctx.lineWidth = 19;
+    ctx.setAttr('fillStyle', 'transparent');
+    ctx.setAttr('strokeStyle', active ? theme.main : theme.second);
+    ctx.setAttr('lineWidth', 19);
     ctx.arc(0, 0, radius, initAngle, endAngle, true);
+    ctx.fill();
     ctx.stroke();
     ctx.closePath();
     ctx.restore();
@@ -55,7 +58,7 @@ const MonthName: FC<IMonthName> = ({
       {active &&
         <Shape
           listening={false}
-          sceneFunc={(ctx: any) => createCircle(ctx)} />}
+          sceneFunc={(ctx: Context) => createCircle(ctx)} />}
 
       <Shape
         listening={false}
