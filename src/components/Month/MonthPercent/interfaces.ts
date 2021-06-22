@@ -8,5 +8,5 @@ export interface IMonthPercent {
   month: number;
   radius: number;
   theme: IColors;
-  today: any;
+  today: Date;
 }

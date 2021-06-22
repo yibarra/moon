@@ -52,9 +52,10 @@ const MonthName: FC<IMonthName> = ({
     <Group
       listening={false}
       rotation={toDegrees(-(Math.PI * 2) / 31)}>
-      <Shape
-        listening={false}
-        sceneFunc={(ctx: any) => createCircle(ctx)} />
+      {active &&
+        <Shape
+          listening={false}
+          sceneFunc={(ctx: any) => createCircle(ctx)} />}
 
       <Shape
         listening={false}

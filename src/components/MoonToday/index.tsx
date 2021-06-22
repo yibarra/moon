@@ -27,10 +27,8 @@ const MoonToday: FC<IMoonToday> = ({
         theme={theme} />
 
       <MoonPhase
-        bg={true}
         day={today.getDate()}
-        dashed={[1, 2]}
-        delay={today.getDate() * 100}
+        delay={600}
         month={today.getMonth()}
         size={32}
         strokeWidth={1}

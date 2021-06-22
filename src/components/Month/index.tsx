@@ -33,9 +33,9 @@ const Month: FC<IMonth> = ({
   return (
     <Spring
       config={{
-        duration: 350,
+        duration: 450,
       }}
-      delay={50 * month}
+      delay={90 * (month - 1)}
       from={{ rotation: 0 }}
       to={{ rotation: rotate }}>
       {props => (<animated.Group
@@ -49,7 +49,7 @@ const Month: FC<IMonth> = ({
             day={day}
             month={month}
             theme={theme}
-            today={today.getDate()}
+            today={today}
             radius={radius} />
 
           <MonthName

@@ -1,7 +1,6 @@
-import { Spring, animated } from '@react-spring/konva';
 import { format, parse } from 'date-fns';
 import React, { FC, useCallback } from 'react';
-import { Circle } from 'react-konva';
+import { Group } from 'react-konva';
 
 import MoonPhase from '../../Moon/MoonPhase';
 
@@ -33,43 +32,20 @@ const MonthDays: FC<any> = ({
 
   // render
   return (
-    <Spring
-      config={{
-        duration: day * month
-      }}
-      from={{
-        x: 0,
-        y: 0
-      }}
-      to={{
-        x: Math.cos(angle * (day - 1)) * radius || 0,
-        y: Math.sin(angle * (day - 1)) * radius || 0
-      }}>
-      {(props: any) => (
-        <animated.Group
-          listening={true}
-          onClick={() => selectDate(day)}
-          onTap={() => selectDate(day)}
-          {...props}>
-          <Circle
-            listening={true}
-            fill={theme.second}
-            radius={10} 
-            x={0}
-            y={0} />
-
-          <MoonPhase
-            day={day}
-            dashed={[0, 0]}
-            month={month}
-            size={4}
-            theme={theme}
-            strokeWidth={selectDay(day)}
-            x={0}
-            y={0}
-            year={today.getFullYear()} />
-        </animated.Group>)}
-    </Spring>
+    <Group
+      listening={true}
+      onClick={() => selectDate(day)}
+      onTap={() => selectDate(day)}>
+      <MoonPhase
+        day={day}
+        month={month}
+        size={4}
+        theme={theme}
+        strokeWidth={selectDay(day)}
+        x={Math.cos(angle * (day - 1)) * radius || 0}
+        y={Math.sin(angle * (day - 1)) * radius || 0}
+        year={today.getFullYear()} />
+    </Group>
   );
 };
 

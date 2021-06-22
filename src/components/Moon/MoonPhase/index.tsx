@@ -1,7 +1,6 @@
 import React, { FC, useCallback } from 'react';
 import { animated, Spring } from '@react-spring/konva';
 import { Circle } from 'react-konva';
-import hexRgb from 'hex-rgb';
 
 import UseMoon from '../../../uses/useMoon';
 
@@ -12,9 +11,7 @@ import { IMoonPhase } from './interfaces';
 
 // moon phase
 const MoonPhase: FC<IMoonPhase> = ({
-  bg = false,
   day,
-  dashed = [ 0, 0 ],
   delay = 200,
   month,
   size,
@@ -35,6 +32,19 @@ const MoonPhase: FC<IMoonPhase> = ({
 		ctx.closePath();
   }, []);
 
+  // draw line
+  const drawLine = useCallback((ctx: Context, color: string) => {
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(x, y - (size - 1));
+    ctx.lineTo(x, y + (size));
+    ctx.setAttr('strokeStyle', color);
+    ctx.setAttr('lineWidth', 1);
+    ctx.stroke();
+    ctx.closePath();
+    ctx.restore();
+  }, [ size, x, y ]);
+
   // draw phase
   const drawPhase = useCallback((ctx: Context, phase: number, shape: IShape) => {
     drawPath(ctx, x, y, size);
@@ -48,7 +58,9 @@ const MoonPhase: FC<IMoonPhase> = ({
     drawPath(ctx, x, y, size);
     shape.setAttr('fill', phase > 0 ? theme.main : theme.second);
 		ctx.fillShape(shape);
-  }, [ drawPath, size, theme, x, y ]);
+
+    drawLine(ctx, phase < 0.1 ? theme.second : theme.main);
+  }, [ drawLine, drawPath, size, theme, x, y ]);
 
   // shadow moon
   const shadowMoon = useCallback((ctx: Context, shape: IShape, phases: any) => {
@@ -63,24 +75,14 @@ const MoonPhase: FC<IMoonPhase> = ({
 
       drawPhase(ctx, 4 * (1 - phase) - 1, shape);
     }
-  }, [ x, y, drawPhase ]);
+  }, [ drawPhase, x, y ]);
 
   // render
   return (
     <>
       <Circle
-        dash={dashed}
-        fill="transparent"
-        listening={false}
-        radius={size + 5}
-        stroke={bg ? hexRgb(theme.main, { alpha: 0.1, format: 'css' }) : 'transparent'}
-        x={x}
-        y={y}
-        strokeWidth={1} />
-
-      <Circle
         fill={theme.main}
-        listening={false}
+        listening={true}
         radius={size} 
         stroke={theme.main}
         strokeWidth={strokeWidth}

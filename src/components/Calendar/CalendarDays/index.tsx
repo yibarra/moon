@@ -75,7 +75,10 @@ const CalendarDays: FC<any> = ({
   // render
   return (
     <Spring
-      delay={650}
+      config={{
+        duration: 450
+      }}
+      delay={90 * 11}
       from={{ rotation: 0 }}
       to={{ rotation: rotate }}>
       {props => (<animated.Group

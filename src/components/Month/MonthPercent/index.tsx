@@ -1,13 +1,9 @@
-import { Spring, animated } from '@react-spring/konva';
 import hexRgb from 'hex-rgb';
 import { Context } from 'konva/types/Context';
-import React, { FC, useCallback, useEffect, useState } from 'react';
-import { Circle, Group } from 'react-konva';
+import React, { FC, useCallback } from 'react';
+import { Group, Circle } from 'react-konva';
 
 import { IMonthPercent } from './interfaces';
-
-// env
-const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
 // month radius percent
 const MonthPercent: FC<IMonthPercent> = ({
@@ -20,70 +16,36 @@ const MonthPercent: FC<IMonthPercent> = ({
   theme,
   today
 }) => {
-  const [ percent, setPercent ] = useState<number>(0);
-  const circumference = 2 * Math.PI * radius; // circumference
-
   // create mask
   const maskLines = useCallback((ctx: Context) => {
-    const value = Math.abs(angle * day);
-
-    ctx.arc(0, 0, radius, value || 0, (-(Math.PI / 2) + angle), true);
-  }, [ radius, day, angle ]);
-
-  // percent
-  const onPercent = useCallback((active: boolean) => {
-    let total: number = 0;
-    
     if (active === true) {
-      if (currentMonth === true) {
-        total = Math.floor(((today - 1) / (day + 1)) * 100);
+      const value = Math.abs(angle * (day - 1));
+      const total = Math.abs(angle * (today.getDate() - 1));
+      
+      if (today.getMonth() > (month - 1)) {
+        ctx.arc(0, 0, radius, 0, value, false);
       } else {
-        total = Math.floor(((day - 1) / REACT_APP_TOTAL_ITEMS_DEGREE) * 100);
+        if (day === today.getDate()) {
+          ctx.arc(0, 0, radius, 0, total, false);
+        } else {
+          ctx.arc(0, 0, radius, value, total, false);
+        }
       }
     }
-
-    setPercent(total < 0 ? 0 : ((total / 100) * circumference));
-  }, [ currentMonth, circumference, day, today ]);
-
-  // use effect
-  useEffect(() => {
-    onPercent(active);
-  }, [ active, onPercent ]);
+  }, [ active, angle, day, month, radius, today ]);
 
   // render
   return (
     <Group
-      listening={false}>
-      <Group
-        clipFunc={maskLines}>
+      clipFunc={(ctx: Context) => maskLines(ctx)}>
         <Circle
+          dash={[1, 2]}
+          fill="transparent"
           listening={false}
           radius={radius}
-          fill="transparent"
-          stroke={hexRgb(theme.main, { alpha: 0.2, format: 'css' })}
+          stroke={hexRgb(theme.main, { alpha: 0.8, format: 'css' })}
           strokeWidth={1}
-          dash={[1, 2]} />
-      </Group>
-
-      <Spring
-        config={{
-          duration: 450,
-          friction: 170,
-          mass: 10
-        }}
-        delay={60 * day}
-        from={{ dash: [ 0, 0] }}
-        to={{ dash: [ percent, circumference ] }}>
-        {props => (
-          <animated.Circle
-            {...props}
-            fill="transparent"
-            listening={false}
-            radius={radius}
-            stroke={hexRgb(theme.main, { alpha: 0.5, format: 'css' })}
-            strokeWidth={1}
-            listen={false} />)}
-      </Spring>
+          listen={false} />
     </Group>
   );
 };
