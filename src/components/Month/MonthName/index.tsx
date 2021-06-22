@@ -32,7 +32,7 @@ const MonthName: FC<IMonthName> = ({
     ctx.beginPath();
     ctx.setAttr('fillStyle', 'transparent');
     ctx.setAttr('strokeStyle', active ? theme.main : theme.second);
-    ctx.setAttr('lineWidth', 19);
+    ctx.setAttr('lineWidth', 17);
     ctx.arc(0, 0, radius, initAngle, endAngle, true);
     ctx.fill();
     ctx.stroke();

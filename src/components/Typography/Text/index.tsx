@@ -6,10 +6,10 @@ const Text: FC<any> = (props) => {
   // render
   return (
     <TextKonva
-      {...props}
-      listening={false}
       align="center"
-      fontFamily="Roboto Condensed" />
+      fontFamily="Roboto Condensed"
+      listening={false}
+      {...props} />
   );
 };
 

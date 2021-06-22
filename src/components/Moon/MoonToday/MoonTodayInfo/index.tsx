@@ -27,7 +27,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
       <MoonTodayInfoLabel
         today={today}
         theme={theme}
-        offSetY={35}
+        offSetY={30}
         x={x - 55}
         label="Day"
         value={parseInt(format(today, 'dd'))}
@@ -36,7 +36,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
       <MoonTodayInfoLabel
         today={today}
         theme={theme}
-        offSetY={35}
+        offSetY={30}
         x={x + 55}
         label="Month"
         value={parseInt(format(today, 'M'))}

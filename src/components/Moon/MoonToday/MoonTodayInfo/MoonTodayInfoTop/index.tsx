@@ -10,7 +10,7 @@ const MoonTodayInfoTop: FC<any> = ({
   x,
   y
 }) => {
-  const offSetY = 80;
+  const offSetY = 75;
 
   // render
   return (

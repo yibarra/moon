@@ -41,14 +41,14 @@ const MonthDays: FC<any> = ({
       {(day === 1 || day === lastDay) &&
         <Circle
           fill={theme.second}
-          radius={10}
+          radius={9}
           x={Math.cos(angle * (day - 1)) * radius || 0}
           y={Math.sin(angle * (day - 1)) * radius || 0} /> }
 
       <MoonPhase
         day={day}
         month={month}
-        size={4}
+        size={3}
         theme={theme}
         strokeWidth={selectDay(day)}
         x={Math.cos(angle * (day - 1)) * radius || 0}

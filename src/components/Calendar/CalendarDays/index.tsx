@@ -60,7 +60,7 @@ const CalendarDays: FC<any> = ({
       
       ctx.save();
       ctx.beginPath();
-      ctx.font = "700 8px Roboto Slab";
+      ctx.font = "700 7px Roboto Slab";
       ctx.strokeStyle = 'transparent';
       ctx.fillStyle = (day === (i + 1)) ? theme.second : theme.main;
       ctx.textAlign = "center";

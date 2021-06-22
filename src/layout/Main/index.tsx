@@ -2,11 +2,14 @@ import React, { FC, useContext } from 'react';
 import { Stage } from 'react-konva';
 
 import Calendar from '../../components/Calendar';
+
+import Header from '../Header';
 import Footer from '../Footer';
 
-import { IMain } from './interfaces';
 import { MainContext } from '../../providers/MainProvider';
 import { ThemeContext } from '../../providers/ThemeProvider';
+
+import { IMain } from './interfaces';
 
 // main
 const Main: FC<IMain> = () => {
@@ -16,6 +19,8 @@ const Main: FC<IMain> = () => {
   // render
   return (
     <>
+      <Header />
+
       {loaded &&
         <Stage
           height={size.height}
@@ -25,8 +30,9 @@ const Main: FC<IMain> = () => {
               size={size}
               today={date}
               theme={theme} />
-          <Footer />
-      </Stage>}
+        </Stage>}
+
+      <Footer />
     </>
   );
 };

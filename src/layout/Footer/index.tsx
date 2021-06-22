@@ -1,5 +1,4 @@
 import React, { FC, useCallback } from 'react';
-import { Layer, Text } from 'react-konva';
 
 import { IFooter } from './interfaces';
 
@@ -12,16 +11,11 @@ const Footer: FC<IFooter> = () => {
 
   // render
   return (
-    <Layer
-      x={20}
-      y={window.innerHeight - 20}>
-      <Text
-        fill="white"
-        fontFamily="Roboto"
-        fontSize={10}
-        onClick={redirect}
-        text="@Julian Ibarra" />
-    </Layer>
+    <footer>
+      <button onClick={redirect}>
+        <span>@Julian Ibarra</span>
+      </button>
+    </footer>
   );
 };
 

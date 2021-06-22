@@ -18,7 +18,7 @@ const MoonToday: FC<IMoonToday> = ({
   return (
     <>
       <MoonTodayBackground
-        radius={32 * 3.5}
+        radius={32 * 2.9}
         size={size} 
         theme={theme} />
 

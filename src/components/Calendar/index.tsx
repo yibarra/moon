@@ -10,7 +10,7 @@ import YearControls from '../YearControls';
 
 import { ICalendar } from './interfaces';
 
-const increment = 20;
+const increment = 18;
 const radius = 90;
 
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
