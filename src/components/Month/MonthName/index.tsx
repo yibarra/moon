@@ -42,7 +42,7 @@ const MonthName: FC<IMonthName> = ({
 
   // create name
   const createName = useCallback((ctx: CanvasRenderingContext2D) => {
-    ctx.font = "10px Roboto Condensed";
+    ctx.font = "8px Roboto Condensed";
     ctx.fillStyle = active ? theme.second : theme.main;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";

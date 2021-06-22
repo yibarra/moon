@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import MoonPhase from '../Moon/MoonPhase';
+import MoonPhase from '../MoonPhase';
 import MoonTodayBackground from './MoonTodayBackground';
 import MoonTodayControls from './MoonTodayControls';
 import MoonTodayInfo from './MoonTodayInfo';

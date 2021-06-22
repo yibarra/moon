@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
 
-import ButtonArrow from '../../Form/ButtonArrow';
+import ButtonArrow from '../../../Form/ButtonArrow';
 
 import { IMoonTodayControls } from './interfaces';
 

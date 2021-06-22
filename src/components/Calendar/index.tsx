@@ -3,15 +3,15 @@ import React, { FC, useCallback } from 'react';
 import { Layer } from 'react-konva';
 import UseFormat from '../../uses/useFormat';
 
-import Month from '../Month';
-import MoonToday from '../MoonToday';
-import YearControls from '../YearControls';
 import CalendarDays from './CalendarDays';
+import Month from '../Month';
+import MoonToday from '../Moon/MoonToday';
+import YearControls from '../YearControls';
 
 import { ICalendar } from './interfaces';
 
 const increment = 20;
-const radius = 110;
+const radius = 90;
 
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
