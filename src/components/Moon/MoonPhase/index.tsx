@@ -1,16 +1,17 @@
 import React, { FC, useCallback } from 'react';
 import { animated, Spring } from '@react-spring/konva';
 import { Circle } from 'react-konva';
+import { Shape as IShape } from 'konva/types/Shape';
 
 import UseMoon from '../../../uses/useMoon';
 
-import { Shape as IShape } from 'konva/types/Shape';
-
 import { Context } from 'konva/types/Context';
 import { IMoonPhase } from './interfaces';
+import hexRgb from 'hex-rgb';
 
 // moon phase
 const MoonPhase: FC<IMoonPhase> = ({
+  angle = 0,
   day,
   delay = 200,
   month,
@@ -80,6 +81,15 @@ const MoonPhase: FC<IMoonPhase> = ({
   // render
   return (
     <>
+      <Circle
+        fill={theme.main}
+        listening={false}
+        radius={size + 1} 
+        stroke={hexRgb(theme.second, { alpha: 0.5, format: 'css' })}
+        strokeWidth={0.5}
+        x={x}
+        y={y} />
+
       <Circle
         fill={theme.main}
         listening={true}

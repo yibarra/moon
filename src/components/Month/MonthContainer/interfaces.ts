@@ -2,7 +2,7 @@ import { IColors } from "../../../providers/ThemeProvider/interfaces";
 
 export interface IMonthContainer {
   angle: number;
-  currentMonth: number;
+  currentMonth: boolean;
   day: number;
   month: number;
   radius: number;

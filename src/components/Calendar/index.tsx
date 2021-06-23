@@ -10,8 +10,7 @@ import YearControls from '../YearControls';
 
 import { ICalendar } from './interfaces';
 
-const increment = 18;
-
+// env
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
 // calendar
@@ -22,6 +21,7 @@ const Calendar: FC<ICalendar> = ({
   theme,
   today,
 }) => {
+  const increment = radius / 6;
   const { toRadians } = UseFormat(); // format funcs
 
   const angle: number = toRadians(360 / REACT_APP_TOTAL_ITEMS_DEGREE);
@@ -45,7 +45,7 @@ const Calendar: FC<ICalendar> = ({
     }
 
     return months;
-  }, [ radius, rotate, size, setToday, theme, today ]);
+  }, [ increment, radius, rotate, size, setToday, theme, today ]);
 
   // render
   return (

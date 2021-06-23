@@ -4,8 +4,10 @@ import { Circle, Group } from 'react-konva';
 
 import MoonPhase from '../../Moon/MoonPhase';
 
+import { IMonthDays } from './interfaces';
+
 // month days
-const MonthDays: FC<any> = ({
+const MonthDays: FC<IMonthDays> = ({
   angle,
   currentMonth,
   day,
@@ -23,7 +25,7 @@ const MonthDays: FC<any> = ({
   const selectDay = useCallback((): number => {
     if (currentMonth === false) return 2;
 
-    return active ? 3 : 2;
+    return active ? 1 : 2;
   }, [ active, currentMonth ]);
 
   // select
@@ -40,12 +42,14 @@ const MonthDays: FC<any> = ({
       onTap={() => selectDate(day)}>
       {(day === 1 || day === lastDay) &&
         <Circle
+          listening={false}
           fill={theme.main}
           radius={9}
           x={Math.cos(angle * (day - 1)) * radius || 0}
           y={Math.sin(angle * (day - 1)) * radius || 0} /> }
 
       {(day === today.getDate() && currentMonth) && <Circle
+        listening={false}
         fill={theme.main}
         stroke={theme.second}
         strokeWidth={2}
@@ -54,6 +58,7 @@ const MonthDays: FC<any> = ({
         y={Math.sin(angle * (day - 1)) * radius || 0} />}
 
       <MoonPhase
+        angle={angle}
         day={day}
         month={month}
         size={3}

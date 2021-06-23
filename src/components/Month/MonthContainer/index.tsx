@@ -36,7 +36,6 @@ const MonthContainer: FC<IMonthContainer> = ({
           angle={angle}
           currentMonth={currentMonth}
           day={dayMonth}
-          index={index}
           key={index}
           month={month}
           lastDay={items.length}
