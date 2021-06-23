@@ -2,6 +2,7 @@ import React, { FC, useContext } from 'react';
 import { Stage } from 'react-konva';
 
 import Calendar from '../../components/Calendar';
+import Particles from 'react-particles-js';
 
 import Header from '../Header';
 import Footer from '../Footer';
@@ -23,6 +24,53 @@ const Main: FC<IMain> = () => {
     <section
       className="main"
       style={{ backgroundColor: theme.main }}>
+      <div className="main--bg">
+        <Particles
+          params={{
+            "particles": {
+              "number": {
+                "value": 60,
+                "density": {
+                  "enable": true,
+                  "value_area": size.width
+                }
+              },
+              "line_linked": {
+                "enable": false
+              },
+              "color": theme.second,              
+              "move": {
+                "direction": "right",
+                "speed": 0.05
+              },
+              "size": {
+                "value": 1
+              },
+              "opacity": {
+                "anim": {
+                  "enable": true,
+                  "speed": 1,
+                  "opacity_min": 0.05
+                }
+              }
+            },
+            "interactivity": {
+              "events": {
+                "onclick": {
+                  "enable": true,
+                  "mode": "push"
+                }
+              },
+              "modes": {
+                "push": {
+                  "particles_nb": 1
+                }
+              }
+            },
+            "retina_detect": true
+          }} />
+      </div>
+
       <Header
         radius={radius}
         setRadius={setRadius} />
@@ -31,12 +79,12 @@ const Main: FC<IMain> = () => {
         <Stage
           height={size.height}
           width={size.width}>
-            <Calendar
-              radius={radius}
-              setToday={setDate}
-              size={size}
-              today={date}
-              theme={theme} />
+          <Calendar
+            radius={radius}
+            setToday={setDate}
+            size={size}
+            today={date}
+            theme={theme} />
         </Stage>}
 
       <Footer />

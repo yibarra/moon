@@ -15,7 +15,8 @@ const MoonTodayBackground: FC<IMoonTodayBackground> = ({
     <Circle
       dash={[ 1, 4 ]}
       fill="transparent"
-      listening={false}
+      listening={true}
+      draggable
       radius={radius}
       stroke={hexRgb(theme.second, { alpha: 0.5, format: 'css' })}
       x={size.width / 2}
