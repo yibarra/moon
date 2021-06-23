@@ -16,7 +16,7 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
   const { getMoonPhaseName } = UseMoon();
   const { convertToRoman } = UseFormat();
 
-  const offSetY: number = 55;
+  const offSetY: number = 65;
 
   // render
   return (

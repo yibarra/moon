@@ -20,7 +20,7 @@ const Header: FC<any> = ({
     if (value === false) {
       setColors('#262B2F', '#EADDC1');
     } else {
-      setColors('#2F477E', '#B2BCBE');
+      setColors('#2F477E', '#F2F3F5');
     }
 
     setColor(value);

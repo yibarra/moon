@@ -21,7 +21,7 @@ const Calendar: FC<ICalendar> = ({
   theme,
   today,
 }) => {
-  const increment = radius / 6;
+  const increment = radius * 0.16;
   const { toRadians } = UseFormat(); // format funcs
 
   const angle: number = toRadians(360 / REACT_APP_TOTAL_ITEMS_DEGREE);
