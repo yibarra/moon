@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/moon/static/css/main.1a245e5f.chunk.css",
-    "main.js": "/moon/static/js/main.38c27b50.chunk.js",
-    "main.js.map": "/moon/static/js/main.38c27b50.chunk.js.map",
+    "main.js": "/moon/static/js/main.a750bfa9.chunk.js",
+    "main.js.map": "/moon/static/js/main.a750bfa9.chunk.js.map",
     "runtime-main.js": "/moon/static/js/runtime-main.65201488.js",
     "runtime-main.js.map": "/moon/static/js/runtime-main.65201488.js.map",
-    "static/js/2.79d25d9e.chunk.js": "/moon/static/js/2.79d25d9e.chunk.js",
-    "static/js/2.79d25d9e.chunk.js.map": "/moon/static/js/2.79d25d9e.chunk.js.map",
+    "static/js/2.daab9c50.chunk.js": "/moon/static/js/2.daab9c50.chunk.js",
+    "static/js/2.daab9c50.chunk.js.map": "/moon/static/js/2.daab9c50.chunk.js.map",
     "static/js/3.5842de88.chunk.js": "/moon/static/js/3.5842de88.chunk.js",
     "static/js/3.5842de88.chunk.js.map": "/moon/static/js/3.5842de88.chunk.js.map",
     "index.html": "/moon/index.html",
     "static/css/main.1a245e5f.chunk.css.map": "/moon/static/css/main.1a245e5f.chunk.css.map",
-    "static/js/2.79d25d9e.chunk.js.LICENSE.txt": "/moon/static/js/2.79d25d9e.chunk.js.LICENSE.txt"
+    "static/js/2.daab9c50.chunk.js.LICENSE.txt": "/moon/static/js/2.daab9c50.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.65201488.js",
-    "static/js/2.79d25d9e.chunk.js",
+    "static/js/2.daab9c50.chunk.js",
     "static/css/main.1a245e5f.chunk.css",
-    "static/js/main.38c27b50.chunk.js"
+    "static/js/main.a750bfa9.chunk.js"
   ]
 }
