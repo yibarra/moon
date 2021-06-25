@@ -12,6 +12,7 @@ import hexRgb from 'hex-rgb';
 // moon phase
 const MoonPhase: FC<IMoonPhase> = ({
   angle = 0,
+  active = true,
   day,
   delay = 200,
   month,
@@ -92,7 +93,7 @@ const MoonPhase: FC<IMoonPhase> = ({
 
       <Circle
         fill={theme.main}
-        listening={true}
+        listening={active}
         radius={size} 
         stroke={theme.main}
         strokeWidth={strokeWidth}

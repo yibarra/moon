@@ -20,12 +20,14 @@ const Month: FC<IMonth> = ({
   rotate,
   setToday,
   today,
-  theme
+  theme,
+  x,
+  y
 }) => {
-  const { fixDate, getActiveMonth } = UseFormat(); // fix date
+  const { fixDate, getActiveMonth, monthsQuechua } = UseFormat(); // fix date
 
   const angle = (2 * Math.PI) / (REACT_APP_TOTAL_ITEMS_DEGREE); // angle
-  const current = fixDate(today.getFullYear(), month);
+  const current = fixDate(today.getFullYear(), month); // current
 
   const { active, currentMonth, day }: any = getActiveMonth(today, current);
 
@@ -36,11 +38,9 @@ const Month: FC<IMonth> = ({
         duration: 450,
       }}
       delay={90 * (month - 1)}
-      from={{ rotation: 0 }}
-      to={{ rotation: rotate }}>
+      from={{ rotation: 0, x, y }}
+      to={{ rotation: rotate, x, y }}>
       {props => (<animated.Group
-        x={(window.innerWidth / 2)}
-        y={(window.innerHeight / 2)}
         {...props}>
           <MonthPercent
             active={active}
@@ -59,7 +59,7 @@ const Month: FC<IMonth> = ({
             month={month}
             radius={radius}
             theme={theme}
-            text={format(current, 'MMM')} />
+            text={monthsQuechua(parseInt(format(current, 'MM')))} />
 
           <MonthContainer
             angle={angle}

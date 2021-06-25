@@ -4,6 +4,8 @@ import { ThemeContext } from '../../providers/ThemeProvider';
 
 import { IFooter } from './interfaces';
 
+import {ReactComponent as ReactLogo} from './inca.svg';
+
 import './styles.scss';
 
 // footer
@@ -19,6 +21,8 @@ const Footer: FC<IFooter> = () => {
   return (
     <footer
       className="footer">
+        <ReactLogo />
+
       <button onClick={redirect}>
         <span style={{ color: theme.second }}>@Julian Ibarra</span>
       </button>

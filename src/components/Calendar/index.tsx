@@ -16,8 +16,10 @@ const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 // calendar
 const Calendar: FC<ICalendar> = ({
   radius,
-  setToday,
+  pos,
   size,
+  setToday,
+  setPos,
   theme,
   today,
 }) => {
@@ -41,18 +43,17 @@ const Calendar: FC<ICalendar> = ({
         today={today}
         theme={theme}
         setToday={setToday}
+        {...pos}
         key={i} />);
     }
 
     return months;
-  }, [ increment, radius, rotate, size, setToday, theme, today ]);
+  }, [ increment, radius, rotate, pos, size, setToday, theme, today ]);
 
   // render
   return (
     <Layer
-      id="calendar"
-      height={size.height}
-      width={size.width}>
+      id="calendar">
       {createMonths()}
       
       <CalendarDays
@@ -61,21 +62,23 @@ const Calendar: FC<ICalendar> = ({
         radius={radius + (13.5 * increment)}
         rotate={rotate}
         theme={theme}
-        x={0}
-        y={0} />
+        {...pos} />
 
       <MoonToday
         setToday={setToday}
+        setPos={setPos}
         size={size}
         radius={radius}
         theme={theme}
-        today={today} />
+        today={today}
+        {...pos} />
 
       <YearControls
         theme={theme}
         radius={radius + (13 * increment)}
         setYear={setToday}
-        year={today.getFullYear()} />
+        year={today.getFullYear()}
+        {...pos} />
     </Layer>
   );
 };

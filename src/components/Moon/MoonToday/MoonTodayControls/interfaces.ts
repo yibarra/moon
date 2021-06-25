@@ -5,5 +5,7 @@ export interface IMoonTodayControls {
   setYear(value: Date): void;
   size: ISize;
   theme: IColors;
+  x: number;
+  y: number;
   year: number;
 }

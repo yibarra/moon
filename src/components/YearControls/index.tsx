@@ -10,11 +10,10 @@ const YearControls: FC<IYearControls> = ({
   theme,
   radius,
   year,
-  setYear
+  setYear,
+  x,
+  y
 }) => {
-  const x = (window.innerWidth / 2);
-  const y = (window.innerHeight / 2) - 8;
-
   const { convertToRoman } = UseFormat();
 
   // on change
@@ -30,7 +29,7 @@ const YearControls: FC<IYearControls> = ({
         text={convertToRoman(year - 1)}
         type="left"
         x={x - (radius + 110)}
-        y={y + 2} />
+        y={y - 2} />
 
       <ButtonArrow
         color={theme.second}
@@ -38,7 +37,7 @@ const YearControls: FC<IYearControls> = ({
         text={convertToRoman(year + 1)}
         type="right"
         x={x + (radius + 110)}
-        y={y + 2} />
+        y={y - 2} />
     </>
   );
 };

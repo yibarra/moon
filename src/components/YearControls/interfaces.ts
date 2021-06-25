@@ -5,4 +5,6 @@ export interface IYearControls {
   theme: IColors;
   year: number;
   setYear(value: Date): void;
+  x: number;
+  y: number;
 }

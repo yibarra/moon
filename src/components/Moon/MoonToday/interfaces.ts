@@ -7,4 +7,7 @@ export interface IMoonToday {
   radius: number;
   setToday(value: Date): void;
   today: Date;
+  setPos(value: any): void;
+  x: number;
+  y: number;
 }

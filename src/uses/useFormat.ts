@@ -28,7 +28,7 @@ function UseFormat() {
     const monthYear: number = current.getFullYear();
 
     return {
-      active: ((monthMonth <= todayMonth && todayYear === monthYear) ) || monthYear < todayYear,
+      active: ((monthMonth <= todayMonth && todayYear === monthYear)) || monthYear < todayYear,
       day: getDaysInMonth(current),
       currentMonth: todayMonth === monthMonth && todayYear === monthYear
     };
@@ -52,6 +52,37 @@ function UseFormat() {
     return degrees * (Math.PI / 180);
   }, []);
 
+  // quechua months
+  const monthsQuechua = useCallback((month: number): string => {
+    switch (month) {
+      case 1:
+        return 'Kamay Raymi Killa';
+      case 2:
+        return 'Hatun Poqoy Killa';
+      case 3:
+        return 'PauqarWaray Killa';
+      case 4:
+        return 'Ayriway Killa';
+      case 5:
+        return 'Aymuray Killa';
+      case 6:
+        return 'Inti Raymi Killa';
+      case 7:
+        return 'Anta Situwa Killa';
+      case 8:
+        return 'QhapaqSituwa Killa';
+      case 9:
+        return 'UnuRaymi Killa';
+      case 10:
+        return 'Qoya Raymi Killa';
+      case 11:
+        return 'Ayamarq’ay Killa';
+      case 12:
+      default:
+        return 'Qhapaq Raymi Killa';
+    }
+  }, []);
+
   // render
   return {
     convertToRoman,
@@ -59,6 +90,7 @@ function UseFormat() {
     getActiveMonth,
     toDegrees,
     toRadians,
+    monthsQuechua
   }
 }
 

@@ -11,10 +11,9 @@ import format from 'date-fns/format';
 const MoonTodayInfo: FC<IMoonTodayInfo> = ({
   theme,
   today,
+  x,
+  y
 }) => {
-  const x: number = (window.innerWidth / 2);
-  const y: number = (window.innerHeight / 2);
-
   // render
   return (
     <>
@@ -42,7 +41,9 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
 
       <MoonTodayInfoYear 
         theme={theme}
-        today={today} />
+        today={today}
+        x={x}
+        y={y} />
     </>
   );
 };

@@ -11,12 +11,14 @@ import { IMoonTodayInfoYear } from './interfaces';
 // moon today info year
 const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
   theme,
-  today
+  today,
+  x,
+  y
 }) => {
   const { getMoonPhaseName } = UseMoon();
   const { convertToRoman } = UseFormat();
 
-  const offSetY: number = 65;
+  const offSetY: number = 65; // y
 
   // render
   return (
@@ -25,8 +27,8 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
         fill={theme.second}
         fontSize={8}
         width={140}
-        x={(window.innerWidth / 2) - (140 / 2)}
-        y={(window.innerHeight / 2) + offSetY}
+        x={x - (140 / 2)}
+        y={y + offSetY}
         text={getMoonPhaseName(today.getFullYear(), today.getMonth(), today.getDate())} /> 
 
       <Text
@@ -35,8 +37,8 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
         fontStyle="bold"
         text={convertToRoman(parseInt(format(today, 'yyyy')))}
         width={80}
-        x={(window.innerWidth / 2) - 40}
-        y={(window.innerHeight / 2) + (offSetY + 10)} />
+        x={x - 40}
+        y={y + (offSetY + 10)} />
     </>
   );
 };

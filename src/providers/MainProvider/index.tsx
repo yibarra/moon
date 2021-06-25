@@ -13,10 +13,11 @@ const MainContext = createContext({} as IMainContext);
 const MainProvider: FC<IMainProvider> = ({ children }) => {
   const form: string = 'yyyy/M/dd';
   const size = UseWindowSize();
-
+  
   const [ date, set ] = useState<any>(parse(format(new Date(), form), form, new Date()));
   const [ loaded, setLoaded ] = useState<boolean>(false);
   const [ radius, setRadius ] = useState<number>(110);
+  const [ pos, setPos ] = useState<any>({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
 
   // set date
   const setDate = useCallback((value: Date) =>
@@ -47,7 +48,9 @@ const MainProvider: FC<IMainProvider> = ({ children }) => {
         radius,
         setRadius,
         setDate,
-        size
+        size,
+        pos,
+        setPos
       }}>
       {children}
     </MainContext.Provider>

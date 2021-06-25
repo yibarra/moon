@@ -42,19 +42,20 @@ const MonthName: FC<IMonthName> = ({
 
   // create name
   const createName = useCallback((ctx: CanvasRenderingContext2D) => {
-    ctx.font = "8px Roboto Condensed";
+    ctx.font = "7px Roboto Condensed";
     ctx.fillStyle = active ? theme.main : theme.second;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
+    ctx.scale(-1, 1);
 
-    new TextCircle(ctx, text, 0, 0, radius, Math.PI, undefined, false); // text
-  }, [ active, radius, theme, text ]);
+    new TextCircle(ctx, text, 0, 0, radius, -(Math.PI - (angle / 2)), undefined, true); // text
+  }, [ active, angle, radius, theme, text ]);
 
   // render
   return (
     <Group
       listening={false}
-      rotation={toDegrees(-(Math.PI * 2) / 31)}>
+      rotation={toDegrees(-(Math.PI * 2) - angle)}>
       {active &&
         <Shape
           listening={false}
@@ -63,7 +64,7 @@ const MonthName: FC<IMonthName> = ({
       <Shape
         listening={false}
         sceneFunc={(ctx: any) => createName(ctx)}
-        scaleX={-1} />
+         />
     </Group>
   );
 };

@@ -5,4 +5,7 @@ export interface IMoonTodayBackground {
   radius: number;
   theme: IColors;
   size: ISize;
+  setPos(value: any): void;
+  x: number;
+  y: number;
 }

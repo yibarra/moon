@@ -10,38 +10,49 @@ import { IMoonToday } from './interfaces';
 // moon today
 const MoonToday: FC<IMoonToday> = ({
   setToday,
+  setPos,
   size,
   radius,
   theme,
   today,
+  x,
+  y
 }) => {
   // render
   return (
     <>
       <MoonTodayBackground
         radius={radius}
-        size={size} 
-        theme={theme} />
+        size={size}
+        setPos={setPos}
+        theme={theme}
+        x={x}
+        y={y} />
 
       <MoonTodayInfo
+        theme={theme} 
         today={today}
-        theme={theme} />
+        x={x}
+        y={y} />
 
       <MoonPhase
+        active={false}
         day={today.getDate()}
         delay={600}
         month={today.getMonth()}
         size={32}
         strokeWidth={1}
         theme={theme}
-        x={size.width / 2}
-        y={size.height / 2}
+        x={x}
+        y={y}
         year={today.getFullYear()} />
 
       <MoonTodayControls
         size={size}
         setYear={setToday}
         theme={theme}
+        x={x}
+        y={y}
         year={today.getFullYear()} />  
     </>
   );

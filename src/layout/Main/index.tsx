@@ -16,7 +16,7 @@ import './styles.scss';
 
 // main
 const Main: FC<IMain> = () => {
-  const { loaded, date, setDate, size, radius, setRadius } = useContext(MainContext);
+  const { loaded, date, setDate, size, radius, setRadius, pos, setPos } = useContext(MainContext);
   const { theme } = useContext(ThemeContext);
 
   // render
@@ -82,6 +82,8 @@ const Main: FC<IMain> = () => {
           <Calendar
             radius={radius}
             setToday={setDate}
+            pos={pos}
+            setPos={setPos}
             size={size}
             today={date}
             theme={theme} />

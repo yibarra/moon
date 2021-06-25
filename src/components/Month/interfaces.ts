@@ -46,4 +46,6 @@ export interface IMonth {
   setToday(value: any): void;
   today: Date;
   theme: IColors;
+  x: number;
+  y: number;
 };

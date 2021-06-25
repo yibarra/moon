@@ -5,6 +5,11 @@ export interface ISize {
   width: number;
 }
 
+export interface IPos {
+  x: number;
+  y: number;
+}
+
 export interface IMainContext {
   date: Date;
   loaded: boolean;
@@ -12,6 +17,8 @@ export interface IMainContext {
   setRadius(value: number): void;
   size: ISize;
   setDate(value: Date): void;
+  pos: IPos;
+  setPos(value: any): void;
 }
 
 export interface IMainProvider {

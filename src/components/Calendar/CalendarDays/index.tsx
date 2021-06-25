@@ -34,7 +34,7 @@ const CalendarDays: FC<any> = ({
     for (let i = 0; i < 32; i++) {
       const active: boolean = day === (i + 1);
 
-      const startingAngle = currentAngle - (Math.PI / 33);
+      const startingAngle = currentAngle - (Math.PI / REACT_APP_TOTAL_ITEMS_DEGREE);
       const endingAngle = (startingAngle + arcRadians) - spacingRadians;
 
       ctx.save();
@@ -49,7 +49,6 @@ const CalendarDays: FC<any> = ({
 
       currentAngle += arcRadians;
     }
-
   }, [ day, radius, theme, x, y ]);
 
   // create days
@@ -65,12 +64,12 @@ const CalendarDays: FC<any> = ({
       ctx.fillStyle = (day === (i + 1)) ? theme.main : theme.second;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      new TextCircle(ctx, dayRoman, x, y, radius, (angle * i), undefined, true); // text
+      new TextCircle(ctx, dayRoman, 0, 0, radius, (angle * i), undefined, true); // text
       ctx.fill();
       ctx.closePath();
       ctx.restore();
     }
-  }, [ angle, convertToRoman, day, radius, theme, x, y ]);
+  }, [ angle, convertToRoman, day, radius, theme ]);
 
   // render
   return (
@@ -82,21 +81,22 @@ const CalendarDays: FC<any> = ({
       from={{ rotation: 0 }}
       to={{ rotation: rotate }}>
       {props => (<animated.Group
-        x={(window.innerWidth / 2)}
-        y={(window.innerHeight / 2)}
+        x={x}
+        y={y}
         {...props}>
+        <Circle
+          fill="transparent"
+          strokeWidth={22}
+          listening={false}
+          stroke={hexRgb(theme.second, { alpha: 0.1, format: 'css' })}
+          radius={radius} />
+        
         <Circle
           fill="transparent"
           strokeWidth={21}
           listening={false}
-          stroke={hexRgb(theme.second, { alpha: 0.1, format: 'css' })}
-          radius={radius}
-          x={x}
-          y={y} />
-
-        <Shape
-          listening={false}
-          sceneFunc={(ctx: any) => borderLine(ctx)} />
+          stroke={hexRgb(theme.main, { alpha: 1, format: 'css' })}
+          radius={radius} />
 
         <Shape
           listening={false}
