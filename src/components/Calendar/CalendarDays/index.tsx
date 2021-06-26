@@ -1,7 +1,9 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import { Spring, animated } from '@react-spring/konva';
 import { Shape, Circle } from 'react-konva';
 import hexRgb from 'hex-rgb';
+
+import MayanNumber from '../../../helpers/mayanNumber';
 
 import TextCircle from '../../Typography/TextCircle';
 
@@ -20,6 +22,7 @@ const CalendarDays: FC<any> = ({
   y
 }) => {
   const { convertToRoman } = UseFormat();
+  const mayan = useMemo(() => new MayanNumber(), []);
 
   // border line
   const borderLine = useCallback((ctx: CanvasRenderingContext2D) => {
@@ -69,7 +72,12 @@ const CalendarDays: FC<any> = ({
       ctx.closePath();
       ctx.restore();
     }
-  }, [ angle, convertToRoman, day, radius, theme ]);
+
+    mayan.mayanGlyph(4005).then(e => {
+      console.log(e);
+    });
+
+  }, [ angle, convertToRoman, day, mayan, radius, theme ]);
 
   // render
   return (

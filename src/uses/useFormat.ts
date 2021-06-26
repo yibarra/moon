@@ -56,30 +56,30 @@ function UseFormat() {
   const monthsQuechua = useCallback((month: number): string => {
     switch (month) {
       case 1:
-        return 'Kamay Raymi Killa';
+        return 'Uchuy Pokoy';
       case 2:
-        return 'Hatun Poqoy Killa';
+        return 'Paucar Varay';
       case 3:
-        return 'PauqarWaray Killa';
+        return 'Pachapukuy';
       case 4:
-        return 'Ayriway Killa';
+        return 'Inca Raymi';
       case 5:
-        return 'Aymuray Killa';
+        return 'Aymoray';
       case 6:
-        return 'Inti Raymi Killa';
+        return 'Inti Raymi';
       case 7:
-        return 'Anta Situwa Killa';
+        return 'Chacraconacuy';
       case 8:
-        return 'QhapaqSituwa Killa';
+        return 'Chacrayapuy Quilla';
       case 9:
-        return 'UnuRaymi Killa';
+        return 'Coya Raymi';
       case 10:
-        return 'Qoya Raymi Killa';
+        return 'Uma Raymi Quilla';
       case 11:
-        return 'Ayamarq’ay Killa';
+        return 'Aya Marcay Quilla';
       case 12:
       default:
-        return 'Qhapaq Raymi Killa';
+        return 'Capac Raymi';
     }
   }, []);
 

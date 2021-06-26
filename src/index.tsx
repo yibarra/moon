@@ -9,13 +9,16 @@ import ThemeProvider from './providers/ThemeProvider';
 import reportWebVitals from './reportWebVitals';
 
 import './index.css';
+import LangProvider from './providers/LangProvider';
 
 ReactDOM.render(
   <React.StrictMode>
     <MainProvider>
       <ThemeProvider>
         <MoonProvider>
-          <Main />
+          <LangProvider>
+            <Main />
+          </LangProvider>
         </MoonProvider>
       </ThemeProvider>
     </MainProvider>

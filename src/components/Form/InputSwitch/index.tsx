@@ -13,6 +13,7 @@ const InputSwitch: FC<IInputSwitch> = ({
   // render
   return (
     <label className="switch">
+
       <input
         name={name}
         onChange={() => onChange(!value)}
