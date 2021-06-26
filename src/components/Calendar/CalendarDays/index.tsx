@@ -8,6 +8,7 @@ import MayanNumber from '../../../helpers/mayanNumber';
 import TextCircle from '../../Typography/TextCircle';
 
 import UseFormat from '../../../uses/useFormat';
+import IconMayan from '../../../helpers/iconMayan';
 
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
@@ -22,7 +23,9 @@ const CalendarDays: FC<any> = ({
   y
 }) => {
   const { convertToRoman } = UseFormat();
+
   const mayan = useMemo(() => new MayanNumber(), []);
+  const icon = useMemo(() => new IconMayan(5), []);
 
   // border line
   const borderLine = useCallback((ctx: CanvasRenderingContext2D) => {
@@ -73,11 +76,8 @@ const CalendarDays: FC<any> = ({
       ctx.restore();
     }
 
-    mayan.mayanGlyph(4005).then(e => {
-      console.log(e);
-    });
-
-  }, [ angle, convertToRoman, day, mayan, radius, theme ]);
+    mayan.mayanGlyph(4005).then((glyphs: any) => icon.getIcon(ctx, glyphs));
+  }, [ angle, convertToRoman, day, icon, mayan, radius, theme ]);
 
   // render
   return (

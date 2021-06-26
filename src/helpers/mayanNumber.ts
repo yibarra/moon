@@ -84,9 +84,9 @@ export default class MayanNumber {
   // mayan digit
   mayanDigit(n: any) {
     return 0 !== n ? this.cons(
-      this.replicateString(this.rem(n, 5), '●'),
-      this.replicate(this.quot(n, 5), '━━')
-    ) : ['Θ'];
+      this.replicateString(this.rem(n, 5), '0'), // ●
+      this.replicate(this.quot(n, 5), '1') // ━━
+    ) : ['2']; // Θ
   }
 
   // left padded
