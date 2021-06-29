@@ -22,10 +22,10 @@ const CalendarDays: FC<any> = ({
   x,
   y
 }) => {
-  const { convertToRoman } = UseFormat();
+  const { convertToRoman, toRadians } = UseFormat();
 
   const mayan = useMemo(() => new MayanNumber(), []);
-  const icon = useMemo(() => new IconMayan(5), []);
+  const icon = useMemo(() => new IconMayan(15, 20), []);
 
   // border line
   const borderLine = useCallback((ctx: CanvasRenderingContext2D) => {
@@ -58,8 +58,27 @@ const CalendarDays: FC<any> = ({
   }, [ day, radius, theme, x, y ]);
 
   // create days
-  const createDays = useCallback((ctx: CanvasRenderingContext2D) => {
+  const createDays = useCallback((ctx: CanvasRenderingContext2D, rotation: any) => {
     for (let i = 0; i < 31; i++) {
+      const currentDate = i + 1;
+
+      mayan.mayanGlyph(currentDate).then(
+        (glyphs: any) => {
+          const pos = {
+            x: (Math.cos(i * angle) * radius) + (x - (icon.width / 2)),//(Math.cos((i) * angle) * radius),
+            y: (Math.sin(i * angle) * radius) + (y - (icon.height / 2))//(Math.sin((i) * angle) * radius)
+          };
+
+          ctx.save();
+          ctx.translate(x, y);
+          ctx.rotate(toRadians(rotation.get()));
+          ctx.translate(-x, -y);
+
+          icon.getIcon(ctx, glyphs, pos.x, pos.y, theme.second, currentDate, angle, radius);
+          ctx.restore();
+        });
+
+      /*
       const roman: any[] = Array.from(convertToRoman((i + 1)));
       const dayRoman: string = roman.reverse().join('').toString();
       
@@ -74,10 +93,9 @@ const CalendarDays: FC<any> = ({
       ctx.fill();
       ctx.closePath();
       ctx.restore();
+      */
     }
-
-    mayan.mayanGlyph(4005).then((glyphs: any) => icon.getIcon(ctx, glyphs));
-  }, [ angle, convertToRoman, day, icon, mayan, radius, theme ]);
+  }, [ angle, day, icon, mayan, radius, theme, toRadians, x, y ]);
 
   // render
   return (
@@ -108,7 +126,7 @@ const CalendarDays: FC<any> = ({
 
         <Shape
           listening={false}
-          sceneFunc={(ctx: any) => createDays(ctx)} />
+          sceneFunc={(ctx: any) => createDays(ctx, props.rotation.to((n: any) => n))} />
       </animated.Group>)}
     </Spring>
   );
