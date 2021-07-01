@@ -48,20 +48,12 @@ const Calendar: FC<ICalendar> = ({
     }
 
     return months;
-  }, [ increment, radius, rotate, pos, size, setToday, theme, today ]);
+  }, [increment, radius, rotate, pos, size, setToday, theme, today]);
 
   // render
   return (
     <Layer
       id="calendar">
-      <CalendarDays
-        angle={angle}
-        day={today.getDate()}
-        radius={radius + (13.5 * increment)}
-        rotate={rotate}
-        theme={theme}
-        {...pos} />
-
       <YearControls
         theme={theme}
         radius={radius + (13 * increment)}
@@ -78,6 +70,14 @@ const Calendar: FC<ICalendar> = ({
         radius={radius}
         theme={theme}
         today={today}
+        {...pos} />
+
+      <CalendarDays
+        angle={angle}
+        day={today.getDate()}
+        radius={radius + (14 * increment)}
+        rotate={rotate}
+        theme={theme}
         {...pos} />
     </Layer>
   );

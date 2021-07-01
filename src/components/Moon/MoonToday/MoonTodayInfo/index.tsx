@@ -1,11 +1,11 @@
+import format from 'date-fns/format';
 import React, { FC } from 'react';
 
+import MoonTodayInfoLabel from './MoonTodayInfoLabel';
 import MoonTodayInfoTop from './MoonTodayInfoTop';
 import MoonTodayInfoYear from './MoonTodayInfoYear';
 
 import { IMoonTodayInfo } from './interfaces';
-import MoonTodayInfoLabel from './MoonTodayInfoLabel';
-import format from 'date-fns/format';
 
 // moon today info
 const MoonTodayInfo: FC<IMoonTodayInfo> = ({

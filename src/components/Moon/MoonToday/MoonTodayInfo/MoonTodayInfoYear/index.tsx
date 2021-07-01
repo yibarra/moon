@@ -1,6 +1,7 @@
 import format from 'date-fns/format';
-import React, { FC } from 'react';
-import UseFormat from '../../../../../uses/useFormat';
+import React, { FC, useEffect, useMemo, useState } from 'react';
+import MayanNumber from '../../../../../helpers/mayanNumber';
+import { Text as TextKonva } from 'react-konva';
 
 import UseMoon from '../../../../../uses/useMoon';
 
@@ -16,9 +17,17 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
   y
 }) => {
   const { getMoonPhaseName } = UseMoon();
-  const { convertToRoman } = UseFormat();
 
-  const offSetY: number = 65; // y
+  const mayan = useMemo(() => new MayanNumber(), []);
+  const offSetY: number = 60; // y
+
+  const [ year, setYear ] = useState<any>();
+
+  // use effect
+  useEffect(() => {
+    mayan.mayanGlyph(parseInt(format(today, 'yyyy')))
+      .then((glyphs: any) => setYear(glyphs));
+  }, [ mayan, today ]);
 
   // render
   return (
@@ -31,13 +40,17 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
         y={y + offSetY}
         text={getMoonPhaseName(today.getFullYear(), today.getMonth(), today.getDate())} /> 
 
-      <Text
+      <TextKonva
         fontSize={10}
+        fontFamily="MayanNumerals"
         fill={theme.second}
         fontStyle="bold"
-        text={convertToRoman(parseInt(format(today, 'yyyy')))}
-        width={80}
-        x={x - 40}
+        verticalAlign="bottom"
+        text={Array.isArray(year) ? year.join('\n') : ''}
+        height={30}
+        width={20}
+        wrap="word"
+        x={x - 5}
         y={y + (offSetY + 10)} />
     </>
   );

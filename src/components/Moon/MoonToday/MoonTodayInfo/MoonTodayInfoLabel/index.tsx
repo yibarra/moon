@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-
-import UseFormat from '../../../../../uses/useFormat';
+import React, { FC, useEffect, useMemo, useState } from 'react';
+import MayanNumber from '../../../../../helpers/mayanNumber';
+import { Text as TextKonva } from 'react-konva';
 
 import Text from '../../../../Typography/Text';
 
@@ -15,7 +15,15 @@ const MoonTodayInfoLabel: FC<IMoonTodayInfoLabel> = ({
   x,
   y
 }) => {
-  const { convertToRoman } = UseFormat();
+  const mayan = useMemo(() => new MayanNumber(), []);
+
+  const [ symbol, setSymbol ] = useState<any>();
+
+  // use effect
+  useEffect(() => {
+    mayan.mayanGlyph(parseInt(value))
+      .then((glyphs: any) => setSymbol(glyphs));
+  }, [ mayan, value ]);
 
   // render
   return (
@@ -28,14 +36,18 @@ const MoonTodayInfoLabel: FC<IMoonTodayInfoLabel> = ({
         y={y + offSetY}
         text={label} />
 
-      <Text
-        fill={theme.second}
+      <TextKonva
         fontSize={10}
+        fontFamily="MayanNumerals"
+        verticalAlign="bottom"
+        fill={theme.second}
         fontStyle="bold"
-        width={140}
-        x={x - (140 / 2)}
-        y={y + (offSetY + 10)}
-        text={convertToRoman(value)} />
+        text={Array.isArray(symbol) ? symbol.join('\n') : ''}
+        height={30}
+        width={20}
+        wrap="word"
+        x={x - 5}
+        y={y + (offSetY)} />
     </>
   );
 };
