@@ -1,12 +1,36 @@
 {
-    "theme": {
-        "light": "Light",
-        "dark": "Dark"
-    },
     "date": {
         "day": "Day",
         "month": "Month",
         "year": "Year"
+    },
+    "months": {
+        "jan": "January",
+        "feb": "February",
+        "mar": "March",
+        "apr": "April",
+        "may": "May",
+        "jun": "June",
+        "jul": "July",
+        "aug": "August",
+        "sep": "September",
+        "oct": "Octubre",
+        "nov": "November",
+        "dec": "December"
+    },
+    "moon": {
+        "new_moon": "New Moon",
+        "waxing_crescent": "Waxing Crescent Moon",
+        "quarter": "Quarter Moon",
+        "waxing_gibbous": "Waxing Gibbous Moon",
+        "full": "Full Moon",
+        "waning_gibbous": "Waning Gibbous Moon",
+        "last_quarter": "Last Quarter Moon",
+        "waning_crescent": "Waning Crescent Moon"
+    },
+    "theme": {
+        "light": "Light",
+        "dark": "Dark"
     },
     "week": {
         "today": "Today",

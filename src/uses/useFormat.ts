@@ -52,45 +52,13 @@ function UseFormat() {
     return degrees * (Math.PI / 180);
   }, []);
 
-  // quechua months
-  const monthsQuechua = useCallback((month: number): string => {
-    switch (month) {
-      case 1:
-        return 'Uchuy Pokoy';
-      case 2:
-        return 'Paucar Varay';
-      case 3:
-        return 'Pachapukuy';
-      case 4:
-        return 'Inca Raymi';
-      case 5:
-        return 'Aymoray';
-      case 6:
-        return 'Inti Raymi';
-      case 7:
-        return 'Chacraconacuy';
-      case 8:
-        return 'Chacrayapuy Quilla';
-      case 9:
-        return 'Coya Raymi';
-      case 10:
-        return 'Uma Raymi Quilla';
-      case 11:
-        return 'Aya Marcay Quilla';
-      case 12:
-      default:
-        return 'Capac Raymi';
-    }
-  }, []);
-
   // render
   return {
     convertToRoman,
     fixDate,
     getActiveMonth,
     toDegrees,
-    toRadians,
-    monthsQuechua
+    toRadians
   }
 }
 

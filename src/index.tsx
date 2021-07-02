@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import Main from './layout/Main';
 import MainProvider from './providers/MainProvider';
-import MoonProvider from './providers/MoonProvider';
 import LangProvider from './providers/LangProvider';
 import ThemeProvider from './providers/ThemeProvider';
 
@@ -16,11 +15,9 @@ ReactDOM.render(
   <React.StrictMode>
     <MainProvider>
       <ThemeProvider>
-        <MoonProvider>
-          <LangProvider>
-            <Main />
-          </LangProvider>
-        </MoonProvider>
+        <LangProvider>
+          <Main />
+        </LangProvider>
       </ThemeProvider>
     </MainProvider>
   </React.StrictMode>,

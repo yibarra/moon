@@ -1,13 +1,13 @@
 import format from 'date-fns/format';
 import React, { FC, useEffect, useMemo, useState } from 'react';
-import MayanNumber from '../../../../../helpers/mayanNumber';
 import { Text as TextKonva } from 'react-konva';
+import { useTranslation } from 'react-i18next';
 
-import UseMoon from '../../../../../uses/useMoon';
-
+import MayanNumber from '../../../../../helpers/mayanNumber';
 import Text from '../../../../Typography/Text';
 
 import { IMoonTodayInfoYear } from './interfaces';
+import UseMoon from '../../../../../uses/useMoon';
 
 // moon today info year
 const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
@@ -16,8 +16,10 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
   x,
   y
 }) => {
-  const { getMoonPhaseName } = UseMoon();
+  const { t }: any = useTranslation();
+  const { getMoonPhaseName }: any = UseMoon();
 
+  const moonPhase = getMoonPhaseName(today.getFullYear(), today.getMonth(), today.getDate());
   const mayan = useMemo(() => new MayanNumber(), []);
   const offSetY: number = 60; // y
 
@@ -38,7 +40,7 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
         width={140}
         x={x - (140 / 2)}
         y={y + offSetY}
-        text={getMoonPhaseName(today.getFullYear(), today.getMonth(), today.getDate())} /> 
+        text={t(moonPhase)} /> 
 
       <TextKonva
         fontSize={10}

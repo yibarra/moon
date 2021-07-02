@@ -3,17 +3,17 @@ function UseMoon() {
   // get name
   const getNamePhase = (phase: number): string => {
     switch (phase) {
-      case 0: return "New Moon";
-      case 1: return "Waxing Crescent Moon";
-      case 2: return "Quarter Moon";
-      case 3: return "Waxing Gibbous Moon";
-      case 4: return "Full Moon";
-      case 5: return "Waning Gibbous Moon";
-      case 6: return "Last Quarter Moon";
-      case 7: return "Waning Crescent Moon";
+      case 0: return "moon.new_moon";
+      case 1: return "moon.waxing_crescent";
+      case 2: return "moon.quarter";
+      case 3: return "moon.waxing_gibbous";
+      case 4: return "moon.full";
+      case 5: return "moon.waning_gibbous";
+      case 6: return "moon.last_quarter";
+      case 7: return "moon.waning_crescent";
     }
 
-    return "New Moon";
+    return "moon.new_moon";
   };
   
   // get moon fraction

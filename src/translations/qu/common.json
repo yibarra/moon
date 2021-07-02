@@ -1,16 +1,40 @@
 {
-    "theme": {
-        "light": "Yuraq",
-        "dark": "Yana"
-    },
     "date": {
         "day": "Pʼunchaw",
         "month": "Killa",
         "year": "Wata"
     },
+    "months": {
+        "jan": "Uchuy Pokoy",
+        "feb": "Paucar Varay",
+        "mar": "Pachapukuy",
+        "apr": "Inca Raymi",
+        "may": "Aymoray",
+        "jun": "Inti Raymi",
+        "jul": "Chacraconacuy",
+        "aug": "Chacrayapuy Quilla",
+        "sep": "Coya Raymi",
+        "oct": "Uma Raymi Quilla",
+        "nov": "Aya Marcay Quilla",
+        "dec": "Capac Raymi"
+    },
+    "moon": {
+        "new_moon": "Musuq Killa",
+        "waxing_crescent": "Wiñaq killa",
+        "quarter": "Wiñaq killa",
+        "waxing_gibbous": "Wiñaq killa",
+        "full": "Hunt'a killa",
+        "waning_gibbous": "Wañuy killa",
+        "last_quarter": "Wiñaq killa",
+        "waning_crescent": "Wañu Killa"
+    },
+    "theme": {
+        "light": "Yuraq",
+        "dark": "Yana"
+    },
     "week": {
         "today": "Pʼunchaw",
-        "day": "",
+        "day": "Pʼunchaw",
         "mon": "Killachay p’unchay",
         "tue": "Antichay p’unchay",
         "wed": "Qoyllurchay p’unchay",

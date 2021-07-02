@@ -24,7 +24,7 @@ const Month: FC<IMonth> = ({
   x,
   y
 }) => {
-  const { fixDate, getActiveMonth, monthsQuechua } = UseFormat(); // fix date
+  const { fixDate, getActiveMonth } = UseFormat(); // fix date
 
   const angle = (2 * Math.PI) / (REACT_APP_TOTAL_ITEMS_DEGREE); // angle
   const current = fixDate(today.getFullYear(), month); // current
@@ -59,7 +59,7 @@ const Month: FC<IMonth> = ({
             month={month}
             radius={radius}
             theme={theme}
-            text={monthsQuechua(parseInt(format(current, 'MM')))} />
+            text={`months.${format(current, 'MMM').toLowerCase()}`} />
 
           <MonthContainer
             angle={angle}
@@ -76,58 +76,3 @@ const Month: FC<IMonth> = ({
 };
 
 export default Month;
-
-/*
-
-const dayPos = this.updatePos(day, current, percent);
-      
-const xPos: number = (Math.cos(dayPos * this.angle) * this.radius) + x;
-const yPos: number = (Math.sin(dayPos * this.angle) * this.radius) + y;
-
-
-<Spring
-      config={{
-        duration: 150 * month,
-      }}
-      delay={50 * month}
-      from={{ rotation: 0 }}
-      to={{ rotation: rotate }}>
-      {props => (<animated.Group
-        {...props}
-        x={(window.innerWidth / 2)}
-        y={(window.innerHeight / 2)}
-        listen={false}>
-          <MonthRadiusName
-            angle={angle * month}
-            month={month}
-            radius={radius}
-            text={format(current, 'MMM')} />
-
-          <MonthRadiusPercent
-            active={active}
-            angle={angle}
-            currentMonth={currentMonth}
-            day={day}
-            month={month}
-            today={today.getDate()}
-            radius={radius} />
-
-          {factoryPhases(day).map(({ day }, index: number) =>
-            <Group
-              listening={true}
-              key={index}
-              onClick={() => selectDate(day)}
-              onTap={() => selectDate(day)}>
-                <MoonPhase
-                  angle={angle * index}
-                  day={day}
-                  month={month}
-                  size={4}
-                  strokeWidth={selectDay(day)}
-                  x={Math.cos(angle * index) * radius}
-                  y={Math.sin(angle * index) * radius}
-                  year={year} />
-              </Group>)}
-        </animated.Group>)}
-    </Spring>
-    */
