@@ -9,6 +9,7 @@ import MonthPercent from './MonthPercent';
 import UseFormat from '../../uses/useFormat';
 
 import { IMonth } from './interfaces';
+import { useTranslation } from 'react-i18next';
 
 // env
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
@@ -24,6 +25,7 @@ const Month: FC<IMonth> = ({
   x,
   y
 }) => {
+  const { t }: any = useTranslation();
   const { fixDate, getActiveMonth } = UseFormat(); // fix date
 
   const angle = (2 * Math.PI) / (REACT_APP_TOTAL_ITEMS_DEGREE); // angle
@@ -59,7 +61,7 @@ const Month: FC<IMonth> = ({
             month={month}
             radius={radius}
             theme={theme}
-            text={`months.${format(current, 'MMM').toLowerCase()}`} />
+            text={t(`months.${format(current, 'MMM').toLowerCase()}`)} />
 
           <MonthContainer
             angle={angle}
