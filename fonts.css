@@ -1,0 +1,6 @@
+@font-face {
+  font-family: MayanNumerals;
+  src: url("./fonts/BabelStoneMayanNumerals.woff2") format("woff2"),
+       url("./fonts/BabelStoneMayanNumerals.woff") format("woff"),
+       url("./fonts/BabelStoneMayanNumerals.ttf") format("truetype");
+}
