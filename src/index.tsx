@@ -4,12 +4,13 @@ import ReactDOM from 'react-dom';
 import Main from './layout/Main';
 import MainProvider from './providers/MainProvider';
 import MoonProvider from './providers/MoonProvider';
+import LangProvider from './providers/LangProvider';
 import ThemeProvider from './providers/ThemeProvider';
 
 import reportWebVitals from './reportWebVitals';
 
+import './i18n'; // langs
 import './index.css';
-import LangProvider from './providers/LangProvider';
 
 ReactDOM.render(
   <React.StrictMode>

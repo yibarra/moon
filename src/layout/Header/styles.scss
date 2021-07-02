@@ -1,7 +1,6 @@
 .header {
   background-color: transparent;
   left: 0;
-  display: none; // remove
   padding: 10px;
   position: fixed;
   top: 0;
@@ -11,6 +10,12 @@
   .filter {
     float: left;
     width: 50%;
+
+    &--item {
+      float: left;
+      margin: 0 0 10px;
+      width: 100%;
+    }
 
     .input-range {
       float: right;

@@ -56,6 +56,8 @@
     ]
   },
   "devDependencies": {
-    "hex-rgb": "^5.0.0"
+    "hex-rgb": "^5.0.0",
+    "i18next": "^20.3.2",
+    "react-i18next": "^11.11.0"
   }
 }

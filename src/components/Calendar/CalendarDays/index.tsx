@@ -32,8 +32,8 @@ const CalendarDays: FC<any> = ({
         .then(
           (glyphs: any) => {
             const pos = {
-              x: (Math.cos(i * angle) * radius),// + (Math.cos(i * angle) * radius),//(Math.cos((i) * angle) * radius),
-              y: (Math.sin(i * angle) * radius)// + (Math.sin(i * angle) * radius)//(Math.sin((i) * angle) * radius)
+              x: (Math.cos(i * angle) * radius),
+              y: (Math.sin(i * angle) * radius)
             };
 
             temp.push({ angle, glyphs, rotate, day: currentDate, ...pos });

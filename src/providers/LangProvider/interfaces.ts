@@ -7,6 +7,7 @@ export interface ILang {
 
 export interface ILangContext {
   lang: ILang;
+  langs: any[];
   setLang(value: ILang): void;
 }
 

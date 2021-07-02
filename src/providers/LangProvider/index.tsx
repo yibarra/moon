@@ -14,8 +14,8 @@ const LangProvider: FC<ILangProvider> = ({
     name: 'Quechua',
     value: 'quechua'
   }, {
-    name: 'Roman',
-    value: 'roman'
+    name: 'Default',
+    value: 'default'
   }];
 
   const [ lang, setLang ] = useState<any>(langs[0]); // lang
@@ -25,6 +25,7 @@ const LangProvider: FC<ILangProvider> = ({
     <LangContext.Provider
       value={{
         lang,
+        langs,
         setLang
       }}>
       {children}
@@ -32,4 +33,5 @@ const LangProvider: FC<ILangProvider> = ({
   );
 };
 
+export { LangContext, LangProvider };
 export default LangProvider;

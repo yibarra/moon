@@ -2,6 +2,7 @@ import React, { FC, useCallback, useContext, useState } from 'react';
 import InputRange from '../../components/Form/InputRange';
 
 import InputSwitch from '../../components/Form/InputSwitch';
+import LangSelect from '../../components/LangSelect';
 import { ThemeContext } from '../../providers/ThemeProvider';
 
 import './styles.scss';
@@ -31,10 +32,18 @@ const Header: FC<any> = ({
     <header
       className="header">
       <div className="filter">
-        <InputSwitch
-          name="color"
-          value={color}
-          onChange={onThemeChange} />
+        <div className="filter--item">
+          <InputSwitch
+            labelL="theme.dark"
+            labelR="theme.light"
+            name="color"
+            value={color}
+            onChange={onThemeChange} />
+        </div>
+
+        <div className="filter--item">
+          <LangSelect />
+        </div>
       </div>
 
       <div className="filter">
