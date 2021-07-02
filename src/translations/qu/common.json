@@ -2,5 +2,21 @@
     "theme": {
         "light": "Yuraq",
         "dark": "Yana"
+    },
+    "date": {
+        "day": "Pʼunchaw",
+        "month": "Killa",
+        "year": "Wata"
+    },
+    "week": {
+        "today": "Pʼunchaw",
+        "day": "",
+        "mon": "Killachay p’unchay",
+        "tue": "Antichay p’unchay",
+        "wed": "Qoyllurchay p’unchay",
+        "thu": "Illapachay p’unchay",
+        "fri": "Ch’askachay p’unchay",
+        "sat": "K’uychichay p’unchay",
+        "sun": "Intichay p’unchay"
     }
 }

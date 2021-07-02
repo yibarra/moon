@@ -1,5 +1,6 @@
 import format from 'date-fns/format';
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import MoonTodayInfoLabel from './MoonTodayInfoLabel';
 import MoonTodayInfoTop from './MoonTodayInfoTop';
@@ -14,6 +15,8 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
   x,
   y
 }) => {
+  const { t }: any = useTranslation();
+
   // render
   return (
     <>
@@ -27,7 +30,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         theme={theme}
         offSetY={30}
         x={x - 55}
-        label="Day"
+        label={t('date.day')}
         value={parseInt(format(today, 'dd'))}
         y={y} />
       
@@ -35,7 +38,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         theme={theme}
         offSetY={30}
         x={x + 55}
-        label="Month"
+        label={t('date.month')}
         value={parseInt(format(today, 'M'))}
         y={y} />
 

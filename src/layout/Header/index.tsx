@@ -14,17 +14,17 @@ const Header: FC<any> = ({
 }) => {
   const { setColors } = useContext(ThemeContext);
 
-  const [ color, setColor ] = useState<boolean>(false);
+  const [ color, setColor ] = useState<boolean>(true);
 
   // on theme change
-  const onThemeChange = useCallback((value: boolean) => {
+  const onThemeChange = useCallback((value: any) => {
     if (value === false) {
       setColors('#262B2F', '#EADDC1');
     } else {
       setColors('#1B3059', '#F2F3F5');
     }
 
-    setColor(value);
+    setColor(!value);
   }, [ setColors ]);
 
   // render
@@ -50,7 +50,7 @@ const Header: FC<any> = ({
         <InputRange
           min={110}
           max={400}
-          setValue={setRadius}
+          set={setRadius}
           value={radius} />
       </div>
     </header>

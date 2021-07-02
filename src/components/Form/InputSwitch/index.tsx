@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import { useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { ThemeContext } from '../../../providers/ThemeProvider';
 
 import { IInputSwitch } from './interfaces';
@@ -25,7 +25,7 @@ const InputSwitch: FC<IInputSwitch> = ({
       <div className="switch--input">
         <input
           name={name}
-          onChange={() => onChange(!value)}
+          onChange={() => onChange(value)}
           type="checkbox" />
         <span className="slider"></span>
       </div>

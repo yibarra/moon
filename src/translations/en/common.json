@@ -2,5 +2,21 @@
     "theme": {
         "light": "Light",
         "dark": "Dark"
+    },
+    "date": {
+        "day": "Day",
+        "month": "Month",
+        "year": "Year"
+    },
+    "week": {
+        "today": "Today",
+        "day": "Weekday",
+        "mon": "Monday",
+        "tue": "Tuesday",
+        "wed": "Wednesday",
+        "thu": "Thursday",
+        "fri": "Friday",
+        "sat": "Saturday",
+        "sun": "Sunday"
     }
 }

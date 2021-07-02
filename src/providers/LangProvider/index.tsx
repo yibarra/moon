@@ -1,7 +1,7 @@
-import React, { FC, useState } from 'react';
-import { createContext } from 'react';
+import React, { FC, useState, createContext, useEffect} from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { ILangContext, ILangProvider } from './interfaces';
+import { ILang, ILangContext, ILangProvider } from './interfaces';
 
 // lang context
 const LangContext = createContext({} as ILangContext);
@@ -12,13 +12,19 @@ const LangProvider: FC<ILangProvider> = ({
 }) => {
   const langs: any[] = [{
     name: 'Quechua',
-    value: 'quechua'
+    value: 'qu'
   }, {
     name: 'Default',
-    value: 'default'
+    value: 'en'
   }];
 
-  const [ lang, setLang ] = useState<any>(langs[0]); // lang
+  const { i18n } = useTranslation();
+  const [ lang, setLang ] = useState<ILang>(langs[0]); // lang
+
+  // use effect
+  useEffect(() => {
+    i18n.changeLanguage(lang?.value);
+  }, [ lang, i18n ]);
 
   // render
   return (

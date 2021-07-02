@@ -11,17 +11,21 @@ import './styles.scss';
 const LangSelect: FC<any> = () => {
   const { lang, langs, setLang }: any = useContext(LangContext);
 
+  // on select lang
   const onSelectLang = useCallback(() => {
-    console.log('change');
-  }, []);
+    const value = lang.value === langs[0].value ? langs[1] : langs[0];
+    
+    setLang(value);
+  }, [ lang, langs, setLang ]);
 
+  // render
   return (
     <div className="lang-select">
       <InputSwitch
         labelL={langs[0].name}
         labelR={langs[1].name}
-        name="color"
-        value={lang?.name}
+        name="lang"
+        value={lang?.value}
         onChange={onSelectLang} />
     </div>
   );
