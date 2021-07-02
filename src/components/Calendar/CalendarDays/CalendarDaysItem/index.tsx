@@ -1,40 +1,51 @@
-import React, { FC, useEffect, useRef } from 'react';
-import { Text, Transformer } from 'react-konva';
+import React, { FC } from 'react';
+import { Text } from 'react-konva';
 
 const CalendarDaysItem: FC<any> = ({
   angle,
-  currentDay,
   day,
   glyphs,
-  radius,
-  rotation,
+  rotate,
   theme,
   x,
   y
 }) => {
-  const TextRef: any = useRef();
-
   // render
   return (
     <>
       <Text
-        ref={TextRef}
         fill={theme.second}
         fontSize={12}
         align="center"
         fontFamily="MayanNumerals"
         fontStyle="bold"
         offsetX={15}
-        offsetY={15}
+        offsetY={glyphs.length > 1 ? 12 : 5}
         wrap="char"
-        text={glyphs.join('\n')}
-        rotation={(day * angle) - rotation}
+        text={glyphs[0]}
+        rotation={(day * angle) - rotate}
         verticalAlign="middle"
-        height={30}
+        height={10}
         width={30}
         x={x}
-        y={y}
-      />
+        y={y} />
+
+      {glyphs.length > 1 && <Text
+        fill={theme.second}
+        fontSize={12}
+        align="center"
+        fontFamily="MayanNumerals"
+        fontStyle="bold"
+        offsetX={15}
+        offsetY={3}
+        wrap="char"
+        text={glyphs[1]}
+        rotation={(day * angle) - rotate}
+        verticalAlign="middle"
+        height={10}
+        width={30}
+        x={x}
+        y={y} />}
     </>
   );
 };

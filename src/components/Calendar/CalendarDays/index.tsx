@@ -71,19 +71,23 @@ const CalendarDays: FC<any> = ({
 
       <Spring
         config={{
-          duration: 450
+          duration: 1050,
         }}
-        delay={90 * 11}
-        from={{ rotation: 0 }}
-        to={{ rotation: rotate }}>
+        reset
+        from={{
+          opacity: 0
+        }}
+        to={{
+          opacity: 1
+        }}>
         {props => (<animated.Group
           x={x}
           y={y}
-          {...props}>
+          {...props}
+          rotation={rotate}>
           {Array.isArray(items) && items.map((item: any, index: number) =>
             <CalendarDaysItem
               {...item}
-              rotation={rotate}
               radius={radius}
               theme={theme}
               key={index} />)}
