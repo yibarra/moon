@@ -29,7 +29,7 @@ const ButtonArrow: FC<IButtonArrow> = ({
 
   // get number
   const getNumberMayan = useCallback(async (value: any) =>
-    await mayan.mayanGlyph(value).then(e => e), [ mayan ]);
+    await mayan.mayanGlyph(value).then(e => e.join('\n')), [ mayan ]);
 
   // get number
   const getNumber = useCallback(async (value: any) => {
@@ -46,7 +46,7 @@ const ButtonArrow: FC<IButtonArrow> = ({
       if (!text) {
         return false;
       } else {
-        getNumber(text).then(e => setNumbText(e.join('\n')));
+        getNumber(text).then(e => setNumbText(e));
       }
     };
     
@@ -76,7 +76,7 @@ const ButtonArrow: FC<IButtonArrow> = ({
         verticalAlign="middle"
         text={numbText}
         x={x + (type === 'right' ? -offSet : offSet)}
-        y={y - 1}
+        y={lang.value === 'en' ? y - 1 : y - 20}
         width={width} />}
     </Group>
   );

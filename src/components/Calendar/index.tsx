@@ -78,6 +78,7 @@ const Calendar: FC<ICalendar> = ({
       <CalendarDays
         angle={angle}
         day={today.getDate()}
+        lang={lang}
         radius={radius + (14 * increment)}
         rotate={rotate}
         theme={theme}

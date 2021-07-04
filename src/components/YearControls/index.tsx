@@ -14,6 +14,8 @@ const YearControls: FC<IYearControls> = ({
   x,
   y
 }) => {
+  const offSetX = 140;
+
   // on change
   const onChange = useCallback((year: number) =>
     setYear(new Date(`${year}/1/1`)), [ setYear ]);
@@ -27,8 +29,8 @@ const YearControls: FC<IYearControls> = ({
         onClick={() => onChange(year-1)}
         text={(year - 1).toString()}
         type="left"
-        x={x - (radius + 110)}
-        y={y - 2} />
+        x={x - (radius + offSetX)}
+        y={y - 5} />
 
       <ButtonArrow
         color={theme.second}
@@ -36,8 +38,8 @@ const YearControls: FC<IYearControls> = ({
         onClick={() => onChange(year+1)}
         text={(year + 1).toString()}
         type="right"
-        x={x + (radius + 110)}
-        y={y - 2} />
+        x={x + (radius + offSetX)}
+        y={y - 5} />
     </>
   );
 };
