@@ -1,5 +1,4 @@
 import React, { FC, useCallback } from 'react';
-import UseFormat from '../../uses/useFormat';
 
 import ButtonArrow from '../Form/ButtonArrow';
 
@@ -7,6 +6,7 @@ import { IYearControls } from './interfaces';
 
 // year controls
 const YearControls: FC<IYearControls> = ({
+  lang,
   theme,
   radius,
   year,
@@ -14,8 +14,6 @@ const YearControls: FC<IYearControls> = ({
   x,
   y
 }) => {
-  const { convertToRoman } = UseFormat();
-
   // on change
   const onChange = useCallback((year: number) =>
     setYear(new Date(`${year}/1/1`)), [ setYear ]);
@@ -25,16 +23,18 @@ const YearControls: FC<IYearControls> = ({
     <>
       <ButtonArrow
         color={theme.second}
+        lang={lang}
         onClick={() => onChange(year-1)}
-        text={convertToRoman(year - 1)}
+        text={(year - 1).toString()}
         type="left"
         x={x - (radius + 110)}
         y={y - 2} />
 
       <ButtonArrow
         color={theme.second}
+        lang={lang}
         onClick={() => onChange(year+1)}
-        text={convertToRoman(year + 1)}
+        text={(year + 1).toString()}
         type="right"
         x={x + (radius + 110)}
         y={y - 2} />

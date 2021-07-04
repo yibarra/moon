@@ -9,6 +9,7 @@ import { IMoonToday } from './interfaces';
 
 // moon today
 const MoonToday: FC<IMoonToday> = ({
+  lang,
   setToday,
   setPos,
   size,
@@ -48,6 +49,7 @@ const MoonToday: FC<IMoonToday> = ({
         year={today.getFullYear()} />
 
       <MoonTodayControls
+        lang={lang}
         size={size}
         setYear={setToday}
         theme={theme}

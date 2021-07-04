@@ -8,6 +8,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 
 import { MainContext } from '../../providers/MainProvider';
+import { LangContext } from '../../providers/LangProvider';
 import { ThemeContext } from '../../providers/ThemeProvider';
 
 import { IMain } from './interfaces';
@@ -17,6 +18,7 @@ import './styles.scss';
 // main
 const Main: FC<IMain> = () => {
   const { loaded, date, setDate, size, radius, setRadius, pos, setPos } = useContext(MainContext);
+  const { lang } = useContext(LangContext);
   const { theme } = useContext(ThemeContext);
 
   // render
@@ -80,6 +82,7 @@ const Main: FC<IMain> = () => {
           height={size.height}
           width={size.width}>
           <Calendar
+            lang={lang}
             radius={radius}
             setToday={setDate}
             pos={pos}

@@ -6,6 +6,7 @@ import { IMoonTodayControls } from './interfaces';
 
 // moon today controls
 const MoonTodayControls: FC<IMoonTodayControls> = ({
+  lang,
   setYear,
   theme,
   x,
@@ -21,6 +22,7 @@ const MoonTodayControls: FC<IMoonTodayControls> = ({
     <>
       <ButtonArrow
         color={theme.second}
+        lang={lang}
         onClick={() => onChange(year-1)}
         type="left"
         x={x - 70}
@@ -28,6 +30,7 @@ const MoonTodayControls: FC<IMoonTodayControls> = ({
 
       <ButtonArrow
         color={theme.second}
+        lang={lang}
         onClick={() => onChange(year+1)}
         type="right"
         x={x + 70}

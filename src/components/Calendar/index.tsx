@@ -15,6 +15,7 @@ const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
 // calendar
 const Calendar: FC<ICalendar> = ({
+  lang,
   radius,
   pos,
   size,
@@ -55,6 +56,7 @@ const Calendar: FC<ICalendar> = ({
     <Layer
       id="calendar">
       <YearControls
+        lang={lang}
         theme={theme}
         radius={radius + (13 * increment)}
         setYear={setToday}
@@ -64,6 +66,7 @@ const Calendar: FC<ICalendar> = ({
       {createMonths()}
 
       <MoonToday
+        lang={lang}
         setToday={setToday}
         setPos={setPos}
         size={size}
