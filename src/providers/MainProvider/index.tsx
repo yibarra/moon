@@ -30,8 +30,7 @@ const MainProvider: FC<IMainProvider> = ({ children }) => {
       google: {
         families: [
           "Roboto Condensed:300,400,700",
-          "Roboto Slab:200,300,400,500,600",
-          "Roboto:200,300,400"
+          "Roboto Slab:200,300,400,500,600"
         ]
       }, fontactive: () => {
         setTimeout(() => setLoaded(true), 500);

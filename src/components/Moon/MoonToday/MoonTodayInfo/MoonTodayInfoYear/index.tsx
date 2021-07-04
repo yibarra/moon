@@ -72,12 +72,13 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
       : <Text
           fill={theme.second}
           align="center"
-          fontSize={10}
+          fontFamily="Roboto Slab"
+          fontSize={8}
           text={year}
           verticalAlign="middle"
           height={30}
-          width={30}
-          x={x - 15}
+          width={50}
+          x={x - 25}
           y={y + (offSetY + 7)} />}
     </>
   );
