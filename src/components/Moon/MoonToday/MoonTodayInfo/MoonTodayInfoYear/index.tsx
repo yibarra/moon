@@ -3,14 +3,17 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Text as TextKonva } from 'react-konva';
 import { useTranslation } from 'react-i18next';
 
+import UseMoon from '../../../../../uses/useMoon';
+
 import MayanNumber from '../../../../../helpers/mayanNumber';
 import Text from '../../../../Typography/Text';
 
 import { IMoonTodayInfoYear } from './interfaces';
-import UseMoon from '../../../../../uses/useMoon';
+import UseFormat from '../../../../../uses/useFormat';
 
 // moon today info year
 const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
+  lang,
   theme,
   today,
   x,
@@ -18,6 +21,7 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
 }) => {
   const { t }: any = useTranslation();
   const { getMoonPhaseName }: any = UseMoon();
+  const { convertToRoman }: any = UseFormat();
 
   const moonPhase = getMoonPhaseName(today.getFullYear(), today.getMonth(), today.getDate());
   const mayan = useMemo(() => new MayanNumber(), []);
@@ -27,9 +31,20 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
 
   // use effect
   useEffect(() => {
-    mayan.mayanGlyph(parseInt(format(today, 'yyyy')))
-      .then((glyphs: any) => setYear(glyphs));
-  }, [ mayan, today ]);
+    const getNumber = async () => {
+      const value = parseInt(format(today, 'yyyy'));
+
+      await mayan.mayanGlyph(value)
+        .then((glyphs: any) => {
+          if (lang.value === 'qu')
+            setYear(glyphs);
+          else
+            setYear(convertToRoman(value));
+        });
+    }
+
+    getNumber();
+  }, [ convertToRoman, lang, mayan, today ]);
 
   // render
   return (
@@ -37,12 +52,12 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
       <Text
         fill={theme.second}
         fontSize={8}
-        width={140}
+        text={t(moonPhase)}
         x={x - (140 / 2)}
         y={y + offSetY}
-        text={t(moonPhase)} /> 
+        width={140} /> 
 
-      <TextKonva
+      {lang.value === 'qu' ? <TextKonva
         fontSize={10}
         fontFamily="MayanNumerals"
         fill={theme.second}
@@ -53,7 +68,17 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
         width={20}
         wrap="word"
         x={x - 5}
-        y={y + (offSetY + 10)} />
+        y={y + (offSetY + 7)} />
+      : <Text
+          fill={theme.second}
+          align="center"
+          fontSize={10}
+          text={year}
+          verticalAlign="middle"
+          height={30}
+          width={30}
+          x={x - 15}
+          y={y + (offSetY + 7)} />}
     </>
   );
 };

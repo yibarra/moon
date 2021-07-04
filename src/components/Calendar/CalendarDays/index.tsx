@@ -5,7 +5,6 @@ import { Shape } from 'react-konva';
 import hexRgb from 'hex-rgb';
 
 import CalendarDaysItem from './CalendarDaysItem';
-
 import MayanNumber from '../../../helpers/mayanNumber';
 import TextCircle from '../../Typography/TextCircle';
 
@@ -13,6 +12,8 @@ import UseFormat from '../../../uses/useFormat';
 import UseShapes from '../../../uses/useShape';
 
 import { ICalendarDays } from './interfaces';
+
+const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
 // calendar days
 const CalendarDays: FC<ICalendarDays> = ({
@@ -31,6 +32,22 @@ const CalendarDays: FC<ICalendarDays> = ({
   const mayan = useMemo(() => new MayanNumber(), []); // mayan
 
   const [ items, setItems ] = useState<any>([]); // items
+
+  // border line
+  const borderLine = useCallback((ctx: Context) => {
+    const circumference = (Math.PI * 2);
+    const arcRadians = circumference / REACT_APP_TOTAL_ITEMS_DEGREE;
+
+    ctx.translate(x, y);
+    ctx.rotate(-(Math.PI / 2) - (arcRadians / 2));
+    ctx.translate(-x, -y);
+
+    createCircle(ctx, {
+      fillStyle: 'transparent',
+      lineWidth: 29,
+      strokeStyle: theme.second,
+    }, radius, 0, arcRadians, false, x, y);
+  }, [ createCircle, radius, theme, x, y ]);
 
   // create circle
   const createBackground = useCallback((ctx: Context) => {
@@ -70,7 +87,7 @@ const CalendarDays: FC<ICalendarDays> = ({
   }, [angle, mayan, rotate, radius]);
 
   // create days
-  const createDays = useCallback((ctx: CanvasRenderingContext2D, rotation: any) => {
+  const createDays = useCallback((ctx: CanvasRenderingContext2D) => {
     for (let i = 0; i < 31; i++) {
       const currentDate = i + 1;
 
@@ -102,6 +119,10 @@ const CalendarDays: FC<ICalendarDays> = ({
       <Shape
         listening={false}
         sceneFunc={(ctx: Context) => createBackground(ctx)} />
+
+      <Shape
+        listening={false}
+        sceneFunc={(ctx: Context) => borderLine(ctx)} />
           
       {lang.value === 'qu' ?
         <Spring
@@ -123,6 +144,7 @@ const CalendarDays: FC<ICalendarDays> = ({
             {Array.isArray(items) && items.map((item: any, index: number) =>
               <CalendarDaysItem
                 {...item}
+                active={(day - 1) === index}
                 radius={radius}
                 theme={theme}
                 key={index} />)}
@@ -141,7 +163,7 @@ const CalendarDays: FC<ICalendarDays> = ({
             {...props}>
             <Shape
               listening={false}
-              sceneFunc={(ctx: any) => createDays(ctx, props.rotation.to((n: any) => n))} />
+              sceneFunc={(ctx: any) => createDays(ctx)} />
           </a.Group>)}
         </Spring>
       }

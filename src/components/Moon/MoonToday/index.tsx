@@ -31,6 +31,7 @@ const MoonToday: FC<IMoonToday> = ({
         y={y} />
 
       <MoonTodayInfo
+        lang={lang}
         theme={theme} 
         today={today}
         x={x}

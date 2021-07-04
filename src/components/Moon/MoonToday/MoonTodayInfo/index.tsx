@@ -10,6 +10,7 @@ import { IMoonTodayInfo } from './interfaces';
 
 // moon today info
 const MoonTodayInfo: FC<IMoonTodayInfo> = ({
+  lang,
   theme,
   today,
   x,
@@ -27,6 +28,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         y={y} />
 
       <MoonTodayInfoLabel
+        lang={lang}
         theme={theme}
         offSetY={30}
         x={x - 55}
@@ -35,6 +37,7 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         y={y} />
       
       <MoonTodayInfoLabel
+        lang={lang}
         theme={theme}
         offSetY={30}
         x={x + 55}
@@ -42,7 +45,8 @@ const MoonTodayInfo: FC<IMoonTodayInfo> = ({
         value={parseInt(format(today, 'M'))}
         y={y} />
 
-      <MoonTodayInfoYear 
+      <MoonTodayInfoYear
+        lang={lang}
         theme={theme}
         today={today}
         x={x}

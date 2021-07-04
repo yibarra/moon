@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Text } from 'react-konva';
 
 const CalendarDaysItem: FC<any> = ({
+  active,
   angle,
   day,
   glyphs,
@@ -16,7 +17,7 @@ const CalendarDaysItem: FC<any> = ({
       <Text
         align="center"
         fontSize={12}
-        fill={theme.second}
+        fill={active ? theme.main : theme.second}
         fontFamily="MayanNumerals"
         fontStyle="bold"
         height={10}
@@ -32,7 +33,7 @@ const CalendarDaysItem: FC<any> = ({
 
       {glyphs.length > 1 && <Text
         align="center"
-        fill={theme.second}
+        fill={active ? theme.main : theme.second}
         fontSize={12}
         fontFamily="MayanNumerals"
         height={10}

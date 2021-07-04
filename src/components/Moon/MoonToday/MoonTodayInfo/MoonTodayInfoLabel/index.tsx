@@ -47,7 +47,7 @@ const MoonTodayInfoLabel: FC<IMoonTodayInfoLabel> = ({
         width={20}
         wrap="word"
         x={x - 5}
-        y={y + (offSetY)} />
+        y={y + (offSetY - 5)} />
     </>
   );
 };
