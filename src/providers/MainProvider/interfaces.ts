@@ -14,6 +14,8 @@ export interface IMainContext {
   date: Date;
   loaded: boolean;
   radius: number;
+  scale: number;
+  setScale(value: number): void;
   setRadius(value: number): void;
   size: ISize;
   setDate(value: Date): void;

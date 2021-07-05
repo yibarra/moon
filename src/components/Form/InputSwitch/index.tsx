@@ -1,11 +1,9 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-
-import { ThemeContext } from '../../../providers/ThemeProvider';
 
 import { IInputSwitch } from './interfaces';
 
-import './styles.scss';
+import { InputSwitchLabel, InputSwitchSpan, InputSwitchSlider } from './styles';
 
 // input switch
 const InputSwitch: FC<IInputSwitch> = ({
@@ -16,21 +14,20 @@ const InputSwitch: FC<IInputSwitch> = ({
   value
 }) => {
   const { t }: any = useTranslation();
-  const { theme }: any = useContext(ThemeContext);
 
   // render
   return (
-    <label className="switch">
-      <span className="switch--label" style={{ color: theme.second }}>{t(labelL)}</span>
-      <div className="switch--input">
+    <InputSwitchLabel>
+      <InputSwitchSpan>{t(labelL)}</InputSwitchSpan>
+      <InputSwitchSlider>
         <input
           name={name}
           onChange={() => onChange(value)}
           type="checkbox" />
         <span className="slider"></span>
-      </div>
-      <span className="switch--label" style={{ color: theme.second }}>{t(labelR)}</span>
-    </label>
+      </InputSwitchSlider>
+      <InputSwitchSpan>{t(labelR)}</InputSwitchSpan>
+    </InputSwitchLabel>
   );
 };
 

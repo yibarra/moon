@@ -13,13 +13,13 @@ import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MainProvider>
-      <ThemeProvider>
+    <ThemeProvider>
+      <MainProvider>
         <LangProvider>
           <Main />
         </LangProvider>
-      </ThemeProvider>
-    </MainProvider>
+      </MainProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

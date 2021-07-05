@@ -79,7 +79,7 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
           height={30}
           width={50}
           x={x - 25}
-          y={y + (offSetY + 7)} />}
+          y={y + (offSetY + 5)} />}
     </>
   );
 };

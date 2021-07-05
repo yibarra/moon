@@ -18,6 +18,7 @@ const MainProvider: FC<IMainProvider> = ({ children }) => {
   const [ loaded, setLoaded ] = useState<boolean>(false);
   const [ radius, setRadius ] = useState<number>(110);
   const [ pos, setPos ] = useState<any>({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+  const [ scale, setScale ] = useState<number>(1);
 
   // set date
   const setDate = useCallback((value: Date) =>
@@ -47,6 +48,8 @@ const MainProvider: FC<IMainProvider> = ({ children }) => {
         radius,
         setRadius,
         setDate,
+        scale,
+        setScale,
         size,
         pos,
         setPos

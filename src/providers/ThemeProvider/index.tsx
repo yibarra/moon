@@ -1,4 +1,5 @@
 import React, { createContext, FC, useState, useCallback } from 'react';
+import { ThemeProvider as StyleProvider } from "styled-components";
 
 import { IThemeContext, IThemeProvider } from './interfaces';
 
@@ -6,8 +7,8 @@ import { IThemeContext, IThemeProvider } from './interfaces';
 const ThemeContext: any = createContext({} as IThemeContext);
 
 // theme provider
-const ThemeProvider: FC<IThemeProvider> = ({ children }) => {
-  const [ theme, set ]: any = useState({ main: '#262B2F', second: '#F2F3F5' });
+const ThemeProvider: FC<IThemeProvider> = ({ children }) => {  
+  const [ theme, set ]: any = useState({ main: '#262B2F', second: '#EADDC1' });
 
   // set
   const setColors = useCallback((main: string, second: string) => 
@@ -15,13 +16,15 @@ const ThemeProvider: FC<IThemeProvider> = ({ children }) => {
 
   // render
   return (
-    <ThemeContext.Provider
-      value={{
-        theme,
-        setColors
-      }}>
-      {children}
-    </ThemeContext.Provider>
+    <StyleProvider theme={theme}>
+      <ThemeContext.Provider
+        value={{
+          theme,
+          setColors
+        }}>
+        {children}
+      </ThemeContext.Provider>
+    </StyleProvider>
   );
 };
 

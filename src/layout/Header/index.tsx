@@ -9,23 +9,30 @@ import './styles.scss';
 
 // header
 const Header: FC<any> = ({
+  scale,
+  setScale,
   radius,
   setRadius,
 }) => {
   const { setColors } = useContext(ThemeContext);
 
-  const [ color, setColor ] = useState<boolean>(true);
+  const [color, setColor] = useState<boolean>(true);
 
   // on theme change
   const onThemeChange = useCallback((value: any) => {
     if (value === false) {
       setColors('#262B2F', '#EADDC1');
     } else {
-      setColors('#1B3059', '#F2F3F5');
+      setColors('#13265C', '#F2F3F5');
     }
 
     setColor(!value);
-  }, [ setColors ]);
+  }, [setColors]);
+
+  // on scale
+  const onScale = useCallback((value: number) => {
+    setScale(value / 100);
+  }, [setScale]);
 
   // render
   return (
@@ -47,11 +54,23 @@ const Header: FC<any> = ({
       </div>
 
       <div className="filter">
-        <InputRange
-          min={110}
-          max={400}
-          set={setRadius}
-          value={radius} />
+        <div className="filter--item slider">
+          <InputRange
+            label="form.radius"
+            min={110}
+            max={400}
+            set={setRadius}
+            value={radius} />
+        </div>
+
+        <div className="filter--item slider">
+          <InputRange
+            label="form.scale"
+            min={100}
+            max={200}
+            set={onScale}
+            value={scale * 100} />
+        </div>
       </div>
     </header>
   );

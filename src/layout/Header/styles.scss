@@ -15,6 +15,12 @@
       float: left;
       margin: 0 0 10px;
       width: 100%;
+
+      &.slider {
+        > label {
+          float: right;
+        }
+      }
     }
 
     .input-range {

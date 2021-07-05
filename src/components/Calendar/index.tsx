@@ -17,6 +17,7 @@ const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 const Calendar: FC<ICalendar> = ({
   lang,
   radius,
+  scale,
   pos,
   size,
   setToday,
@@ -54,7 +55,8 @@ const Calendar: FC<ICalendar> = ({
   // render
   return (
     <Layer
-      id="calendar">
+      id="calendar"
+      scale={{ x: scale, y: scale }}>
       <YearControls
         lang={lang}
         theme={theme}

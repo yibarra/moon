@@ -1,12 +1,14 @@
 import React, { FC, SyntheticEvent, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { IInputRange } from './interfaces';
 
-import './styles.scss';
+import { InputRangeLabel, InputRangeSpan } from './styles';
 
 // input range
 const InputRange: FC<IInputRange> = (props) => {
-  const { set, min, max, value } = props;
+  const { t }: any = useTranslation();
+  const { label, set, min, max, value } = props;
 
   // change
   const onChange = useCallback((event: SyntheticEvent<EventTarget>) => {
@@ -17,7 +19,9 @@ const InputRange: FC<IInputRange> = (props) => {
 
   // render
   return (
-    <label className="input-range">
+    <InputRangeLabel>
+      <InputRangeSpan>{t(label)}</InputRangeSpan>
+
       <input
         className="input-range--slider"
         min={min}
@@ -25,7 +29,7 @@ const InputRange: FC<IInputRange> = (props) => {
         onChange={onChange} 
         type="range"
         value={value} />
-    </label>
+    </InputRangeLabel>
   );
 };
 

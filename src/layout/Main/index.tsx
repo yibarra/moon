@@ -16,7 +16,17 @@ import './styles.scss';
 
 // main
 const Main: FC<IMain> = () => {
-  const { loaded, date, setDate, size, radius, setRadius, pos, setPos } = useContext(MainContext);
+  const {
+    loaded,
+    date,
+    setDate,
+    size,
+    scale,
+    setScale,
+    radius,
+    setRadius,
+    pos,
+    setPos } = useContext(MainContext);
   const { lang } = useContext(LangContext);
   const { theme } = useContext(ThemeContext);
 
@@ -27,6 +37,8 @@ const Main: FC<IMain> = () => {
       style={{ backgroundColor: theme.main }}>
 
       <Header
+        scale={scale}
+        setScale={setScale}
         radius={radius}
         setRadius={setRadius} />
 
@@ -39,6 +51,7 @@ const Main: FC<IMain> = () => {
             radius={radius}
             setToday={setDate}
             pos={pos}
+            scale={scale}
             setPos={setPos}
             size={size}
             today={date}

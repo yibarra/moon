@@ -3,6 +3,7 @@ import { ILang } from "../../providers/LangProvider/interfaces";
 import { IPos, ISize } from "../../providers/MainProvider/interfaces";
 
 export interface ICalendar {
+  scale: number;
   lang: ILang;
   radius: number;
   setToday(value: Date): void;

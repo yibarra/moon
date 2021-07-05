@@ -4,6 +4,10 @@
         "month": "Month",
         "year": "Year"
     },
+    "form": {
+        "scale": "Scale",
+        "radius": "Radius"
+    },
     "months": {
         "jan": "January",
         "feb": "February",
