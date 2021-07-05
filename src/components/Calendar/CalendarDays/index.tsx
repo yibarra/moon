@@ -44,24 +44,42 @@ const CalendarDays: FC<ICalendarDays> = ({
 
     createCircle(ctx, {
       fillStyle: 'transparent',
-      lineWidth: 29,
+      lineWidth: 32,
       strokeStyle: theme.second,
-    }, radius, 0, arcRadians, false, x, y);
+    }, radius, 0, arcRadians, false, x + 1, y);
   }, [ createCircle, radius, theme, x, y ]);
 
   // create circle
   const createBackground = useCallback((ctx: Context) => {
-    createCircle(ctx, {
-      'fillStyle': 'transparent',
-      'lineWidth': 31,
-      'strokeStyle': hexRgb(theme.second, { alpha: 0.1, format: 'css' })
-    }, radius, 0, Math.PI * 2, true, x, y);
+    ctx.setLineDash([0, 0]);
 
     createCircle(ctx, {
       'fillStyle': 'transparent',
-      'lineWidth': 30,
+      'lineWidth': 0.5,
+      'strokeStyle': hexRgb(theme.second, { alpha: 1, format: 'css' })
+    }, radius - 14, 0, Math.PI * 2, true, x, y);
+
+    ctx.setLineDash([1, 8]);
+
+    createCircle(ctx, {
+      'fillStyle': 'transparent',
+      'lineWidth': 0.5,
+      'strokeStyle': hexRgb(theme.second, { alpha: 1, format: 'css' })
+    }, radius - 17, 0, Math.PI * 2, true, x, y);
+
+    ctx.setLineDash([ 0, 0 ]);
+
+    createCircle(ctx, {
+      'fillStyle': 'transparent',
+      'lineWidth': 1,
       'strokeStyle':  theme.main
-    }, radius, 0, Math.PI * 2, true, x, y);
+    }, radius + 20, 0, Math.PI * 2, true, x, y);
+
+    createCircle(ctx, {
+      'fillStyle': 'transparent',
+      'lineWidth': 0.5,
+      'strokeStyle': hexRgb(theme.second, { alpha: 1, format: 'css' })
+    }, radius + 17, 0, Math.PI * 2, true, x, y);
   }, [ createCircle, radius, theme, x, y ]);
 
   // days mayan

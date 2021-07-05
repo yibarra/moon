@@ -36,13 +36,14 @@ const MonthPercent: FC<IMonthPercent> = ({
   // render
   return (
     <Group
-      clipFunc={(ctx: Context) => maskLines(ctx)}>
+      clipFunc={(ctx: Context) => maskLines(ctx)}
+      listening={false}>
         <Circle
-          dash={[1, 2]}
+          dash={[2, 2]}
           fill="transparent"
           listening={false}
           radius={radius}
-          stroke={hexRgb(theme.second, { alpha: 0.8, format: 'css' })}
+          stroke={hexRgb(theme.second, { alpha: 1, format: 'css' })}
           strokeWidth={1}
           listen={false} />
     </Group>

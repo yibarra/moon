@@ -27,7 +27,7 @@ const InputRangeLabel = styled.label`
         left: 4px;
         top: 50%;
         transform: translate3d(0, -50%, 0);
-        width: calc(100% - 8px);
+        width: 100%;
       }
   
       &::-webkit-slider-thumb {
