@@ -3,6 +3,7 @@ import InputRange from '../../components/Form/InputRange';
 
 import InputSwitch from '../../components/Form/InputSwitch';
 import LangSelect from '../../components/LangSelect';
+import { LangContext } from '../../providers/LangProvider';
 import { ThemeContext } from '../../providers/ThemeProvider';
 
 import './styles.scss';
@@ -15,6 +16,7 @@ const Header: FC<any> = ({
   setRadius,
 }) => {
   const { setColors } = useContext(ThemeContext);
+  const { lang, langs, setLang }: any = useContext(LangContext);
 
   const [color, setColor] = useState<boolean>(true);
 
@@ -49,7 +51,10 @@ const Header: FC<any> = ({
         </div>
 
         <div className="filter--item">
-          <LangSelect />
+          <LangSelect
+            lang={lang}
+            langs={langs}
+            setLang={setLang} />
         </div>
       </div>
 

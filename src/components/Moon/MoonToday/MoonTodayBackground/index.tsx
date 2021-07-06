@@ -1,6 +1,6 @@
+import { KonvaEventObject } from 'konva/types/Node';
 import React, { FC, useCallback } from 'react';
 import { Circle } from 'react-konva';
-import hexRgb from 'hex-rgb';
 
 import { IMoonTodayBackground } from './interfaces';
 
@@ -13,7 +13,7 @@ const MoonTodayBackground: FC<IMoonTodayBackground> = ({
   y
 }) => {
   // on drag end
-  const onDragEnd = useCallback((event: any) => {
+  const onDragEnd = useCallback((event: KonvaEventObject<DragEvent>) => {
     if (event instanceof Object === false) return false;
 
     try {
@@ -27,13 +27,12 @@ const MoonTodayBackground: FC<IMoonTodayBackground> = ({
   // render
   return (
     <Circle
-      dash={[ 1, 4 ]}
       fill="transparent"
       listening={true}
       draggable
       radius={radius}
       onDragMove={onDragEnd}
-      stroke={hexRgb(theme.second, { alpha: 0.5, format: 'css' })}
+      stroke={theme.second}
       x={x}
       y={y}
       strokeWidth={0.5} />

@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
 import { Text } from 'react-konva';
 
-const CalendarDaysItem: FC<any> = ({
+import { ICalendarDaysItem } from './interfaces';
+
+// calendar days item
+const CalendarDaysItem: FC<ICalendarDaysItem> = ({
   active,
   angle,
   day,
@@ -11,42 +14,34 @@ const CalendarDaysItem: FC<any> = ({
   x,
   y
 }) => {
+  const props = {
+    align: 'center',
+    fontSize: 10,
+    fill: active ? theme.main : theme.second,
+    fontFamily: 'MayanNumerals',
+    height: 10,
+    listening: false,
+    offsetX: 15,
+    wrap: 'char',
+    rotation: (day * angle) - rotate,
+    verticalAlign: 'middle',
+    width: 30,
+    x,
+    y
+  };
+
   // render
   return (
     <>
       <Text
-        align="center"
-        fontSize={12}
-        fill={active ? theme.main : theme.second}
-        fontFamily="MayanNumerals"
-        fontStyle="bold"
-        height={10}
-        offsetX={15}
+        {...props}
         offsetY={glyphs.length > 1 ? 12 : 5}
-        wrap="char"
-        text={glyphs[0]}
-        rotation={(day * angle) - rotate}
-        verticalAlign="middle"
-        width={30}
-        x={x}
-        y={y} />
+        text={glyphs[0]} />
 
       {glyphs.length > 1 && <Text
-        align="center"
-        fill={active ? theme.main : theme.second}
-        fontSize={12}
-        fontFamily="MayanNumerals"
-        height={10}
-        fontStyle="bold"
-        offsetX={15}
+        {...props}
         offsetY={5}
-        wrap="char"
-        text={glyphs[1]}
-        rotation={(day * angle) - rotate}
-        verticalAlign="middle"
-        width={30}
-        x={x}
-        y={y} />}
+        text={glyphs[1]} />}
     </>
   );
 };

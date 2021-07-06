@@ -16,6 +16,8 @@ const MoonTodayInfoTop: FC<IMoonTodayInfoTop> = ({
   const { t }: any = useTranslation();
   
   const offSetY = 75;
+
+  // today
   const today: number = compareAsc(date,
     parse(format(new Date(), 'yyyy/M/dd'), 'yyyy/M/dd', new Date()));
 

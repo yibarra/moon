@@ -19,8 +19,28 @@ function UseShapes() {
     ctx.restore();
   };
 
+  // create text
+  const createText = (ctx: Context, options: {}, text: string, x: number, y: number) => {
+    ctx.save();
+    ctx.beginPath();
+
+    for (let item of Object.entries(options)) {
+      ctx.setAttr(item[0], item[1]);
+    }
+
+    ctx.fillText(text, x, y);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.closePath();
+    ctx.restore();
+  };
+
+
+  // return
   return {
-    createCircle
+    createCircle,
+    createText
   };
 }
 

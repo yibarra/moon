@@ -50,6 +50,7 @@ const MoonTodayInfoLabel: FC<IMoonTodayInfoLabel> = ({
 
       {lang.value === 'qu' ?
         <TextKonva
+          listening={false}
           fontSize={10}
           fontFamily="MayanNumerals"
           verticalAlign="bottom"

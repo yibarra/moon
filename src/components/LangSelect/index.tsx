@@ -1,16 +1,17 @@
-import React, { FC, useContext } from 'react';
-import { useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 
 import InputSwitch from '../Form/InputSwitch';
 
-import { LangContext } from '../../providers/LangProvider';
+import { ILangSelect } from './interfaces';
 
-import './styles.scss';
+import { LangSelectDiv } from './styles';
 
 // lang select
-const LangSelect: FC<any> = () => {
-  const { lang, langs, setLang }: any = useContext(LangContext);
-
+const LangSelect: FC<ILangSelect> = ({
+  lang,
+  langs,
+  setLang
+}) => {
   // on select lang
   const onSelectLang = useCallback(() => {
     const value = lang.value === langs[0].value ? langs[1] : langs[0];
@@ -20,14 +21,14 @@ const LangSelect: FC<any> = () => {
 
   // render
   return (
-    <div className="lang-select">
+    <LangSelectDiv>
       <InputSwitch
         labelL={langs[0].name}
         labelR={langs[1].name}
         name="lang"
         value={lang?.value}
         onChange={onSelectLang} />
-    </div>
+    </LangSelectDiv>
   );
 };
 

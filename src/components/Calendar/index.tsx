@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-
 import { Layer } from 'react-konva';
+
 import UseFormat from '../../uses/useFormat';
 
 import CalendarDays from './CalendarDays';
@@ -71,7 +71,6 @@ const Calendar: FC<ICalendar> = ({
         lang={lang}
         setToday={setToday}
         setPos={setPos}
-        size={size}
         radius={radius}
         theme={theme}
         today={today}

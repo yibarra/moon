@@ -44,20 +44,18 @@ const CalendarDays: FC<ICalendarDays> = ({
 
     createCircle(ctx, {
       fillStyle: 'transparent',
-      lineWidth: 32,
+      lineWidth: 31,
       strokeStyle: theme.second,
-    }, radius, 0, arcRadians, false, x + 1, y);
+    }, radius, 0, arcRadians, false, x + 2, y);
   }, [ createCircle, radius, theme, x, y ]);
 
   // create circle
   const createBackground = useCallback((ctx: Context) => {
-    ctx.setLineDash([0, 0]);
-
     createCircle(ctx, {
       'fillStyle': 'transparent',
       'lineWidth': 0.5,
       'strokeStyle': hexRgb(theme.second, { alpha: 1, format: 'css' })
-    }, radius - 14, 0, Math.PI * 2, true, x, y);
+    }, radius - 15, 0, Math.PI * 2, true, x, y);
 
     ctx.setLineDash([1, 8]);
 
@@ -72,12 +70,6 @@ const CalendarDays: FC<ICalendarDays> = ({
     createCircle(ctx, {
       'fillStyle': 'transparent',
       'lineWidth': 1,
-      'strokeStyle':  theme.main
-    }, radius + 20, 0, Math.PI * 2, true, x, y);
-
-    createCircle(ctx, {
-      'fillStyle': 'transparent',
-      'lineWidth': 0.5,
       'strokeStyle': hexRgb(theme.second, { alpha: 1, format: 'css' })
     }, radius + 17, 0, Math.PI * 2, true, x, y);
   }, [ createCircle, radius, theme, x, y ]);
@@ -148,12 +140,8 @@ const CalendarDays: FC<ICalendarDays> = ({
             duration: 1050,
           }}
           reset
-          from={{
-            opacity: 0,
-          }}
-          to={{
-            opacity: 1
-          }}>
+          from={{ opacity: 0, }}
+          to={{ opacity: 1 }}>
           {props => (<a.Group
             x={x}
             y={y}
@@ -169,9 +157,7 @@ const CalendarDays: FC<ICalendarDays> = ({
           </a.Group>)}
         </Spring> :
         <Spring
-          config={{
-            duration: 450
-          }}
+          config={{ duration: 450 }}
           delay={90 * 11}
           from={{ rotation: 0 }}
           to={{ rotation: rotate }}>

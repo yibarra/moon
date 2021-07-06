@@ -1,10 +1,8 @@
-import { ILang } from "../../../providers/LangProvider/interfaces";
-import { ISize } from "../../../providers/MainProvider/interfaces";
 import { IColors } from "../../../providers/ThemeProvider/interfaces";
+import { ILang } from "../../../providers/LangProvider/interfaces";
 
 export interface IMoonToday {
   lang: ILang;
-  size: ISize;
   theme: IColors;
   radius: number;
   setToday(value: Date): void;

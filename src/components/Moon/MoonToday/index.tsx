@@ -12,7 +12,6 @@ const MoonToday: FC<IMoonToday> = ({
   lang,
   setToday,
   setPos,
-  size,
   radius,
   theme,
   today,
@@ -24,7 +23,6 @@ const MoonToday: FC<IMoonToday> = ({
     <>
       <MoonTodayBackground
         radius={radius}
-        size={size}
         setPos={setPos}
         theme={theme}
         x={x}
@@ -51,7 +49,6 @@ const MoonToday: FC<IMoonToday> = ({
 
       <MoonTodayControls
         lang={lang}
-        size={size}
         setYear={setToday}
         theme={theme}
         x={x}
