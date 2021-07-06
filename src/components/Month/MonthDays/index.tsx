@@ -50,7 +50,7 @@ const MonthDays: FC<IMonthDays> = ({
         <Circle
           listening={false}
           fill={theme.main}
-          radius={9}
+          radius={7.5}
           {...pos} /> }
 
       {(day === today.getDate() && currentMonth) &&
