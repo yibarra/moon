@@ -6,6 +6,7 @@ export interface IMonthContainer {
   day: number;
   month: number;
   radius: number;
+  rotate: number;
   setToday(value: Date): void;
   theme: IColors;
   today: Date;

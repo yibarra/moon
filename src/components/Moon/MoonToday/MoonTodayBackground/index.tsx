@@ -28,9 +28,10 @@ const MoonTodayBackground: FC<IMoonTodayBackground> = ({
   return (
     <Circle
       fill="transparent"
+      dash={[1, 2]}
       listening={true}
       draggable
-      radius={radius}
+      radius={radius + 5}
       onDragMove={onDragEnd}
       stroke={theme.second}
       x={x}

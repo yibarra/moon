@@ -21,6 +21,11 @@ const MonthDays: FC<IMonthDays> = ({
   const form: string = 'yyyy-M-dd';
   const active: boolean = day === today.getDate();
 
+  const pos: any = {
+    x: Math.cos(angle * (day - 1)) * radius || 0,
+    y: Math.sin(angle * (day - 1)) * radius || 0
+  };
+
   // select day
   const selectDay = useCallback((): number => {
     if (currentMonth === false) return 2;
@@ -45,8 +50,7 @@ const MonthDays: FC<IMonthDays> = ({
           listening={false}
           fill={theme.main}
           radius={9}
-          x={Math.cos(angle * (day - 1)) * radius || 0}
-          y={Math.sin(angle * (day - 1)) * radius || 0} /> }
+          {...pos} /> }
 
       {(day === today.getDate() && currentMonth) && <Circle
         listening={false}
@@ -54,19 +58,17 @@ const MonthDays: FC<IMonthDays> = ({
         stroke={theme.second}
         strokeWidth={2}
         radius={4}
-        x={Math.cos(angle * (day - 1)) * radius || 0}
-        y={Math.sin(angle * (day - 1)) * radius || 0} />}
+        {...pos} />}
 
       <MoonPhase
-        angle={angle}
+        angle={90}
         day={day}
         month={month}
         size={3}
         theme={theme}
         strokeWidth={selectDay()}
-        x={Math.cos(angle * (day - 1)) * radius || 0}
-        y={Math.sin(angle * (day - 1)) * radius || 0}
-        year={today.getFullYear()} />
+        year={today.getFullYear()}
+        {...pos} />
     </Group>
   );
 };

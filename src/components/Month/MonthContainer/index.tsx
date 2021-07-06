@@ -11,6 +11,7 @@ const MonthContainer: FC<IMonthContainer> = ({
   day,
   month,
   radius,
+  rotate,
   setToday,
   theme,
   today
@@ -33,7 +34,7 @@ const MonthContainer: FC<IMonthContainer> = ({
     <>
       {items.map(({ dayMonth }, index: number) =>
         <MonthDays
-          angle={angle}
+          angle={(angle)}
           currentMonth={currentMonth}
           day={dayMonth}
           key={index}

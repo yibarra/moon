@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { format } from 'date-fns';
-import { Spring, animated } from '@react-spring/konva';
+import { Spring, animated as a } from '@react-spring/konva';
+import { useTranslation } from 'react-i18next';
 
 import MonthContainer from './MonthContainer';
 import MonthName from './MonthName';
@@ -9,7 +10,6 @@ import MonthPercent from './MonthPercent';
 import UseFormat from '../../uses/useFormat';
 
 import { IMonth } from './interfaces';
-import { useTranslation } from 'react-i18next';
 
 // env
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
@@ -37,42 +37,43 @@ const Month: FC<IMonth> = ({
   return (
     <Spring
       config={{
-        duration: 450,
+        duration: 650,
       }}
-      delay={90 * (month - 1)}
+      delay={950}
       from={{ rotation: 0, x, y }}
       to={{ rotation: rotate, x, y }}>
-      {props => (<animated.Group
+      {props => (<a.Group
         {...props}>
-          <MonthPercent
-            active={active}
-            angle={angle}
-            currentMonth={currentMonth}
-            day={day}
-            month={month}
-            theme={theme}
-            today={today}
-            radius={radius} />
+        <MonthPercent
+          active={active}
+          angle={angle}
+          currentMonth={currentMonth}
+          day={day}
+          month={month}
+          theme={theme}
+          today={today}
+          radius={radius} />
 
-          <MonthName
-            active={active}
-            angle={angle}
-            day={day}
-            month={month}
-            radius={radius}
-            theme={theme}
-            text={t(`months.${format(current, 'MMM').toLowerCase()}`)} />
+        <MonthName
+          active={active}
+          angle={angle}
+          day={day}
+          month={month}
+          radius={radius}
+          theme={theme}
+          text={t(`months.${format(current, 'MMM').toLowerCase()}`)} />
 
-          <MonthContainer
-            angle={angle}
-            currentMonth={currentMonth}
-            day={day}
-            month={month}
-            radius={radius}
-            setToday={setToday}
-            theme={theme}
-            today={today} />
-      </animated.Group>)}
+        <MonthContainer
+          angle={angle}
+          currentMonth={currentMonth}
+          day={day}
+          rotate={rotate}
+          month={month}
+          radius={radius}
+          setToday={setToday}
+          theme={theme}
+          today={today} />
+      </a.Group>)}
     </Spring>
   );
 };

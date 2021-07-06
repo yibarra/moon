@@ -39,8 +39,8 @@ const Calendar: FC<ICalendar> = ({
     for (let i = 1; i <= total; i++) {
       months.push(<Month
         month={i}
-        radius={radius + (i * increment)}
         rotate={rotate}
+        radius={radius + (i * increment)}
         size={size}
         today={today}
         theme={theme}

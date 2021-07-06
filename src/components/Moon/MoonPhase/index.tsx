@@ -1,13 +1,14 @@
 import React, { FC, useCallback } from 'react';
-import { animated, Spring } from '@react-spring/konva';
+import { animated as a, Spring } from '@react-spring/konva';
 import { Circle } from 'react-konva';
+import hexRgb from 'hex-rgb';
+
 import { Shape as IShape } from 'konva/types/Shape';
+import { Context } from 'konva/types/Context';
 
 import UseMoon from '../../../uses/useMoon';
 
-import { Context } from 'konva/types/Context';
 import { IMoonPhase } from './interfaces';
-import hexRgb from 'hex-rgb';
 
 // moon phase
 const MoonPhase: FC<IMoonPhase> = ({
@@ -72,12 +73,12 @@ const MoonPhase: FC<IMoonPhase> = ({
       drawPhase(ctx, 4 * phase - 1, shape);
     } else {
       ctx.translate(x, y);
-			ctx.rotate(Math.PI);
+			ctx.rotate(angle);
 			ctx.translate(-x, -y);
 
       drawPhase(ctx, 4 * (1 - phase) - 1, shape);
     }
-  }, [ drawPhase, x, y ]);
+  }, [ angle, drawPhase, x, y ]);
 
   // render
   return (
@@ -107,12 +108,12 @@ const MoonPhase: FC<IMoonPhase> = ({
           phase: getMoonFraction(year, month, day)
         }}>
         {(props: any) => (
-          <animated.Shape
+          <a.Shape
             {...props}
             listening={false}
             sceneFunc={(ctx: Context, shape: any) => shadowMoon(ctx, shape, props.phase.to((n: any) => n))}
             fill={props.phase > 0 ? theme.second : theme.main }>
-          </animated.Shape>)}
+          </a.Shape>)}
       </Spring>
     </>
   );
