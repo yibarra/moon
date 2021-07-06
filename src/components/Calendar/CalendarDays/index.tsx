@@ -1,7 +1,6 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { Context } from 'konva/types/Context';
-import { Spring, animated as a } from '@react-spring/konva';
-import { Shape } from 'react-konva';
+import { Shape, Group } from 'react-konva';
 import hexRgb from 'hex-rgb';
 
 import CalendarDaysItem from './CalendarDaysItem';
@@ -13,15 +12,12 @@ import UseShapes from '../../../uses/useShape';
 
 import { ICalendarDays } from './interfaces';
 
-const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
-
 // calendar days
 const CalendarDays: FC<ICalendarDays> = ({
   angle,
   day,
   lang,
   radius,
-  rotate,
   theme,
   x,
   y
@@ -35,19 +31,18 @@ const CalendarDays: FC<ICalendarDays> = ({
 
   // border line
   const borderLine = useCallback((ctx: Context) => {
-    const circumference = (Math.PI * 2);
-    const arcRadians = circumference / REACT_APP_TOTAL_ITEMS_DEGREE;
+    const circ = angle / 2;
 
     ctx.translate(x, y);
-    ctx.rotate(-(Math.PI / 2) - (arcRadians / 2));
+    ctx.rotate((day - 1) * angle);
     ctx.translate(-x, -y);
 
     createCircle(ctx, {
       fillStyle: 'transparent',
       lineWidth: 31,
       strokeStyle: theme.second,
-    }, radius, 0, arcRadians, false, x + 2, y);
-  }, [ createCircle, radius, theme, x, y ]);
+    }, radius, -circ, circ, false, x + 2, y);
+  }, [ angle, createCircle, day, radius, theme, x, y ]);
 
   // create circle
   const createBackground = useCallback((ctx: Context) => {
@@ -89,12 +84,12 @@ const CalendarDays: FC<ICalendarDays> = ({
               y: (Math.sin(i * angle) * radius)
             };
 
-            temp.push({ angle, glyphs, rotate, day: currentDate, ...pos });
+            temp.push({ angle, glyphs, day: currentDate, ...pos });
           });
     }
 
     setItems(temp);
-  }, [angle, mayan, rotate, radius]);
+  }, [angle, mayan, radius]);
 
   // create days
   const createDays = useCallback((ctx: CanvasRenderingContext2D) => {
@@ -135,41 +130,24 @@ const CalendarDays: FC<ICalendarDays> = ({
         sceneFunc={(ctx: Context) => borderLine(ctx)} />
           
       {lang.value === 'qu' ?
-        <Spring
-          config={{
-            duration: 1050,
-          }}
-          reset
-          from={{ opacity: 0, }}
-          to={{ opacity: 1 }}>
-          {props => (<a.Group
-            x={x}
-            y={y}
-            {...props}
-            rotation={rotate}>
-            {Array.isArray(items) && items.map((item: any, index: number) =>
-              <CalendarDaysItem
-                {...item}
-                active={(day - 1) === index}
-                radius={radius}
-                theme={theme}
-                key={index} />)}
-          </a.Group>)}
-        </Spring> :
-        <Spring
-          config={{ duration: 450 }}
-          delay={90 * 11}
-          from={{ rotation: 0 }}
-          to={{ rotation: rotate }}>
-          {props => (<a.Group
-            x={x}
-            y={y}
-            {...props}>
-            <Shape
-              listening={false}
-              sceneFunc={(ctx: any) => createDays(ctx)} />
-          </a.Group>)}
-        </Spring>
+        <Group
+          x={x}
+          y={y}>
+          {Array.isArray(items) && items.map((item: any, index: number) =>
+            <CalendarDaysItem
+              {...item}
+              active={(day - 1) === index}
+              radius={radius}
+              theme={theme}
+              key={index} />)}
+        </Group>:
+        <Group
+          x={x}
+          y={y}>
+          <Shape
+            listening={false}
+            sceneFunc={(ctx: any) => createDays(ctx)} />
+        </Group>
       }
     </>
   );

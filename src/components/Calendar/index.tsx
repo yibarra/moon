@@ -39,7 +39,6 @@ const Calendar: FC<ICalendar> = ({
     for (let i = 1; i <= total; i++) {
       months.push(<Month
         month={i}
-        rotate={rotate}
         radius={radius + (i * increment)}
         size={size}
         today={today}
@@ -50,7 +49,7 @@ const Calendar: FC<ICalendar> = ({
     }
 
     return months;
-  }, [increment, radius, rotate, pos, size, setToday, theme, today]);
+  }, [increment, radius, pos, size, setToday, theme, today]);
 
   // render
   return (
@@ -80,8 +79,8 @@ const Calendar: FC<ICalendar> = ({
         angle={angle}
         day={today.getDate()}
         lang={lang}
-        radius={radius + (14 * increment)}
         rotate={rotate}
+        radius={radius + (14 * increment)}
         theme={theme}
         {...pos} />
     </Layer>

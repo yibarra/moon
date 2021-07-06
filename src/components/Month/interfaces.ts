@@ -42,7 +42,6 @@ export interface IMonth {
   month: number;
   size: ISize;
   radius: number;
-  rotate: number;
   setToday(value: any): void;
   today: Date;
   theme: IColors;

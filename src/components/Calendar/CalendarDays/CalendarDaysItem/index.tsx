@@ -6,10 +6,7 @@ import { ICalendarDaysItem } from './interfaces';
 // calendar days item
 const CalendarDaysItem: FC<ICalendarDaysItem> = ({
   active,
-  angle,
-  day,
   glyphs,
-  rotate,
   theme,
   x,
   y
@@ -23,7 +20,7 @@ const CalendarDaysItem: FC<ICalendarDaysItem> = ({
     listening: false,
     offsetX: 15,
     wrap: 'char',
-    rotation: (day * angle) - rotate,
+    rotation: 0,
     verticalAlign: 'middle',
     width: 30,
     x,

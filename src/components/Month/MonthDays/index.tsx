@@ -21,6 +21,7 @@ const MonthDays: FC<IMonthDays> = ({
   const form: string = 'yyyy-M-dd';
   const active: boolean = day === today.getDate();
 
+  // pos
   const pos: any = {
     x: Math.cos(angle * (day - 1)) * radius || 0,
     y: Math.sin(angle * (day - 1)) * radius || 0
@@ -52,16 +53,16 @@ const MonthDays: FC<IMonthDays> = ({
           radius={9}
           {...pos} /> }
 
-      {(day === today.getDate() && currentMonth) && <Circle
-        listening={false}
-        fill={theme.main}
-        stroke={theme.second}
-        strokeWidth={2}
-        radius={4}
-        {...pos} />}
+      {(day === today.getDate() && currentMonth) &&
+        <Circle
+          listening={false}
+          fill={theme.main}
+          stroke={theme.second}
+          strokeWidth={2}
+          radius={4}
+          {...pos} />}
 
       <MoonPhase
-        angle={90}
         day={day}
         month={month}
         size={3}
