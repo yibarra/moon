@@ -13,7 +13,7 @@ const Header: FC<any> = ({
   scale,
   setScale,
   radius,
-  setRadius,
+  setRadius
 }) => {
   const { setColors } = useContext(ThemeContext);
   const { lang, langs, setLang }: any = useContext(LangContext);
@@ -23,18 +23,17 @@ const Header: FC<any> = ({
   // on theme change
   const onThemeChange = useCallback((value: any) => {
     if (value === false) {
-      setColors('#EADDC1', '#262B2F');
+      setColors('#262B2F', '#EADDC1');
     } else {
-      setColors('#F2F3F5', '#2C4C9C');
+      setColors('#2C4C9C', '#F2F3F5');
     }
 
     setColor(!value);
   }, [setColors]);
 
   // on scale
-  const onScale = useCallback((value: number) => {
-    setScale(value / 100);
-  }, [setScale]);
+  const onScale = useCallback((value: number) =>
+    setScale(value / 100), [setScale]);
 
   // render
   return (

@@ -12,7 +12,7 @@ import { ThemeContext } from '../../providers/ThemeProvider';
 
 import { IMain } from './interfaces';
 
-import './styles.scss';
+import { MainSection } from './styles';
 
 // main
 const Main: FC<IMain> = () => {
@@ -32,8 +32,7 @@ const Main: FC<IMain> = () => {
 
   // render
   return (
-    <section
-      className="main"
+    <MainSection
       style={{ backgroundColor: theme.main }}>
 
       <Header
@@ -44,6 +43,7 @@ const Main: FC<IMain> = () => {
 
       {loaded &&
         <Stage
+          className="stage"
           height={size.height}
           width={size.width}>
           <Calendar
@@ -59,7 +59,7 @@ const Main: FC<IMain> = () => {
         </Stage>}
 
       <Footer />
-    </section>
+    </MainSection>
   );
 };
 

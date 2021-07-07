@@ -54,7 +54,6 @@ const Calendar: FC<ICalendar> = ({
   // render
   return (
     <Layer
-      id="calendar"
       scale={{ x: scale, y: scale }}>
       <YearControls
         lang={lang}
