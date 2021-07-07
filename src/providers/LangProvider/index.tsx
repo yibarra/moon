@@ -14,7 +14,7 @@ const LangProvider: FC<ILangProvider> = ({
     name: 'Quechua',
     value: 'qu'
   }, {
-    name: 'Roman',
+    name: 'Gregorian',
     value: 'en'
   }];
 

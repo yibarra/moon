@@ -54,7 +54,10 @@ const Calendar: FC<ICalendar> = ({
   // render
   return (
     <Layer
-      scale={{ x: scale, y: scale }}>
+      scale={{ x: scale, y: scale }}
+      offsetX={(size.width / 2)}
+      offsetY={size.height / 2}
+      {...pos}>
       <YearControls
         lang={lang}
         theme={theme}
