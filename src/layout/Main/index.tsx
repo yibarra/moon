@@ -27,8 +27,8 @@ const Main: FC<IMain> = () => {
     setRadius,
     pos,
     setPos } = useContext(MainContext);
-  const { lang } = useContext(LangContext);
-  const { theme } = useContext(ThemeContext);
+  const { lang, langs, setLang } = useContext(LangContext);
+  const { theme, setColors } = useContext(ThemeContext);
 
   // render
   return (
@@ -36,8 +36,14 @@ const Main: FC<IMain> = () => {
       style={{ backgroundColor: theme.main }}>
 
       <Header
+        date={date}
+        lang={lang}
+        langs={langs}
+        setLang={setLang}
+        setDate={setDate}
         scale={scale}
         setScale={setScale}
+        setColors={setColors}
         radius={radius}
         setRadius={setRadius} />
 

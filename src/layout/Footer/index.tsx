@@ -13,7 +13,8 @@ const Footer: FC<IFooter> = () => {
 
   // render
   return (
-    <FooterFooter>
+    <FooterFooter
+      className="footer">
       <button onClick={redirect}>
         <span>@Julian Ibarra</span>
       </button>

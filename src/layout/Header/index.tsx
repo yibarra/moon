@@ -1,24 +1,30 @@
-import React, { FC, useCallback, useContext, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import InputRange from '../../components/Form/InputRange';
+import DatePicker from 'react-datepicker';
 
 import InputSwitch from '../../components/Form/InputSwitch';
 import LangSelect from '../../components/LangSelect';
-import { LangContext } from '../../providers/LangProvider';
-import { ThemeContext } from '../../providers/ThemeProvider';
+
+import "react-datepicker/dist/react-datepicker.css";
+
+import { HeaderDateDiv } from './styles';
 
 import './styles.scss';
 
 // header
 const Header: FC<any> = ({
+  date,
+  lang,
+  langs,
+  setLang,
   scale,
+  setDate,
   setScale,
   radius,
-  setRadius
+  setRadius,
+  setColors
 }) => {
-  const { setColors } = useContext(ThemeContext);
-  const { lang, langs, setLang }: any = useContext(LangContext);
-
-  const [color, setColor] = useState<boolean>(true);
+  const [ color, setColor ] = useState<boolean>(true);
 
   // on theme change
   const onThemeChange = useCallback((value: any) => {
@@ -56,6 +62,10 @@ const Header: FC<any> = ({
             setLang={setLang} />
         </div>
       </div>
+
+      <HeaderDateDiv>
+        <DatePicker selected={date} onChange={(date: any) => setDate(date)} />
+      </HeaderDateDiv>
 
       <div className="filter">
         <div className="filter--item slider">
