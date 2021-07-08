@@ -43,9 +43,13 @@ const MonthDays: FC<IMonthDays> = ({
   // render
   return (
     <Group
+      rotation={90}
+      offsetX={pos.x}
+      offsetY={pos.y}
       listening={true}
       onClick={() => selectDate(day)}
-      onTap={() => selectDate(day)}>
+      onTap={() => selectDate(day)}
+      {...pos}>
       {(day === 1 || day === lastDay) &&
         <Circle
           listening={false}

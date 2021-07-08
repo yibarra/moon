@@ -20,7 +20,7 @@ const CalendarDaysItem: FC<ICalendarDaysItem> = ({
     listening: false,
     offsetX: 15,
     wrap: 'char',
-    rotation: 0,
+    rotation: 90,
     verticalAlign: 'middle',
     width: 30,
     x,

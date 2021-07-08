@@ -120,7 +120,12 @@ const CalendarDays: FC<ICalendarDays> = ({
 
   // render
   return (
-    <>
+    <Group
+      rotation={0}
+      offsetX={x}
+      offsetY={y}
+      x={x}
+      y={y}>
       <Shape
         listening={false}
         sceneFunc={(ctx: Context) => createBackground(ctx)} />
@@ -149,7 +154,7 @@ const CalendarDays: FC<ICalendarDays> = ({
             sceneFunc={(ctx: any) => createDays(ctx)} />
         </Group>
       }
-    </>
+    </Group>
   );
 };
 

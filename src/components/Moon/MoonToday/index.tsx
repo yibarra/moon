@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Group } from 'react-konva';
 
 import MoonPhase from '../MoonPhase';
 import MoonTodayBackground from './MoonTodayBackground';
@@ -20,7 +21,12 @@ const MoonToday: FC<IMoonToday> = ({
 }) => {
   // render
   return (
-    <>
+    <Group
+      rotation={90}
+      offsetX={x}
+      offsetY={y}
+      x={x}
+      y={y}>
       <MoonTodayBackground
         radius={radius}
         setPos={setPos}
@@ -36,7 +42,7 @@ const MoonToday: FC<IMoonToday> = ({
         y={y} />
 
       <MoonPhase
-        active={true}
+        active={false}
         day={today.getDate()}
         delay={900}
         month={today.getMonth()}
@@ -54,7 +60,7 @@ const MoonToday: FC<IMoonToday> = ({
         x={x}
         y={y}
         year={today.getFullYear()} />  
-    </>
+    </Group>
   );
 };
 

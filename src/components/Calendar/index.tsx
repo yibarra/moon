@@ -54,6 +54,7 @@ const Calendar: FC<ICalendar> = ({
   // render
   return (
     <Layer
+      rotation={-90}
       scale={{ x: scale, y: scale }}
       offsetX={(size.width / 2)}
       offsetY={size.height / 2}

@@ -1,4 +1,5 @@
 import React, { FC, useCallback } from 'react';
+import { Group } from 'react-konva';
 
 import ButtonArrow from '../Form/ButtonArrow';
 
@@ -22,7 +23,12 @@ const YearControls: FC<IYearControls> = ({
 
   // render
   return (
-    <>
+    <Group
+      rotation={90}
+      offsetX={x}
+      offsetY={y}
+      x={x}
+      y={y}>
       <ButtonArrow
         color={theme.second}
         lang={lang}
@@ -40,7 +46,7 @@ const YearControls: FC<IYearControls> = ({
         type="right"
         x={x + (radius + offSetX)}
         y={y - 5} />
-    </>
+    </Group>
   );
 };
 
