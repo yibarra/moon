@@ -63,7 +63,13 @@ const HeaderDateDiv = styled.div`
     }
 
     &-popper {
-      transform: translate(-168px, -20px) !important;
+      transform: translate(-120px, -20px) !important;
+    }
+
+    &__tab-loop {
+      left: 50%;
+      transform: translate(-50%, 0);
+      top: 0;
     }
 
     &__triangle {
@@ -133,6 +139,61 @@ const HeaderDateDiv = styled.div`
   }
 `;
 
+const HeaderHeader = styled.header`
+  background-color: transparent;
+  left: 0;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 22;
+
+  .filter {
+    float: left;
+    width: 50%;
+
+    &--date {
+      left: 50%;
+      position: absolute;
+      top: 10px;
+      transform: translate(-50%, 0);
+    }
+
+    &--item {
+      float: left;
+      margin: 0 0 10px;
+      width: 100%;
+
+      &.slider {
+        > label {
+          float: right;
+        }
+      }
+    }
+
+    .input-range {
+      float: right;
+    }
+  }
+`;
+
+const HeaderMoonDiv = styled.div`
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 0);
+  top: 0;
+
+  .title {
+    color: ${({ theme }) => theme.second};
+    font-family: Roboto Slab;
+    font-size: 10px;
+    margin: 10px 0;
+    text-transform: uppercase;
+  }
+`;
+
 export {
-  HeaderDateDiv
+  HeaderDateDiv,
+  HeaderHeader,
+  HeaderMoonDiv
 }

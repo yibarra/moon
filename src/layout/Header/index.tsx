@@ -7,9 +7,7 @@ import LangSelect from '../../components/LangSelect';
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import { HeaderDateDiv } from './styles';
-
-import './styles.scss';
+import { HeaderDateDiv, HeaderHeader, HeaderMoonDiv } from './styles';
 
 // header
 const Header: FC<any> = ({
@@ -43,8 +41,7 @@ const Header: FC<any> = ({
 
   // render
   return (
-    <header
-      className="header">
+    <HeaderHeader>
       <div className="filter">
         <div className="filter--item">
           <InputSwitch
@@ -63,6 +60,10 @@ const Header: FC<any> = ({
         </div>
       </div>
 
+      <HeaderMoonDiv>
+        <p className="title">Moon</p>
+      </HeaderMoonDiv>
+
       <HeaderDateDiv>
         <DatePicker selected={date} onChange={(date: any) => setDate(date)} />
       </HeaderDateDiv>
@@ -80,13 +81,13 @@ const Header: FC<any> = ({
         <div className="filter--item slider">
           <InputRange
             label="form.scale"
-            min={100}
+            min={90}
             max={200}
             set={onScale}
             value={scale * 100} />
         </div>
       </div>
-    </header>
+    </HeaderHeader>
   );
 };
 
