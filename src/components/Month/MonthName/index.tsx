@@ -1,3 +1,4 @@
+import { Spring, animated as a } from '@react-spring/konva';
 import { Context } from 'konva/types/Context';
 import React, { FC, useCallback } from 'react';
 import { Group, Shape } from 'react-konva';
@@ -13,6 +14,7 @@ const MonthName: FC<IMonthName> = ({
   active,
   angle,
   day,
+  month,
   radius,
   theme,
   text
@@ -21,24 +23,23 @@ const MonthName: FC<IMonthName> = ({
 
   // update name
   const updateName = useCallback((day: number): number =>
-    ((day) * angle), [ angle ]);
+    ((day) * angle), [angle]);
 
   // create circle
-  const createCircle = useCallback((ctx: Context) => {
+  const createCircle = useCallback((ctx: Context, endAngle: number, color: string) => {
     const initAngle = angle;
-    const endAngle = updateName(day);
 
     ctx.save();
     ctx.beginPath();
     ctx.setAttr('fillStyle', 'transparent');
-    ctx.setAttr('strokeStyle', active ? theme.second : theme.main);
+    ctx.setAttr('strokeStyle', color);
     ctx.setAttr('lineWidth', 17);
-    ctx.arc(0, 0, radius, initAngle, endAngle, true);
+    ctx.arc(0, 0, radius, endAngle, initAngle, false);
     ctx.fill();
     ctx.stroke();
     ctx.closePath();
     ctx.restore();
-  }, [ active, angle, day, radius, theme, updateName]);
+  }, [ angle, radius ]);
 
   // create name
   const createName = useCallback((ctx: CanvasRenderingContext2D) => {
@@ -49,7 +50,11 @@ const MonthName: FC<IMonthName> = ({
     ctx.scale(-1, 1);
 
     new TextCircle(ctx, text, 0, 0, radius, -(Math.PI - (angle / 2)), undefined, true); // text
-  }, [ active, angle, radius, theme, text ]);
+  }, [active, angle, radius, theme, text]);
+
+  // get value
+  const getValue = useCallback((prop: any) =>
+    prop.to((n: any) => n).get(), []);
 
   // render
   return (
@@ -57,14 +62,26 @@ const MonthName: FC<IMonthName> = ({
       listening={false}
       rotation={toDegrees(-(Math.PI * 2) - angle)}>
       {active &&
-        <Shape
-          listening={false}
-          sceneFunc={(ctx: Context) => createCircle(ctx)} />}
+        <Spring
+          from={{ 
+            color: theme.main,
+            endAngle: (Math.PI * 2)
+          }}
+          to={{
+            color: theme.second,
+            endAngle: updateName(day),
+            }}>
+          {(props: any) => (
+            <a.Shape
+              listening={false}
+              sceneFunc={(ctx: Context) => createCircle(ctx, getValue(props.endAngle), getValue(props.color))}
+              {...props}>
+            </a.Shape>)}
+        </Spring>}
 
       <Shape
         listening={false}
-        sceneFunc={(ctx: any) => createName(ctx)}
-         />
+        sceneFunc={(ctx: any) => createName(ctx)} />
     </Group>
   );
 };

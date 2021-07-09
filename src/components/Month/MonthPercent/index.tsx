@@ -1,7 +1,10 @@
-import hexRgb from 'hex-rgb';
-import { Context } from 'konva/types/Context';
 import React, { FC, useCallback } from 'react';
-import { Group, Circle } from 'react-konva';
+
+import { Spring, animated as a } from '@react-spring/konva';
+import { Circle } from 'react-konva';
+import { Context } from 'konva/types/Context';
+
+import hexRgb from 'hex-rgb';
 
 import { IMonthPercent } from './interfaces';
 
@@ -16,11 +19,10 @@ const MonthPercent: FC<IMonthPercent> = ({
   today
 }) => {
   // create mask
-  const maskLines = useCallback((ctx: Context) => {
+  const maskLines = useCallback((ctx: Context, total: number) => {
     if (active === true) {
       const value = Math.abs(angle * (day - 1));
-      const total = Math.abs(angle * (today.getDate() - 1));
-      
+
       if (today.getMonth() > (month - 1)) {
         ctx.arc(0, 0, radius, 0, value, false);
       } else {
@@ -31,22 +33,31 @@ const MonthPercent: FC<IMonthPercent> = ({
         }
       }
     }
-  }, [ active, angle, day, month, radius, today ]);
+  }, [active, angle, day, month, radius, today]);
 
   // render
   return (
-    <Group
-      clipFunc={(ctx: Context) => maskLines(ctx)}
-      listening={false}>
-        <Circle
-          dash={[2, 2]}
-          fill="transparent"
+    <Spring
+      config={{
+        duration: 1200,
+      }}
+      from={{ total: 0 }}
+      to={{ total: Math.abs(angle * (today.getDate() - 1)) }}>
+      {(props: any) => (
+        <a.Group
+          clipFunc={(ctx: Context) => maskLines(ctx, props.total.to((n: any) => n).get())}
           listening={false}
-          radius={radius}
-          stroke={hexRgb(theme.second, { alpha: 1, format: 'css' })}
-          strokeWidth={1}
-          listen={false} />
-    </Group>
+          {...props}>
+          <Circle
+            dash={[2, 2]}
+            fill="transparent"
+            listening={false}
+            radius={radius}
+            stroke={hexRgb(theme.second, { alpha: 1, format: 'css' })}
+            strokeWidth={1}
+            listen={false} />
+        </a.Group>)}
+    </Spring>
   );
 };
 

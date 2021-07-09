@@ -1,12 +1,12 @@
 import React, { FC, useCallback } from 'react';
 import { Layer } from 'react-konva';
 
-import UseFormat from '../../uses/useFormat';
-
 import CalendarDays from './CalendarDays';
 import Month from '../Month';
 import MoonToday from '../Moon/MoonToday';
 import YearControls from '../YearControls';
+
+import UseFormat from '../../uses/useFormat';
 
 import { ICalendar } from './interfaces';
 

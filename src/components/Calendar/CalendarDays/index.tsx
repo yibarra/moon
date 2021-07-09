@@ -121,6 +121,7 @@ const CalendarDays: FC<ICalendarDays> = ({
   // render
   return (
     <Group
+      listening={false}
       rotation={0}
       offsetX={x}
       offsetY={y}
