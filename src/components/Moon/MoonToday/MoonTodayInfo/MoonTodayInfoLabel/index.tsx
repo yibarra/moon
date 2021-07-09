@@ -64,6 +64,7 @@ const MoonTodayInfoLabel: FC<IMoonTodayInfoLabel> = ({
           y={y + (offSetY - 5)} />
         : <Text
             fill={theme.second}
+            fontStyle="700"
             fontFamily="Roboto Slab"
             align="center"
             fontSize={8}

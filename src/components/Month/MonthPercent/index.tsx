@@ -4,8 +4,6 @@ import { Spring, animated as a } from '@react-spring/konva';
 import { Circle } from 'react-konva';
 import { Context } from 'konva/types/Context';
 
-import hexRgb from 'hex-rgb';
-
 import { IMonthPercent } from './interfaces';
 
 // month radius percent
@@ -51,12 +49,12 @@ const MonthPercent: FC<IMonthPercent> = ({
           listening={false}
           {...props}>
           <Circle
-            dash={[2, 2]}
+            dash={[2, 1]}
             fill="transparent"
             listening={false}
             radius={radius}
-            stroke={hexRgb(theme.second, { alpha: 1, format: 'css' })}
-            strokeWidth={1}
+            stroke={theme.second}
+            strokeWidth={2}
             listen={false} />
         </a.Group>)}
     </Spring>

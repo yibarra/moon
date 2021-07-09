@@ -9,6 +9,7 @@ import YearControls from '../YearControls';
 import UseFormat from '../../uses/useFormat';
 
 import { ICalendar } from './interfaces';
+import CalenderBorder from './CalendarBorder';
 
 // env
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
@@ -60,6 +61,12 @@ const Calendar: FC<ICalendar> = ({
       offsetX={(size.width / 2)}
       offsetY={size.height / 2}
       {...pos}>
+
+      <CalenderBorder
+        radius={radius + (13 * increment)}
+        theme={theme}
+        {...pos} />
+
       <YearControls
         lang={lang}
         theme={theme}

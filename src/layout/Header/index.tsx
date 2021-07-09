@@ -18,8 +18,6 @@ const Header: FC<any> = ({
   scale,
   setDate,
   setScale,
-  radius,
-  setRadius,
   setColors
 }) => {
   const [ color, setColor ] = useState<boolean>(true);
@@ -29,7 +27,7 @@ const Header: FC<any> = ({
     if (value === false) {
       setColors('#303336', '#EADDC1');
     } else {
-      setColors('#2C4C9C', '#F2F3F5');
+      setColors('#EADDC1', '#303336');
     }
 
     setColor(!value);
@@ -69,15 +67,6 @@ const Header: FC<any> = ({
       </HeaderDateDiv>
 
       <div className="filter">
-        <div className="filter--item slider">
-          <InputRange
-            label="form.radius"
-            min={110}
-            max={400}
-            set={setRadius}
-            value={radius} />
-        </div>
-
         <div className="filter--item slider">
           <InputRange
             label="form.scale"

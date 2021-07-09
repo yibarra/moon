@@ -70,6 +70,7 @@ const ButtonArrow: FC<IButtonArrow> = ({
       {text && <Text
         align="center"
         fill={color}
+        fontStyle="700"
         fontFamily={lang.value === 'en' ? 'Roboto Slab' : 'MayanNumerals'}
         fontSize={lang.value === 'en' ? 8 : 10}
         offsetX={type === "right" ? width : 0 }
