@@ -2,6 +2,7 @@ import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { Context } from 'konva/types/Context';
 import { Shape, Group } from 'react-konva';
 import hexRgb from 'hex-rgb';
+import { Spring, animated as a } from '@react-spring/konva';
 
 import CalendarDaysItem from './CalendarDaysItem';
 import MayanNumber from '../../../helpers/mayanNumber';
@@ -27,12 +28,10 @@ const CalendarDays: FC<ICalendarDays> = ({
 
   const mayan = useMemo(() => new MayanNumber(), []); // mayan
 
-  const [ items, setItems ] = useState<any>([]); // items
+  const [items, setItems] = useState<any>([]); // items
 
   // border line
-  const borderLine = useCallback((ctx: Context) => {
-    const circ = angle / 2;
-
+  const borderLine = useCallback((ctx: Context, circ: number) => {
     ctx.translate(x, y);
     ctx.rotate((day - 1) * angle);
     ctx.translate(-x, -y);
@@ -42,7 +41,7 @@ const CalendarDays: FC<ICalendarDays> = ({
       lineWidth: 31,
       strokeStyle: theme.second,
     }, radius, -circ, circ, false, x + 2, y);
-  }, [ angle, createCircle, day, radius, theme, x, y ]);
+  }, [angle, createCircle, day, radius, theme, x, y]);
 
   // create circle
   const createBackground = useCallback((ctx: Context) => {
@@ -60,14 +59,14 @@ const CalendarDays: FC<ICalendarDays> = ({
       'strokeStyle': hexRgb(theme.second, { alpha: 1, format: 'css' })
     }, radius - 17, 0, Math.PI * 2, true, x, y);
 
-    ctx.setLineDash([ 0, 0 ]);
+    ctx.setLineDash([0, 0]);
 
     createCircle(ctx, {
       'fillStyle': 'transparent',
       'lineWidth': 1,
       'strokeStyle': hexRgb(theme.second, { alpha: 1, format: 'css' })
     }, radius + 17, 0, Math.PI * 2, true, x, y);
-  }, [ createCircle, radius, theme, x, y ]);
+  }, [createCircle, radius, theme, x, y]);
 
   // days mayan
   const createMayanDays = useCallback(async () => {
@@ -98,7 +97,7 @@ const CalendarDays: FC<ICalendarDays> = ({
 
       const roman: any[] = Array.from(convertToRoman(currentDate));
       const dayRoman: string = roman.reverse().join('').toString();
-      
+
       ctx.save();
       ctx.beginPath();
       ctx.font = "700 7px Roboto Slab";
@@ -111,7 +110,7 @@ const CalendarDays: FC<ICalendarDays> = ({
       ctx.closePath();
       ctx.restore();
     }
-  }, [ angle, convertToRoman, day, radius, theme ]);
+  }, [angle, convertToRoman, day, radius, theme]);
 
   // use effect
   useEffect(() => {
@@ -131,10 +130,19 @@ const CalendarDays: FC<ICalendarDays> = ({
         listening={false}
         sceneFunc={(ctx: Context) => createBackground(ctx)} />
 
-      <Shape
-        listening={false}
-        sceneFunc={(ctx: Context) => borderLine(ctx)} />
-          
+      <Spring
+        reset
+        from={{ value: 0 }}
+        to={{ value: angle / 2 }}>
+        {(props) => (
+          <a.Shape
+            listening={false}
+            sceneFunc={(ctx: Context) => borderLine(ctx, props.value.to((n: any) => n).get())}
+            {...props}>
+          </a.Shape>
+        )}
+      </Spring>
+
       {lang.value === 'qu' ?
         <Group
           x={x}
@@ -146,7 +154,7 @@ const CalendarDays: FC<ICalendarDays> = ({
               radius={radius}
               theme={theme}
               key={index} />)}
-        </Group>:
+        </Group> :
         <Group
           x={x}
           y={y}>
