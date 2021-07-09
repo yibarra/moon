@@ -38,7 +38,7 @@ const MoonToday: FC<IMoonToday> = ({
       <MoonPhase
         active={false}
         day={today.getDate()}
-        delay={900}
+        delay={300}
         month={today.getMonth()}
         size={32}
         strokeWidth={1}

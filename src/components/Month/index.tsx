@@ -36,7 +36,7 @@ const Month: FC<IMonth> = ({
   // month
   return (
     <Group
-      listening={!animate}
+      listening={animate}
       x={x}
       y={y}>
       <MonthPercent

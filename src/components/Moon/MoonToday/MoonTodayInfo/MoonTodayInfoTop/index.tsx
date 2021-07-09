@@ -19,7 +19,7 @@ const MoonTodayInfoTop: FC<IMoonTodayInfoTop> = ({
 
   // today
   const today: number = compareAsc(date,
-    parse(format(new Date(), 'yyyy/M/dd'), 'yyyy/M/dd', new Date()));
+    parse(format(new Date(), 'yyyy/MM/dd'), 'yyyy/MM/dd', new Date()));
 
   // render
   return (

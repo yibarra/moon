@@ -18,7 +18,7 @@ const MonthDays: FC<IMonthDays> = ({
   theme,
   today
 }) => {
-  const form: string = 'yyyy-M-dd';
+  const form: string = 'yyyy/MM/dd';
   const active: boolean = day === today.getDate();
 
   // pos
@@ -35,10 +35,10 @@ const MonthDays: FC<IMonthDays> = ({
   }, [ active, currentMonth ]);
 
   // select
-  const selectDate = useCallback((day: number) => 
+  const selectDate = useCallback(() =>
     setToday(parse(
-      format(new Date(`${today.getFullYear()}-${month}-${day}`), form), form, new Date())
-    ), [ month, setToday, today ]);
+      format(new Date(`${today.getFullYear()}/${month}/${day}`), form), form, new Date()
+    )), [ day, month, setToday, today ]);
 
   // render
   return (
@@ -47,8 +47,8 @@ const MonthDays: FC<IMonthDays> = ({
       offsetX={pos.x}
       offsetY={pos.y}
       listening={true}
-      onClick={() => selectDate(day)}
-      onTap={() => selectDate(day)}
+      onClick={selectDate}
+      onTap={selectDate}
       {...pos}>
       {(day === 1 || day === lastDay) &&
         <Circle

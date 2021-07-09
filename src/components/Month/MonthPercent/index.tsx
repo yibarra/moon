@@ -41,7 +41,7 @@ const MonthPercent: FC<IMonthPercent> = ({
     <Spring
       reset={animate}
       config={{
-        duration: 900,
+        duration: 600,
       }}
       from={{ total: 0 }}
       to={{ total: Math.abs(angle * (today.getDate() - 1)) }}>
