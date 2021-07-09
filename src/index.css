@@ -23,7 +23,6 @@ html {
 }
 
 body {
-  background-color: #262B2F;
   height: auto;
   font-family: 'Roboto Condensed', 'sans-serif';
   min-height: 100vh;
@@ -47,14 +46,5 @@ link {
 canvas {
   float: left;
   height: 100%;
-  width: 100%;
-}
-
-#starmap {
-  height: 100%;
-  left: 0;
-  opacity: 0.9;
-  position: absolute;
-  top: 0;
   width: 100%;
 }
