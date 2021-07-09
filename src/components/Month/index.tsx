@@ -16,6 +16,7 @@ const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
 // month radius
 const Month: FC<IMonth> = ({
+  animate,
   month,
   radius,
   setToday,
@@ -35,9 +36,11 @@ const Month: FC<IMonth> = ({
   // month
   return (
     <Group
+      listening={!animate}
       x={x}
       y={y}>
       <MonthPercent
+        animate={animate}
         active={active}
         angle={angle}
         currentMonth={currentMonth}

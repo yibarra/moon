@@ -17,6 +17,8 @@ import { MainSection } from './styles';
 // main
 const Main: FC<IMain> = () => {
   const {
+    animate,
+    setAnimate,
     loaded,
     date,
     setDate,
@@ -53,11 +55,13 @@ const Main: FC<IMain> = () => {
           height={size.height}
           width={size.width}>
           <Calendar
+            animate={animate}
             lang={lang}
             radius={radius}
             setToday={setDate}
             pos={pos}
             scale={scale}
+            setAnimate={setAnimate}
             setPos={setPos}
             size={size}
             today={date}

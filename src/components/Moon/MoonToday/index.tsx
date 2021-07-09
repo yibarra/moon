@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Group } from 'react-konva';
 
+import ControlPosition from '../../ControlPosition';
 import MoonPhase from '../MoonPhase';
-import MoonTodayBackground from './MoonTodayBackground';
 import MoonTodayControls from './MoonTodayControls';
 import MoonTodayInfo from './MoonTodayInfo';
 
@@ -10,10 +10,10 @@ import { IMoonToday } from './interfaces';
 
 // moon today
 const MoonToday: FC<IMoonToday> = ({
+  animate,
   lang,
-  setToday,
-  setPos,
   radius,
+  setToday,
   theme,
   today,
   x,
@@ -22,21 +22,15 @@ const MoonToday: FC<IMoonToday> = ({
   // render
   return (
     <Group
+      listening={!animate}
       rotation={90}
       offsetX={x}
       offsetY={y}
       x={x}
       y={y}>
-      <MoonTodayBackground
-        radius={radius}
-        setPos={setPos}
-        theme={theme}
-        x={x}
-        y={y} />
-
       <MoonTodayInfo
         lang={lang}
-        theme={theme} 
+        theme={theme}
         today={today}
         x={x}
         y={y} />
@@ -59,7 +53,13 @@ const MoonToday: FC<IMoonToday> = ({
         theme={theme}
         x={x}
         y={y}
-        year={today.getFullYear()} />  
+        year={today.getFullYear()} />
+
+      <ControlPosition
+        radius={radius}
+        theme={theme}
+        x={x}
+        y={y} />
     </Group>
   );
 };

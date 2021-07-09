@@ -81,7 +81,7 @@ const Header: FC<any> = ({
         <div className="filter--item slider">
           <InputRange
             label="form.scale"
-            min={90}
+            min={30}
             max={200}
             set={onScale}
             value={scale * 100} />

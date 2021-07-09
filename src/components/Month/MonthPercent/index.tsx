@@ -10,6 +10,7 @@ import { IMonthPercent } from './interfaces';
 
 // month radius percent
 const MonthPercent: FC<IMonthPercent> = ({
+  animate,
   active,
   angle,
   day,
@@ -38,7 +39,7 @@ const MonthPercent: FC<IMonthPercent> = ({
   // render
   return (
     <Spring
-      reset
+      reset={animate}
       config={{
         duration: 900,
       }}

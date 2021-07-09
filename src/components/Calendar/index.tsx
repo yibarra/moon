@@ -15,13 +15,13 @@ const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
 
 // calendar
 const Calendar: FC<ICalendar> = ({
+  animate,
   lang,
   radius,
   scale,
   pos,
   size,
   setToday,
-  setPos,
   theme,
   today,
 }) => {
@@ -38,6 +38,7 @@ const Calendar: FC<ICalendar> = ({
 
     for (let i = 1; i <= total; i++) {
       months.push(<Month
+        animate={animate}
         month={i}
         radius={radius + (i * increment)}
         size={size}
@@ -49,7 +50,7 @@ const Calendar: FC<ICalendar> = ({
     }
 
     return months;
-  }, [increment, radius, pos, size, setToday, theme, today]);
+  }, [ animate, increment, radius, pos, size, setToday, theme, today]);
 
   // render
   return (
@@ -70,16 +71,17 @@ const Calendar: FC<ICalendar> = ({
       {createMonths()}
 
       <MoonToday
+        animate={animate}
         lang={lang}
-        setToday={setToday}
-        setPos={setPos}
         radius={radius}
+        setToday={setToday}
         theme={theme}
         today={today}
         {...pos} />
 
       <CalendarDays
         angle={angle}
+        animate={animate}
         day={today.getDate()}
         lang={lang}
         rotate={rotate}

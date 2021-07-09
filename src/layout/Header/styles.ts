@@ -63,13 +63,15 @@ const HeaderDateDiv = styled.div`
     }
 
     &-popper {
-      transform: translate(-120px, -20px) !important;
+      transform: translate(-50%, -40px) !important;
+      left: 50% !important;
     }
 
     &__tab-loop {
       left: 50%;
       transform: translate(-50%, 0);
       top: 0;
+      width: 100%;
     }
 
     &__triangle {

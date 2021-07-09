@@ -16,6 +16,7 @@ import { ICalendarDays } from './interfaces';
 // calendar days
 const CalendarDays: FC<ICalendarDays> = ({
   angle,
+  animate,
   day,
   lang,
   radius,
@@ -131,7 +132,7 @@ const CalendarDays: FC<ICalendarDays> = ({
         sceneFunc={(ctx: Context) => createBackground(ctx)} />
 
       <Spring
-        reset
+        reset={animate}
         from={{ value: 0 }}
         to={{ value: angle / 2 }}>
         {(props) => (
@@ -161,8 +162,7 @@ const CalendarDays: FC<ICalendarDays> = ({
           <Shape
             listening={false}
             sceneFunc={(ctx: any) => createDays(ctx)} />
-        </Group>
-      }
+        </Group>}
     </Group>
   );
 };

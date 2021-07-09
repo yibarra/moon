@@ -14,6 +14,7 @@ const MainProvider: FC<IMainProvider> = ({ children }) => {
   const form: string = 'yyyy/M/dd';
   const size = UseWindowSize();
   
+  const [ animate, setAnimate ] = useState<boolean>(true);
   const [ date, set ] = useState<any>(parse(format(new Date(), form), form, new Date()));
   const [ loaded, setLoaded ] = useState<boolean>(false);
   const [ radius, setRadius ] = useState<number>(110);
@@ -31,7 +32,7 @@ const MainProvider: FC<IMainProvider> = ({ children }) => {
       google: {
         families: [
           "Roboto Condensed:300,400,700",
-          "Roboto Slab:200,300,400,500,600"
+          "Roboto Slab:300,400,500,600"
         ]
       }, fontactive: () => {
         setTimeout(() => setLoaded(true), 500);
@@ -43,6 +44,8 @@ const MainProvider: FC<IMainProvider> = ({ children }) => {
   return (
     <MainContext.Provider
       value={{
+        animate,
+        setAnimate,
         date,
         loaded,
         radius,

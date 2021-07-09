@@ -39,6 +39,7 @@ export interface IMonthData {
 };
 
 export interface IMonth {
+  animate: boolean;
   month: number;
   size: ISize;
   radius: number;

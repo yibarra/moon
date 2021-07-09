@@ -11,6 +11,8 @@ export interface IPos {
 }
 
 export interface IMainContext {
+  animate: boolean;
+  setAnimate(value: boolean): void;
   date: Date;
   loaded: boolean;
   radius: number;
