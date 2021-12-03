@@ -21,7 +21,7 @@ const MoonTodayControls: FC<IMoonTodayControls> = ({
   return (
     <>
       <ButtonArrow
-        color={theme.second}
+        color={theme.main}
         lang={lang}
         onClick={() => onChange(year-1)}
         type="left"
@@ -29,7 +29,7 @@ const MoonTodayControls: FC<IMoonTodayControls> = ({
         y={y - 6} />
 
       <ButtonArrow
-        color={theme.second}
+        color={theme.main}
         lang={lang}
         onClick={() => onChange(year+1)}
         type="right"

@@ -16,16 +16,10 @@ const CalenderBorder: FC<any> = ({
   // create circle
   const createBackground = useCallback((ctx: Context) => {
     createCircle(ctx, {
-      'fillStyle': 'transparent',
+      'fillStyle': theme.second,
       'lineWidth': 1,
-      'strokeStyle': theme.second,
-    }, radius + 39, 0, Math.PI * 2, true, x, y);
-
-    createCircle(ctx, {
-      'fillStyle': 'transparent',
-      'lineWidth': 5,
-      'strokeStyle': theme.second,
-    }, radius + 35, 0, Math.PI * 2, true, x, y);
+      'strokeStyle': 'transparent',
+    }, radius + 33, 0, Math.PI * 2, true, x, y);
   }, [createCircle, radius, theme, x, y]);
 
   // render

@@ -23,8 +23,8 @@ const LangSelect: FC<ILangSelect> = ({
   return (
     <LangSelectDiv>
       <InputSwitch
-        labelL={langs[0].name}
-        labelR={langs[1].name}
+        labelL={langs[1].name}
+        labelR={langs[0].name}
         name="lang"
         value={lang?.value}
         onChange={onSelectLang} />

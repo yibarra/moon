@@ -1,6 +1,7 @@
 import React, { FC, useCallback } from 'react';
 import { Layer } from 'react-konva';
 
+import CalenderBorder from './CalendarBorder';
 import CalendarDays from './CalendarDays';
 import Month from '../Month';
 import MoonToday from '../Moon/MoonToday';
@@ -9,7 +10,6 @@ import YearControls from '../YearControls';
 import UseFormat from '../../uses/useFormat';
 
 import { ICalendar } from './interfaces';
-import CalenderBorder from './CalendarBorder';
 
 // env
 const { REACT_APP_TOTAL_ITEMS_DEGREE }: any = process.env;
@@ -77,15 +77,6 @@ const Calendar: FC<ICalendar> = ({
 
       {createMonths()}
 
-      <MoonToday
-        animate={animate}
-        lang={lang}
-        radius={radius}
-        setToday={setToday}
-        theme={theme}
-        today={today}
-        {...pos} />
-
       <CalendarDays
         angle={angle}
         animate={animate}
@@ -94,6 +85,15 @@ const Calendar: FC<ICalendar> = ({
         rotate={rotate}
         radius={radius + (14 * increment)}
         theme={theme}
+        {...pos} />
+
+      <MoonToday
+        animate={animate}
+        lang={lang}
+        radius={radius}
+        setToday={setToday}
+        theme={theme}
+        today={today}
         {...pos} />
     </Layer>
   );

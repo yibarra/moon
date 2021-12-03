@@ -44,7 +44,7 @@ const MonthName: FC<IMonthName> = ({
   // create name
   const createName = useCallback((ctx: CanvasRenderingContext2D) => {
     ctx.font = "7px Roboto Condensed";
-    ctx.fillStyle = active ? theme.main : theme.second;
+    ctx.fillStyle = active ? theme.second : theme.main;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.scale(-1, 1);
@@ -64,11 +64,11 @@ const MonthName: FC<IMonthName> = ({
       {active &&
         <Spring
           from={{ 
-            color: theme.main,
+            color: theme.second,
             endAngle: (Math.PI * 2)
           }}
           to={{
-            color: theme.second,
+            color: theme.main,
             endAngle: updateName(day),
             }}>
           {(props: any) => (

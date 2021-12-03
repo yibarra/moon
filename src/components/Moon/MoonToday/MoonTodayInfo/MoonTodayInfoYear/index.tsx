@@ -50,7 +50,7 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
   return (
     <>
       <Text
-        fill={theme.second}
+        fill={theme.main}
         fontSize={8}
         text={t(moonPhase)}
         x={x - (140 / 2)}
@@ -60,7 +60,7 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
       {lang.value === 'qu' ? <TextKonva
         fontSize={10}
         fontFamily="MayanNumerals"
-        fill={theme.second}
+        fill={theme.main}
         fontStyle="bold"
         verticalAlign="bottom"
         text={Array.isArray(year) ? year.join('\n') : ''}
@@ -70,7 +70,7 @@ const MoonTodayInfoYear: FC<IMoonTodayInfoYear> = ({
         x={x - 5}
         y={y + (offSetY + 7)} />
       : <Text
-          fill={theme.second}
+          fill={theme.main}
           align="center"
           fontStyle="700"
           fontFamily="Roboto Slab"

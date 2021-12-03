@@ -19,7 +19,7 @@ const LangProvider: FC<ILangProvider> = ({
   }];
 
   const { i18n } = useTranslation();
-  const [ lang, setLang ] = useState<ILang>(langs[0]); // lang
+  const [ lang, setLang ] = useState<ILang>(langs[1]); // lang
 
   // use effect
   useEffect(() => {

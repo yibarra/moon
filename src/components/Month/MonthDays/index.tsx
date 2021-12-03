@@ -53,7 +53,7 @@ const MonthDays: FC<IMonthDays> = ({
       {(day === 1 || day === lastDay) &&
         <Circle
           listening={false}
-          fill={theme.main}
+          fill={theme.second}
           radius={7.5}
           {...pos} /> }
 
@@ -61,8 +61,8 @@ const MonthDays: FC<IMonthDays> = ({
         <Circle
           listening={false}
           fill={theme.main}
-          stroke={theme.second}
-          strokeWidth={2}
+          stroke={theme.main}
+          strokeWidth={5}
           radius={4}
           {...pos} />}
 

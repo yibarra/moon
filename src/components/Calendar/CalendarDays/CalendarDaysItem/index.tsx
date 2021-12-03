@@ -14,7 +14,7 @@ const CalendarDaysItem: FC<ICalendarDaysItem> = ({
   const props = {
     align: 'center',
     fontSize: 10,
-    fill: active ? theme.main : theme.second,
+    fill: theme.main,
     fontFamily: 'MayanNumerals',
     height: 10,
     listening: false,

@@ -25,7 +25,7 @@ const MoonTodayInfoTop: FC<IMoonTodayInfoTop> = ({
   return (
     <>
       <Text
-        fill={theme.second}
+        fill={theme.main}
         fontSize={8}
         text={today === 0 ? t('week.today') : t('week.day')}
         width={90} 
@@ -33,7 +33,7 @@ const MoonTodayInfoTop: FC<IMoonTodayInfoTop> = ({
         y={y - offSetY} />
 
       <Text
-        fill={theme.second}
+        fill={theme.main}
         fontSize={11}
         fontStyle="normal"
         text={t(`week.${format(date, 'EEE').toLowerCase()}`)}

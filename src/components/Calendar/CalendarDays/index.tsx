@@ -39,9 +39,9 @@ const CalendarDays: FC<ICalendarDays> = ({
 
     createCircle(ctx, {
       fillStyle: 'transparent',
-      lineWidth: 31,
+      lineWidth: 33,
       strokeStyle: theme.second,
-    }, radius, -circ, circ, false, x + 2, y);
+    }, radius + 2, -circ, circ, false, x + 2, y);
   }, [angle, createCircle, day, radius, theme, x, y]);
 
   // create circle
@@ -49,7 +49,7 @@ const CalendarDays: FC<ICalendarDays> = ({
     createCircle(ctx, {
       'fillStyle': 'transparent',
       'lineWidth': 0.5,
-      'strokeStyle': hexRgb(theme.second, { alpha: 1, format: 'css' })
+      'strokeStyle': hexRgb(theme.main, { alpha: 1, format: 'css' })
     }, radius - 15, 0, Math.PI * 2, true, x, y);
 
     ctx.setLineDash([1, 8]);
@@ -57,7 +57,7 @@ const CalendarDays: FC<ICalendarDays> = ({
     createCircle(ctx, {
       'fillStyle': 'transparent',
       'lineWidth': 0.5,
-      'strokeStyle': hexRgb(theme.second, { alpha: 1, format: 'css' })
+      'strokeStyle': hexRgb(theme.main, { alpha: 1, format: 'css' })
     }, radius - 17, 0, Math.PI * 2, true, x, y);
 
     ctx.setLineDash([0, 0]);
@@ -65,7 +65,7 @@ const CalendarDays: FC<ICalendarDays> = ({
     createCircle(ctx, {
       'fillStyle': 'transparent',
       'lineWidth': 1,
-      'strokeStyle': hexRgb(theme.second, { alpha: 1, format: 'css' })
+      'strokeStyle': hexRgb(theme.main, { alpha: 1, format: 'css' })
     }, radius + 17, 0, Math.PI * 2, true, x, y);
   }, [createCircle, radius, theme, x, y]);
 
@@ -103,7 +103,7 @@ const CalendarDays: FC<ICalendarDays> = ({
       ctx.beginPath();
       ctx.font = "700 7px Roboto Slab";
       ctx.strokeStyle = 'transparent';
-      ctx.fillStyle = (day === (i + 1)) ? theme.main : theme.second;
+      ctx.fillStyle = theme.main;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       new TextCircle(ctx, dayRoman, 0, 0, radius, (angle * i), undefined, true); // text
@@ -111,7 +111,7 @@ const CalendarDays: FC<ICalendarDays> = ({
       ctx.closePath();
       ctx.restore();
     }
-  }, [angle, convertToRoman, day, radius, theme]);
+  }, [angle, convertToRoman, radius, theme]);
 
   // use effect
   useEffect(() => {

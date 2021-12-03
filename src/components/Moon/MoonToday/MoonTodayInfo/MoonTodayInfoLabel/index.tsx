@@ -41,7 +41,7 @@ const MoonTodayInfoLabel: FC<IMoonTodayInfoLabel> = ({
   return (
     <>
       <Text
-        fill={theme.second}
+        fill={theme.main}
         fontSize={8}
         width={140}
         x={x - (140 / 2)}
@@ -54,7 +54,7 @@ const MoonTodayInfoLabel: FC<IMoonTodayInfoLabel> = ({
           fontSize={10}
           fontFamily="MayanNumerals"
           verticalAlign="bottom"
-          fill={theme.second}
+          fill={theme.main}
           fontStyle="bold"
           text={Array.isArray(symbol) ? symbol.join('\n') : ''}
           height={30}
@@ -63,7 +63,7 @@ const MoonTodayInfoLabel: FC<IMoonTodayInfoLabel> = ({
           x={x - 5}
           y={y + (offSetY - 5)} />
         : <Text
-            fill={theme.second}
+            fill={theme.main}
             fontStyle="700"
             fontFamily="Roboto Slab"
             align="center"

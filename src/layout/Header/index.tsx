@@ -25,9 +25,9 @@ const Header: FC<any> = ({
   // on theme change
   const onThemeChange = useCallback((value: any) => {
     if (value === false) {
-      setColors('#303336', '#EADDC1');
-    } else {
       setColors('#EADDC1', '#303336');
+    } else {
+      setColors('#303336', '#EADDC1');
     }
 
     setColor(!value);

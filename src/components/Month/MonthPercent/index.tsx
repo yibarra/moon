@@ -53,8 +53,8 @@ const MonthPercent: FC<IMonthPercent> = ({
             fill="transparent"
             listening={false}
             radius={radius}
-            stroke={theme.second}
-            strokeWidth={2}
+            stroke={theme.main}
+            strokeWidth={1}
             listen={false} />
         </a.Group>)}
     </Spring>

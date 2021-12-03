@@ -47,6 +47,12 @@ const MoonToday: FC<IMoonToday> = ({
         y={y}
         year={today.getFullYear()} />
 
+      <ControlPosition
+        radius={radius}
+        theme={theme}
+        x={x}
+        y={y} />
+
       <MoonTodayControls
         lang={lang}
         setYear={setToday}
@@ -54,12 +60,6 @@ const MoonToday: FC<IMoonToday> = ({
         x={x}
         y={y}
         year={today.getFullYear()} />
-
-      <ControlPosition
-        radius={radius}
-        theme={theme}
-        x={x}
-        y={y} />
     </Group>
   );
 };

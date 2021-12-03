@@ -8,7 +8,7 @@ const ThemeContext: any = createContext({} as IThemeContext);
 
 // theme provider
 const ThemeProvider: FC<IThemeProvider> = ({ children }) => {  
-  const [ theme, set ]: any = useState({ main: '#303336', second: '#EADDC1' });
+  const [ theme, set ]: any = useState({ main: '#EADDC1', second: '#303336' });
 
   // set
   const setColors = useCallback((main: string, second: string) => 
